@@ -44,6 +44,13 @@
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool
 
+class StatusbarPrefsDialog : public StatusbarPrefsDialogBase
+{
+public:
+    StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
+    void OnDisplayStringInfo( wxCommandEvent& event );
+};
+
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
@@ -73,8 +80,16 @@ public:
     void ShowPreferencesDialog( wxWindow* parent );
 
 private:
-    wxWindow *m_parent_window;
+    void BuildFont();
+
+    wxFont m_font;
+    bool m_blur;
+
+    void DrawString(wxString str);
+
     wxFileConfig     *m_pConfig;
+
+    StatusbarPrefsDialog *m_PreferencesDialog;
 
     double cur_lat, cur_lon;
     PlugIn_Position_Fix_Ex lastfix;

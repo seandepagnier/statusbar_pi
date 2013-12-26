@@ -79,6 +79,8 @@ FIND_PACKAGE(Gettext REQUIRED)
 SET(SRC_STATUSBAR
     src/statusbar_pi.h
     src/statusbar_pi.cpp
+    src/StatusbarUI.h
+    src/StatusbarUI.cpp
     src/icons.cpp
     src/icons.h
 )
