@@ -38,8 +38,10 @@ class StatusbarPrefsDialogBase : public wxDialog
 	private:
 	
 	protected:
+		wxButton* m_button2;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void OnDefaultStatusString( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDisplayStringInfo( wxCommandEvent& event ) { event.Skip(); }
 		
 	
@@ -62,7 +64,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxStdDialogButtonSizer* m_sdbSizer2;
 		wxButton* m_sdbSizer2OK;
 		
-		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 360,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE ); 
+		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE ); 
 		~StatusbarPrefsDialogBase();
 	
 };

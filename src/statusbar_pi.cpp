@@ -127,15 +127,19 @@ wxString statusbar_pi::GetCommonName()
 
 wxString statusbar_pi::GetShortDescription()
 {
-    return _("StatusBar replaces builtin statusbar");
+    return _("StatusBar Plugin is an optional replacement for the builtin statusbar");
 }
 
 wxString statusbar_pi::GetLongDescription()
 {
-    return _("StatusBar replaces builtin statusbar because it is\n\
-very inefficient (on linux and gtk) and also very difficult to read.\n\
-It is also possible to customize the display,\
-  Requires OpenGL and some extensions.\n");
+    return _("StatusBar replaces builtin statusbar\n\
+The builtin status bar (disable from the User Interface tab)\n\
+is very limited in it's configuration options and therefore \
+can be very difficult to read.\n\
+  It also uses excessive cpu to operate (under gtk).\n\
+\n\
+The statusbar plugin improves on some of these difficulties.\
+  Requires OpenGL and some basic OpenGL extensions.\n");
 }
 
 bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
@@ -149,9 +153,9 @@ struct font_char
 {
     int w, h;
     unsigned int tex;
+    bool newline;
 
     void Build(wxFont &font, int i, bool blur) {
-
         wxString text = wxString::Format(_T("%c"), i);
         wxBitmap tbmp(200, 200);
         wxMemoryDC dc(tbmp);
@@ -160,6 +164,11 @@ struct font_char
 
         dc.GetTextExtent(text, &w, &h, NULL, NULL, &font);
 
+        newline = false;
+        if(i == '\n') {
+            h /= 2;
+            newline = true;
+        } else
         if(!w || !h)
             tex = 0;
         else {
@@ -203,6 +212,13 @@ struct font_char
     }
 
     void Render() {
+        if(newline) { /* newline */
+            glPopMatrix();
+            glTranslated(0, h, 0);
+            glPushMatrix();
+            return;
+        }
+
         if(!tex)
             return;
         glBindTexture(GL_TEXTURE_RECTANGLE_ARB, tex);
@@ -222,29 +238,39 @@ struct font_char
 void StatusbarPrefsDialog::OnDisplayStringInfo( wxCommandEvent& event )
 {
     wxMessageDialog dlg( GetOCPNCanvasWindow(), _("\
-Display String\n\
-the following are formats:\n\
-%1 ship lat lon\n\
-%2 ship sog\n\
-%3 ship cog\n\
-%4 ship heading\n\
-%5 ship heading rate\n\
-%6 cursor lat lon\n\
-%7 bearing to cursor\n\
-%8 distance to cursor mercator\n\
-%9 distance to cursor great circle\n\
-%A chart scale\n\
+To see the statusbar updated, close the opencpn options window, \
+leaving the Status Bar Preferences  window open.\n\
+Display String can include formats eg: \"%03.0E\" gives ship longitude \
+the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n\
+The following are formats:\n\
+%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n\
+%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n\
+%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n\
+%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n\
+%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n\
+%W from ship bearing to cursor\n\
+%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n\
 %% print a percent"), _("Statusbar Information"), wxOK | wxICON_INFORMATION );
     dlg.ShowModal();
 }
 
-wxString LLString(double lat, double lon)
+wxString DefaultDisplayString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J    \
+%02O %2.4P %R   %02S %2.4T %V   %03W  %.0X NMi    Scale %Z");
+
+void StatusbarPrefsDialog::OnDefaultStatusString( wxCommandEvent& event )
 {
-    return wxString::Format(_T("%02.0f %05.2f %c  %02.0f %05.2f %c"),
-                            trunc(fabs(lat)),
-                            60*fabs(lat - trunc(lat)), lat >= 0 ? 'N' : 'S',
-                            trunc(fabs(lon)),
-                            60*fabs(lon - trunc(lon)), lon >= 0 ? 'E' : 'W');
+    m_tDisplayString->SetValue(DefaultDisplayString);
+}
+
+double Minutes(double degrees)
+{
+    return 60*fabs(degrees - trunc(degrees));
+}
+
+double Seconds(double degrees)
+{
+    double minutes = Minutes(degrees);
+    return 60*fabs(minutes - trunc(minutes));
 }
 
 bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
@@ -254,34 +280,90 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
 
     double brg = NAN, dist = NAN;
     for(unsigned int i = 0; i< text.length(); i++)
+        if(text[i] == '\\') {
+            if(++i >= text.length()) break;
+            if(text[i] == '\\')
+                outputtext += '\\';
+            else if(text[i] == 'n')
+                outputtext += '\n';
+        } else
         if(text[i] == '%') {
-            i++;
-            switch(text[i++]) {
-            case '1': outputtext += LLString(lastfix.Lat, lastfix.Lon); break;
-            case '2': outputtext += wxString::Format(_T("%03.1f"), lastfix.Sog); break;
-            case '3': outputtext += wxString::Format(_T("%03.0f°"), lastfix.Cog); break;
-            case '4': outputtext += wxString::Format(_T("%03.0f°"), lastfix.Hdt); break;
-            case '5': outputtext += wxString::Format(_T("%03.0f°"), lastfix.Hdm); break;
-            case '6': outputtext += LLString(cur_lat, cur_lon); break;
-            case '7': {
+            if(++i >= text.length()) break;
+            wxString ipart, fpart;
+            while(i < text.length()) {
+                if(text[i] == '.')
+                    break;
+                if(text[i] >= '0' && text[i] <= '9')
+                    ipart += text[i];
+                else goto done;
+                if(++i >= text.length()) break;
+            }
+            if(++i >= text.length()) break;
+            while(i < text.length()) {
+                if(text[i] >= '0' && text[i] <= '9')
+                    fpart += text[i];
+                else break;
+                if(++i >= text.length()) break;
+            }
+        done:            
+            wxString fmt = _T("%") + ipart + _T(".") + fpart + _T("f");
+
+            bool degree = false;
+            double value = NAN;
+            switch(text[i]) {
+            case 'A': value = lastfix.Lat; break;
+            case 'B': value = Minutes(lastfix.Lat); break;
+            case 'C': value = Seconds(lastfix.Lat); break;
+            case 'D': outputtext += (lastfix.Lat > 0) ? 'N' : 'S'; break;
+            case 'E': value = lastfix.Lon; break;
+            case 'F': value = Minutes(lastfix.Lon); break;
+            case 'G': value = Seconds(lastfix.Lon); break;
+            case 'H': outputtext += (lastfix.Lon > 0) ? 'E' : 'W'; break;
+            case 'I': value = lastfix.Sog; break;
+            case 'J': value = lastfix.Cog; degree=true; break;
+            case 'K': value = lastfix.Hdt; degree=true; break;
+            case 'L': value = lastfix.Hdm; degree=true; break;
+
+            case 'O': value = m_cursor_lat; break;
+            case 'P': value = Minutes(m_cursor_lat); break;
+            case 'Q': value = Seconds(m_cursor_lat); break;
+            case 'R': outputtext += (m_cursor_lat > 0) ? 'N' : 'S'; break;
+            case 'S': value = m_cursor_lon; break;
+            case 'T': value = Minutes(m_cursor_lon); break;
+            case 'U': value = Seconds(m_cursor_lon); break;
+            case 'V': outputtext += (m_cursor_lon > 0) ? 'E' : 'W'; break;
+
+            case 'W': {
                 if(wxIsNaN(brg))
-                    DistanceBearingMercator_Plugin(cur_lat, cur_lon, lastfix.Lat, lastfix.Lon, &brg, &dist);
-                outputtext += wxString::Format(_T("%03.0f°"), brg);
+                    DistanceBearingMercator_Plugin(m_cursor_lat, m_cursor_lon,
+                                                   lastfix.Lat, lastfix.Lon, &brg, &dist);
+                value = brg;
+                degree = true;
             } break;
-            case '8': {
+            case 'X': {
                 if(wxIsNaN(dist))
-                    DistanceBearingMercator_Plugin(lastfix.Lat, lastfix.Lon, cur_lat, cur_lon, &brg, &dist);
-                outputtext += wxString::Format(_T("%.1f"), dist);
+                    DistanceBearingMercator_Plugin(lastfix.Lat, lastfix.Lon,
+                                                   m_cursor_lat, m_cursor_lon, &brg, &dist);
+                value = dist;
             } break;
-            case '9': {
-                double gcdist = DistGreatCircle_Plugin(lastfix.Lat, lastfix.Lon, cur_lat, cur_lon);
-                outputtext += wxString::Format(_T("%.1f"), gcdist);
+            case 'Y': {
+                value = DistGreatCircle_Plugin(lastfix.Lat, lastfix.Lon, m_cursor_lat, m_cursor_lon);
             } break;
-            case 'A':
+            case 'Z':
                 outputtext += wxString::Format(_T(" %.0f (%3.1fx)"),
                                                vp->chart_scale, vp->view_scale_ppm*265 );
                 break;
             case '%': outputtext += _T("%"); break;
+            }
+
+            if(!wxIsNaN(value)) {
+                long fparti;
+                fpart.ToLong(&fparti);
+                if(fparti == 0)
+                    value = trunc(value);
+                outputtext += wxString::Format(fmt, value);
+                if(degree)
+                    outputtext += _T("°");
             }
         } else
             outputtext += text[i];
@@ -313,7 +395,7 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
 
 void statusbar_pi::SetCursorLatLon(double lat, double lon)
 {
-    cur_lat = lat, cur_lon = lon;
+    m_cursor_lat = lat, m_cursor_lon = lon;
 }
 
 void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
@@ -347,7 +429,7 @@ bool statusbar_pi::LoadConfig(void)
     wxString fontfacename;
     pConf->Read( _T("FontFaceName"), &fontfacename, fontfacename );
     
-    wxFont font(fontsize, wxDEFAULT, wxNORMAL, fontweight, fontfacename);
+    wxFont font(fontsize, wxDEFAULT, wxNORMAL, fontweight, false, fontfacename);
     m_PreferencesDialog->m_fontPicker->SetSelectedFont(font);
     
     bool blur = true;
@@ -366,7 +448,7 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("YPosition"), &YPosition, YPosition );
     m_PreferencesDialog->m_sYPosition->SetValue(YPosition);
     
-    wxString DisplayString = m_PreferencesDialog->m_tDisplayString->GetValue();
+    wxString DisplayString = DefaultDisplayString;
     pConf->Read( _T("DisplayString"), &DisplayString, DisplayString );
     m_PreferencesDialog->m_tDisplayString->SetValue(DisplayString);
     
@@ -419,7 +501,9 @@ void statusbar_pi::DrawString(wxString str)
     BuildFont();
 
     glPushMatrix();
+    glPushMatrix();
     for(unsigned int i=0; i<str.length(); i++)
         g_fontTex[str.GetChar(i)].Render();
+    glPopMatrix();
     glPopMatrix();
 }

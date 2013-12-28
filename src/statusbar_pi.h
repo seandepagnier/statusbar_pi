@@ -47,7 +47,8 @@
 class StatusbarPrefsDialog : public StatusbarPrefsDialogBase
 {
 public:
-    StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
+StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
+    void OnDefaultStatusString( wxCommandEvent& event );
     void OnDisplayStringInfo( wxCommandEvent& event );
 };
 
@@ -91,7 +92,7 @@ private:
 
     StatusbarPrefsDialog *m_PreferencesDialog;
 
-    double cur_lat, cur_lon;
+    double m_cursor_lat, m_cursor_lon;
     PlugIn_Position_Fix_Ex lastfix;
 
     bool LoadConfig( void );

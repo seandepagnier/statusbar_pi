@@ -20,7 +20,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	fgSizer7->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
 	wxFlexGridSizer* fgSizer6;
-	fgSizer6 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer6 = new wxFlexGridSizer( 0, 4, 0, 0 );
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
@@ -70,13 +70,16 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText17->Wrap( 500 );
 	fgSizer6->Add( m_staticText17, 0, wxALL, 5 );
 	
+	m_button2 = new wxButton( this, wxID_ANY, _("Default"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_button2, 0, wxALL, 5 );
+	
 	m_bInfo = new wxButton( this, wxID_ANY, _("Info"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_bInfo, 0, wxALL, 5 );
 	
 	
 	fgSizer7->Add( fgSizer6, 1, wxEXPAND, 5 );
 	
-	m_tDisplayString = new wxTextCtrl( this, wxID_ANY, _("Ship %1   SOG %2  COG %3   %7  %8  NMi  %A"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_tDisplayString = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer7->Add( m_tDisplayString, 0, wxALL|wxEXPAND, 5 );
 	
 	m_sdbSizer2 = new wxStdDialogButtonSizer();
@@ -89,16 +92,19 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	
 	this->SetSizer( fgSizer7 );
 	this->Layout();
+	fgSizer7->Fit( this );
 	
 	this->Centre( wxBOTH );
 	
 	// Connect Events
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDefaultStatusString ), NULL, this );
 	m_bInfo->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 }
 
 StatusbarPrefsDialogBase::~StatusbarPrefsDialogBase()
 {
 	// Disconnect Events
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDefaultStatusString ), NULL, this );
 	m_bInfo->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 	
 }
