@@ -250,6 +250,7 @@ The following are formats:\n\
 %S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n\
 %W from ship bearing to cursor\n\
 %X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n\
+%a viewport orientation angle\n\
 %% print a percent"), _("Statusbar Information"), wxOK | wxICON_INFORMATION );
     dlg.ShowModal();
 }
@@ -352,6 +353,9 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
             case 'Z':
                 outputtext += wxString::Format(_T(" %.0f (%3.1fx)"),
                                                vp->chart_scale, vp->view_scale_ppm*265 );
+                break;
+            case 'a':
+                value = vp->rotation * 180 / M_PI;
                 break;
             case '%': outputtext += _T("%"); break;
             }
