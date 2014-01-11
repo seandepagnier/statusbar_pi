@@ -48,8 +48,9 @@ class StatusbarPrefsDialog : public StatusbarPrefsDialogBase
 {
 public:
 StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
-    void OnDefaultStatusString( wxCommandEvent& event );
+    void OnBuiltinString( wxCommandEvent& event );
     void OnDisplayStringInfo( wxCommandEvent& event );
+    void OnAboutAuthor( wxCommandEvent& event );
 };
 
 //----------------------------------------------------------------------------------------------------------

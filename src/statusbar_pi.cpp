@@ -238,6 +238,25 @@ struct font_char
 
 } g_fontTex[num_font_chars];
 
+
+wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J    \
+%02O %2.4P %R   %02S %2.4T %V   %03W  %.0X NMi    Scale %Z");
+void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
+{
+    wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J");
+    wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I kts %03J\
+\\n%02O %2.2P%R %02S %2.2T%V %03W %.2X NMi %03.a");
+    
+    switch(event.GetSelection()) {
+    case 0: break;
+    case 1:  m_tDisplayString->SetValue(DefaultString); break;
+    case 2:  m_tDisplayString->SetValue(OwnshipString); break;
+    case 3:  m_tDisplayString->SetValue(MultilineString); break;
+    }
+
+    m_cBuiltinString->SetSelection(0);
+}
+
 void StatusbarPrefsDialog::OnDisplayStringInfo( wxCommandEvent& event )
 {
     wxMessageDialog dlg( GetOCPNCanvasWindow(), _("\
@@ -258,12 +277,10 @@ The following are formats:\n\
     dlg.ShowModal();
 }
 
-wxString DefaultDisplayString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J    \
-%02O %2.4P %R   %02S %2.4T %V   %03W  %.0X NMi    Scale %Z");
-
-void StatusbarPrefsDialog::OnDefaultStatusString( wxCommandEvent& event )
+#define ABOUT_AUTHOR_URL ""
+void StatusbarPrefsDialog::OnAboutAuthor( wxCommandEvent& event )
 {
-    m_tDisplayString->SetValue(DefaultDisplayString);
+    wxLaunchDefaultBrowser(_T(ABOUT_AUTHOR_URL));
 }
 
 double Minutes(double degrees)
@@ -469,7 +486,7 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("YPosition"), &YPosition, YPosition );
     m_PreferencesDialog->m_sYPosition->SetValue(YPosition);
     
-    wxString DisplayString = DefaultDisplayString;
+    wxString DisplayString = DefaultString;
     pConf->Read( _T("DisplayString"), &DisplayString, DisplayString );
     m_PreferencesDialog->m_tDisplayString->SetValue(DisplayString);
     

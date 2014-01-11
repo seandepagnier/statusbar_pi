@@ -22,6 +22,7 @@
 #include <wx/checkbox.h>
 #include <wx/slider.h>
 #include <wx/spinctrl.h>
+#include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
@@ -38,11 +39,13 @@ class StatusbarPrefsDialogBase : public wxDialog
 	private:
 	
 	protected:
-		wxButton* m_button2;
+		wxChoice* m_cBuiltinString;
+		wxButton* m_bAboutAuthor;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnDefaultStatusString( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnBuiltinString( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDisplayStringInfo( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnAboutAuthor( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

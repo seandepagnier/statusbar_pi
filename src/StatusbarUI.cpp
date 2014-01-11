@@ -70,11 +70,17 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText17->Wrap( 500 );
 	fgSizer6->Add( m_staticText17, 0, wxALL, 5 );
 	
-	m_button2 = new wxButton( this, wxID_ANY, _("Default"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer6->Add( m_button2, 0, wxALL, 5 );
+	wxString m_cBuiltinStringChoices[] = { _("Select"), _("Default"), _("OwnShip"), _("Multiline") };
+	int m_cBuiltinStringNChoices = sizeof( m_cBuiltinStringChoices ) / sizeof( wxString );
+	m_cBuiltinString = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cBuiltinStringNChoices, m_cBuiltinStringChoices, 0 );
+	m_cBuiltinString->SetSelection( 0 );
+	fgSizer6->Add( m_cBuiltinString, 0, wxALL, 5 );
 	
 	m_bInfo = new wxButton( this, wxID_ANY, _("Info"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_bInfo, 0, wxALL, 5 );
+	
+	m_bAboutAuthor = new wxButton( this, wxID_ANY, _("About Author"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_bAboutAuthor, 0, wxALL, 5 );
 	
 	
 	fgSizer7->Add( fgSizer6, 1, wxEXPAND, 5 );
@@ -97,14 +103,16 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDefaultStatusString ), NULL, this );
+	m_cBuiltinString->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
+	m_bAboutAuthor->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnAboutAuthor ), NULL, this );
 }
 
 StatusbarPrefsDialogBase::~StatusbarPrefsDialogBase()
 {
 	// Disconnect Events
-	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDefaultStatusString ), NULL, this );
+	m_cBuiltinString->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
+	m_bAboutAuthor->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnAboutAuthor ), NULL, this );
 	
 }
