@@ -1,8 +1,8 @@
 Statusbar Plugin for OpenCPN
 =======================================
 
-The status bar plugin provides customizable, easier to read,
-and much less cpu usage under linux with gtk than the builtin statusbar.
+The status bar plugin provides customizable, easier to read output text
+and lower cpu usage than the builtin statusbar.
 
 Compiling
 =========

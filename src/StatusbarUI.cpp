@@ -39,8 +39,8 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_fontPicker->SetMaxPointSize( 100 ); 
 	fgSizer6->Add( m_fontPicker, 0, wxALL, 5 );
 	
-	m_checkBox4 = new wxCheckBox( this, wxID_ANY, _("N/A option"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer6->Add( m_checkBox4, 0, wxALL, 5 );
+	m_cbInvertBackground = new wxCheckBox( this, wxID_ANY, _("Invert Background"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer6->Add( m_cbInvertBackground, 0, wxALL, 5 );
 	
 	m_cbBlur = new wxCheckBox( this, wxID_ANY, _("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_cbBlur, 0, wxALL, 5 );

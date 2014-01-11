@@ -32,6 +32,7 @@
 #endif //precompiled headers
 
 #include <typeinfo>
+
 #include "StatusbarUI.h"
 #include "statusbar_pi.h"
 #include "icons.h"
@@ -165,8 +166,10 @@ struct font_char
         dc.GetTextExtent(text, &w, &h, NULL, NULL, &font);
 
         newline = false;
+        if(i == ' ')
+            w /= 2; /* skinny spaces to make display have more option */
         if(i == '\n') {
-            h /= 2;
+            h /= 3;
             newline = true;
         } else
         if(!w || !h)
@@ -312,11 +315,11 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
             bool degree = false;
             double value = NAN;
             switch(text[i]) {
-            case 'A': value = lastfix.Lat; break;
+            case 'A': value = fabs(lastfix.Lat); break;
             case 'B': value = Minutes(lastfix.Lat); break;
             case 'C': value = Seconds(lastfix.Lat); break;
             case 'D': outputtext += (lastfix.Lat > 0) ? 'N' : 'S'; break;
-            case 'E': value = lastfix.Lon; break;
+            case 'E': value = fabs(lastfix.Lon); break;
             case 'F': value = Minutes(lastfix.Lon); break;
             case 'G': value = Seconds(lastfix.Lon); break;
             case 'H': outputtext += (lastfix.Lon > 0) ? 'E' : 'W'; break;
@@ -325,11 +328,11 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
             case 'K': value = lastfix.Hdt; degree=true; break;
             case 'L': value = lastfix.Hdm; degree=true; break;
 
-            case 'O': value = m_cursor_lat; break;
+            case 'O': value = fabs(m_cursor_lat); break;
             case 'P': value = Minutes(m_cursor_lat); break;
             case 'Q': value = Seconds(m_cursor_lat); break;
             case 'R': outputtext += (m_cursor_lat > 0) ? 'N' : 'S'; break;
-            case 'S': value = m_cursor_lon; break;
+            case 'S': value = fabs(m_cursor_lon); break;
             case 'T': value = Minutes(m_cursor_lon); break;
             case 'U': value = Seconds(m_cursor_lon); break;
             case 'V': outputtext += (m_cursor_lon > 0) ? 'E' : 'W'; break;
@@ -372,27 +375,37 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
         } else
             outputtext += text[i];
 
+    glEnable(GL_TEXTURE_RECTANGLE_ARB);
+
+    wxWindow *parent_window = GetOCPNCanvasWindow();
+
+    glEnable( GL_BLEND );
+
+    if(m_PreferencesDialog->m_cbInvertBackground->GetValue()) {
+        glBlendFunc( GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA );
+        glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+
+        glPushMatrix();
+        glTranslated(m_PreferencesDialog->m_sXPosition->GetValue(),
+                     parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue(), 0);
+        DrawString(outputtext);
+        glPopMatrix();
+    }
+
     wxColour color = m_PreferencesDialog->m_colourPicker->GetColour();
     int alpha = 255 - m_PreferencesDialog->m_sTransparency->GetValue();
     glColor4ub(color.Red(), color.Green(), color.Blue(), alpha);
-
-    glEnable(GL_TEXTURE_RECTANGLE_ARB);
-
-    glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-    wxWindow *parent_window = GetOCPNCanvasWindow();
 
     glPushMatrix();
     glTranslated(m_PreferencesDialog->m_sXPosition->GetValue(),
                  parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue(), 0);
-
     DrawString(outputtext);
     glPopMatrix();
 
+    glDisable( GL_TEXTURE_RECTANGLE_ARB );
     glDisable( GL_BLEND );
-    glDisable(GL_TEXTURE_RECTANGLE_ARB);
 
     return true;
 }
@@ -436,11 +449,15 @@ bool statusbar_pi::LoadConfig(void)
     wxFont font(fontsize, wxDEFAULT, wxNORMAL, fontweight, false, fontfacename);
     m_PreferencesDialog->m_fontPicker->SetSelectedFont(font);
     
+    bool invertbackground = true;
+    pConf->Read( _T("InvertBackground"), &invertbackground, invertbackground );
+    m_PreferencesDialog->m_cbInvertBackground->SetValue(invertbackground);
+
     bool blur = true;
     pConf->Read( _T("Blur"), &blur, blur );
     m_PreferencesDialog->m_cbBlur->SetValue(blur);
     
-    int transparency = 64;
+    int transparency = 96;
     pConf->Read( _T("Transparency"), &transparency, transparency );
     m_PreferencesDialog->m_sTransparency->SetValue(transparency);
     
@@ -475,6 +492,7 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontWeight"), font.GetWeight() );
     pConf->Write( _T("FontFaceName"), font.GetFaceName() );
     
+    pConf->Write( _T("InvertBackground"), m_PreferencesDialog->m_cbInvertBackground->GetValue() );
     pConf->Write( _T("Blur"), m_PreferencesDialog->m_cbBlur->GetValue() );
     pConf->Write( _T("Transparency"), m_PreferencesDialog->m_sTransparency->GetValue() );
     pConf->Write( _T("XPosition"), m_PreferencesDialog->m_sXPosition->GetValue() );

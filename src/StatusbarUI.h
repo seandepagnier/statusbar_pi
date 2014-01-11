@@ -50,7 +50,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxColourPickerCtrl* m_colourPicker;
 		wxStaticText* m_staticText16;
 		wxFontPickerCtrl* m_fontPicker;
-		wxCheckBox* m_checkBox4;
+		wxCheckBox* m_cbInvertBackground;
 		wxCheckBox* m_cbBlur;
 		wxStaticText* m_staticText18;
 		wxSlider* m_sTransparency;
