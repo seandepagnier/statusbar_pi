@@ -4,7 +4,7 @@
 ## *   Copyright (C) 2013 by Sean D'Epagnier                                 *
 ## *   This program is free software; you can redistribute it and/or modify  *
 ## *   it under the terms of the GNU General Public License as published by  *
-## *   the Free Software Foundation; either version 2 of the License, or     *
+## *   the Free Software Foundation; either version 3 of the License, or     *
 ## *   (at your option) any later version.                                   *
 ## *                                                                         *
 ## *   This program is distributed in the hope that it will be useful,       *
@@ -41,32 +41,23 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src)
 
 # require proper c++
 #ADD_DEFINITIONS( "-Wall -ansi -pedantic -Wno-variadic-macros" )
-#TODO: Should we use  -fno-stack-protector
 #  IF NOT DEBUGGING CFLAGS="-O2 -march=native"
-IF(NOT WIN32 AND NOT APPLE)
-    ADD_DEFINITIONS( "-Wall -O0 -g -fexceptions -fvisibility=hidden" )
-    SET(CMAKE_SHARED_LINKER_FLAGS "-Wl,-Bsymbolic")
-ENDIF(NOT WIN32 AND NOT APPLE)
+IF(NOT WIN32)
+ ADD_DEFINITIONS( "-Wall -g -O0 -fexceptions -fvisibility=hidden" )
 
-IF( APPLE )
-   ADD_DEFINITIONS( "-O3 -fexceptions -fvisibility=hidden" )
-   ADD_DEFINITIONS("-Wno-unused -Wno-overloaded-virtual")
-   SET(CMAKE_SHARED_LINKER_FLAGS "-Wl -undefined dynamic_lookup")
-ENDIF( APPLE )
+ IF(NOT APPLE)
+  SET(CMAKE_SHARED_LINKER_FLAGS "-Wl,-Bsymbolic")
+ ELSE(NOT APPLE)
+  SET(CMAKE_SHARED_LINKER_FLAGS "-Wl -undefined dynamic_lookup")
+ ENDIF(NOT APPLE)
 
+ENDIF(NOT WIN32)
 
 # Add some definitions to satisfy MS
 IF(WIN32)
     ADD_DEFINITIONS(-D__MSVC__)
     ADD_DEFINITIONS(-D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_DEPRECATE)
 ENDIF(WIN32)
-
-
-#SET(wxWidgets_USE_LIBS base core net xml html adv aui)
-#SET(BUILD_SHARED_LIBS TRUE)
-#SET( wxWidgets_USE_DEBUG OFF)
-#SET( wxWidgets_USE_UNICODE ON)
-#FIND_PACKAGE(wxWidgets REQUIRED)
 
 INCLUDE(${wxWidgets_USE_FILE})
 

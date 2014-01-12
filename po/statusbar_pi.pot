@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: statusbar_pi 3.3.1303\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-12 13:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/statusbar_pi.cpp:126
+msgid "StatusBar"
+msgstr ""
+
+#: src/statusbar_pi.cpp:131
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr ""
+
+#: src/statusbar_pi.cpp:136
+msgid ""
+"StatusBar replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and therefore can be very "
+"difficult to read.\n"
+"  It also uses excessive cpu to operate (under gtk).\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Requires OpenGL "
+"and some basic OpenGL extensions.\n"
+msgstr ""
+
+#: src/statusbar_pi.cpp:262
+msgid ""
+"To see the statusbar updated, close the opencpn options window, leaving the "
+"Status Bar Preferences  window open.\n"
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
+"%a viewport orientation angle\n"
+"%% print a percent"
+msgstr ""
+
+#: src/statusbar_pi.cpp:276
+msgid "Statusbar Information"
+msgstr ""
