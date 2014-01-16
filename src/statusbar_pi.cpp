@@ -277,7 +277,6 @@ The following are formats:\n\
     dlg.ShowModal();
 }
 
-#define ABOUT_AUTHOR_URL ""
 void StatusbarPrefsDialog::OnAboutAuthor( wxCommandEvent& event )
 {
     wxLaunchDefaultBrowser(_T(ABOUT_AUTHOR_URL));
