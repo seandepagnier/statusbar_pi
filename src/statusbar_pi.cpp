@@ -140,12 +140,7 @@ can be very difficult to read.\n\
   It also uses excessive cpu to operate (under gtk).\n\
 \n\
 The statusbar plugin improves on some of these difficulties.\
-  Requires OpenGL and some basic OpenGL extensions.\n");
-}
-
-bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
-{
-    return false;
+  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n");
 }
 
 const int num_font_chars = 256;
@@ -273,6 +268,7 @@ The following are formats:\n\
 %W from ship bearing to cursor\n\
 %X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n\
 %a viewport orientation angle\n\
+%f frames rendered per second\n\
 %% print a percent"), _("Statusbar Information"), wxOK | wxICON_INFORMATION );
     dlg.ShowModal();
 }
@@ -293,7 +289,7 @@ double Seconds(double degrees)
     return 60*fabs(minutes - trunc(minutes));
 }
 
-bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
+wxString statusbar_pi::RenderString(PlugIn_ViewPort *vp)
 {
     wxString text = m_PreferencesDialog->m_tDisplayString->GetValue();
     wxString outputtext;
@@ -376,6 +372,18 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
             case 'a':
                 value = vp->rotation * 180 / M_PI;
                 break;
+            case 'f':
+            {
+                wxDateTime now = wxDateTime::UNow();
+                static wxDateTime last;
+                if(last.IsValid()) {
+                    static float lpfps;
+                    float fps = 1000.0 / (now - last).GetMilliseconds().ToLong();
+                    lpfps = .1 * fps + .9 * fps;
+                    value = lpfps;
+                }
+                last = now;
+            } break;
             case '%': outputtext += _T("%"); break;
             }
 
@@ -391,9 +399,32 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
         } else
             outputtext += text[i];
 
-    glEnable(GL_TEXTURE_RECTANGLE_ARB);
+    return outputtext;
+}
 
+bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
+{
+    wxString outputtext = RenderString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
+    
+    dc.SetTextForeground(m_PreferencesDialog->m_colourPicker->GetColour());
+    dc.SetBackgroundMode( wxTRANSPARENT );
+    dc.SetFont(m_PreferencesDialog->m_fontPicker->GetSelectedFont());
+
+    int xp = m_PreferencesDialog->m_sXPosition->GetValue();
+    int yp = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
+
+    dc.DrawText(outputtext, xp, yp);
+
+    return true;
+}
+
+bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
+{
+    wxString outputtext = RenderString(vp);
+    wxWindow *parent_window = GetOCPNCanvasWindow();
+
+    glEnable(GL_TEXTURE_RECTANGLE_ARB);
 
     glEnable( GL_BLEND );
 
@@ -440,7 +471,6 @@ void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
     m_PreferencesDialog->Show();
 }
-
 
 bool statusbar_pi::LoadConfig(void)
 {

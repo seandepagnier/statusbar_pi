@@ -77,6 +77,8 @@ public:
     wxString GetShortDescription();
     wxString GetLongDescription();
 
+    wxString RenderString(PlugIn_ViewPort *vp);
+
     bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
     bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
     void SetCursorLatLon(double lat, double lon);
