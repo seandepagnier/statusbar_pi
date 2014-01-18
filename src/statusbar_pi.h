@@ -43,6 +43,7 @@
 
 #include <wx/fileconf.h>
 #include "../../../include/ocpn_plugin.h"
+#include "defs.h"
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool
 
