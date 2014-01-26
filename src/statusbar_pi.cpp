@@ -255,8 +255,6 @@ void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
 void StatusbarPrefsDialog::OnDisplayStringInfo( wxCommandEvent& event )
 {
     wxMessageDialog dlg( GetOCPNCanvasWindow(), _("\
-To see the statusbar updated, close the opencpn options window, \
-leaving the Status Bar Preferences  window open.\n\
 Display String can include formats eg: \"%03.0E\" gives ship longitude \
 the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n\
 The following are formats:\n\
@@ -469,6 +467,13 @@ void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 
 void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
+    for(int i=0; i<4; i++)
+        parent = parent->GetParent();
+
+    wxDialog *dlg = dynamic_cast<wxDialog*>(parent);
+    if(dlg)
+        dlg->EndModal(wxID_OK);
+
     m_PreferencesDialog->Show();
 }
 
