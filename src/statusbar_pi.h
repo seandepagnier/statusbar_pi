@@ -27,14 +27,9 @@
 #ifndef _STATUSBARPI_H_
 #define _STATUSBARPI_H_
 
-#include "wx/wxprec.h"
+#include <wx/wx.h>
 
-#ifndef  WX_PRECOMP
-  #include "wx/wx.h"
-#endif //precompiled headers
-
-#define     PLUGIN_VERSION_MAJOR    0
-#define     PLUGIN_VERSION_MINOR    2
+#include "version.h"
 
 #define     MY_API_VERSION_MAJOR    1
 #define     MY_API_VERSION_MINOR    9
@@ -42,7 +37,7 @@
 #define ABOUT_AUTHOR_URL "http://seandepagnier.users.sourceforge.net"
 
 #include <wx/fileconf.h>
-#include "../../../include/ocpn_plugin.h"
+#include "ocpn_plugin.h"
 #include "defs.h"
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool
