@@ -133,9 +133,9 @@ wxString statusbar_pi::GetShortDescription()
 
 wxString statusbar_pi::GetLongDescription()
 {
-    return _("StatusBar replaces builtin statusbar\n\
+    return _("StatusBar plugin replaces builtin statusbar\n\
 The builtin status bar (disable from the User Interface tab)\n\
-is very limited in it's configuration options and therefore \
+is very limited in it's configuration options and \
 can be very difficult to read.\n\
   It also uses excessive cpu to operate (under gtk).\n\
 \n\
@@ -347,6 +347,10 @@ wxString statusbar_pi::RenderString(PlugIn_ViewPort *vp)
             case 'U': value = Seconds(m_cursor_lon); break;
             case 'V': outputtext += (m_cursor_lon > 0) ? 'E' : 'W'; break;
 
+#if (API_VERSION_MAJOR == 1) && (API_VERSION_MINOR < 10)
+#define DistanceBearingMercator_Plugin DistanceBearingMercator
+#define DistGreatCircle_Plugin DistGreatCircle
+#endif
             case 'W': {
                 if(wxIsNaN(brg))
                     DistanceBearingMercator_Plugin(m_cursor_lat, m_cursor_lon,
@@ -363,6 +367,7 @@ wxString statusbar_pi::RenderString(PlugIn_ViewPort *vp)
             case 'Y': {
                 value = DistGreatCircle_Plugin(lastfix.Lat, lastfix.Lon, m_cursor_lat, m_cursor_lon);
             } break;
+
             case 'Z':
                 outputtext += wxString::Format(_T(" %.0f (%3.1fx)"),
                                                vp->chart_scale, vp->view_scale_ppm*265 );
