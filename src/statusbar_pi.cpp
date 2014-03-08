@@ -37,6 +37,10 @@
 #include "statusbar_pi.h"
 #include "icons.h"
 
+#if defined(__MINGW32__) && !defined(GL_TEXTURE_RECTANGLE_ARB)
+#define GL_TEXTURE_RECTANGLE_ARB          0x84F5
+#endif
+
 # if !defined(NAN)
 # define NAN std::numeric_limits<double>::quiet_NaN ()
 # endif
