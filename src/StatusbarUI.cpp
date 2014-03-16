@@ -52,6 +52,20 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_sTransparency = new wxSlider( this, wxID_ANY, 64, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	fgSizer6->Add( m_sTransparency, 0, wxALL|wxEXPAND, 5 );
 	
+	m_staticText7 = new wxStaticText( this, wxID_ANY, _("Background Color"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7->Wrap( -1 );
+	fgSizer6->Add( m_staticText7, 0, wxALL, 5 );
+	
+	m_colourPickerBG = new wxColourPickerCtrl( this, wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizer6->Add( m_colourPickerBG, 0, wxALL, 5 );
+	
+	m_staticText8 = new wxStaticText( this, wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	fgSizer6->Add( m_staticText8, 0, wxALL, 5 );
+	
+	m_sTransparencyBG = new wxSlider( this, wxID_ANY, 180, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	fgSizer6->Add( m_sTransparencyBG, 0, wxALL|wxEXPAND, 5 );
+	
 	m_staticText19 = new wxStaticText( this, wxID_ANY, _("X Position"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText19->Wrap( -1 );
 	fgSizer6->Add( m_staticText19, 0, wxALL, 5 );

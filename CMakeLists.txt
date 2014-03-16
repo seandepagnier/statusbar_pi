@@ -26,8 +26,6 @@ PROJECT(statusbar_pi)
 SET(PACKAGE_NAME statusbar_pi)
 SET(CPACK_PACKAGE_CONTACT "Sean D'Epagnier ")
 
-MESSAGE (STATUS "*** Staging to build ${PACKAGE_NAME} ***")
-
 SET(VERSION_MAJOR "0")
 SET(VERSION_MINOR "3")
 

@@ -39,6 +39,8 @@ class StatusbarPrefsDialogBase : public wxDialog
 	private:
 	
 	protected:
+		wxStaticText* m_staticText7;
+		wxStaticText* m_staticText8;
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
 		
@@ -57,6 +59,8 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxCheckBox* m_cbBlur;
 		wxStaticText* m_staticText18;
 		wxSlider* m_sTransparency;
+		wxColourPickerCtrl* m_colourPickerBG;
+		wxSlider* m_sTransparencyBG;
 		wxStaticText* m_staticText19;
 		wxSpinCtrl* m_sXPosition;
 		wxStaticText* m_staticText20;

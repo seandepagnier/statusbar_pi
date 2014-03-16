@@ -239,7 +239,7 @@ struct font_char
 
 
 wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J    \
-%02O %2.4P %R   %02S %2.4T %V   %03W  %.0X NMi    Scale %Z");
+%02O %2.4P %R   %02S %2.4T %V   %03W  %.1X NMi    Scale %Z");
 void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
 {
     wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J");
@@ -431,34 +431,46 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     wxString outputtext = RenderString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
 
-    glEnable(GL_TEXTURE_RECTANGLE_ARB);
+    int px = m_PreferencesDialog->m_sXPosition->GetValue();
+    int py = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
 
     glEnable( GL_BLEND );
+
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    wxColour color = m_PreferencesDialog->m_colourPickerBG->GetColour();
+    int alpha = 255 - m_PreferencesDialog->m_sTransparencyBG->GetValue();
+
+    glColor4ub(color.Red(), color.Green(), color.Blue(), alpha);
+    glPushMatrix();
+    glTranslated(px, py, 0);
+    DrawString(outputtext);
+    glPopMatrix();
+
+    glEnable(GL_TEXTURE_RECTANGLE_ARB);
 
     if(m_PreferencesDialog->m_cbInvertBackground->GetValue()) {
         glBlendFunc( GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA );
         glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 
         glPushMatrix();
-        glTranslated(m_PreferencesDialog->m_sXPosition->GetValue(),
-                     parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue(), 0);
+        glTranslated(px, py, 0);
         DrawString(outputtext);
         glPopMatrix();
     }
 
-    wxColour color = m_PreferencesDialog->m_colourPicker->GetColour();
-    int alpha = 255 - m_PreferencesDialog->m_sTransparency->GetValue();
+    color = m_PreferencesDialog->m_colourPicker->GetColour();
+    alpha = 255 - m_PreferencesDialog->m_sTransparency->GetValue();
     glColor4ub(color.Red(), color.Green(), color.Blue(), alpha);
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
 
     glPushMatrix();
-    glTranslated(m_PreferencesDialog->m_sXPosition->GetValue(),
-                 parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue(), 0);
+    glTranslated(px, py, 0);
     DrawString(outputtext);
     glPopMatrix();
 
     glDisable( GL_TEXTURE_RECTANGLE_ARB );
+
     glDisable( GL_BLEND );
 
     return true;
@@ -518,8 +530,17 @@ bool statusbar_pi::LoadConfig(void)
     m_PreferencesDialog->m_cbBlur->SetValue(blur);
     
     int transparency = 96;
-    pConf->Read( _T("Transparency"), &transparency, transparency );
+    pConf->Read( _T("TransparencyBG"), &transparency, transparency );
     m_PreferencesDialog->m_sTransparency->SetValue(transparency);
+
+    wxString colorstrbg = m_PreferencesDialog->m_colourPickerBG
+        ->GetColour().GetAsString();
+    pConf->Read( _T("ColorBG"), &colorstrbg, colorstrbg );
+    m_PreferencesDialog->m_colourPickerBG->SetColour(wxColour(colorstrbg));
+
+    int transparencybg = 180;
+    pConf->Read( _T("TransparencyBG"), &transparencybg, transparencybg );
+    m_PreferencesDialog->m_sTransparencyBG->SetValue(transparencybg);
     
     int XPosition = 0;
     pConf->Read( _T("XPosition"), &XPosition, XPosition );
@@ -555,6 +576,10 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("InvertBackground"), m_PreferencesDialog->m_cbInvertBackground->GetValue() );
     pConf->Write( _T("Blur"), m_PreferencesDialog->m_cbBlur->GetValue() );
     pConf->Write( _T("Transparency"), m_PreferencesDialog->m_sTransparency->GetValue() );
+    pConf->Write( _T("ColorBG"), m_PreferencesDialog->m_colourPickerBG
+                  ->GetColour().GetAsString() );
+    pConf->Write( _T("TransparencyBG"), m_PreferencesDialog
+                  ->m_sTransparencyBG->GetValue() );
     pConf->Write( _T("XPosition"), m_PreferencesDialog->m_sXPosition->GetValue() );
     pConf->Write( _T("YPosition"), m_PreferencesDialog->m_sYPosition->GetValue() );
     
