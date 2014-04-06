@@ -27,12 +27,13 @@ SET(PACKAGE_NAME statusbar_pi)
 SET(CPACK_PACKAGE_CONTACT "Sean D'Epagnier ")
 
 SET(VERSION_MAJOR "0")
-SET(VERSION_MINOR "3")
+SET(VERSION_MINOR "4")
 
 INCLUDE("cmake/PluginConfigure.cmake")
 
 SET(SRC_STATUSBAR
     src/statusbar_pi.cpp
+    src/TexFont.cpp
     src/StatusbarUI.cpp
     src/icons.cpp
 )

@@ -18,13 +18,14 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/clrpicker.h>
-#include <wx/fontpicker.h>
-#include <wx/checkbox.h>
 #include <wx/slider.h>
+#include <wx/checkbox.h>
+#include <wx/sizer.h>
+#include <wx/statbox.h>
 #include <wx/spinctrl.h>
+#include <wx/fontpicker.h>
 #include <wx/choice.h>
 #include <wx/button.h>
-#include <wx/sizer.h>
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
 
@@ -53,20 +54,20 @@ class StatusbarPrefsDialogBase : public wxDialog
 	public:
 		wxStaticText* m_staticText15;
 		wxColourPickerCtrl* m_colourPicker;
-		wxStaticText* m_staticText16;
-		wxFontPickerCtrl* m_fontPicker;
-		wxCheckBox* m_cbInvertBackground;
-		wxCheckBox* m_cbBlur;
 		wxStaticText* m_staticText18;
 		wxSlider* m_sTransparency;
+		wxCheckBox* m_cbInvertBackground;
 		wxColourPickerCtrl* m_colourPickerBG;
 		wxSlider* m_sTransparencyBG;
+		wxCheckBox* m_cbBlur;
 		wxStaticText* m_staticText19;
 		wxSpinCtrl* m_sXPosition;
 		wxStaticText* m_staticText20;
 		wxSpinCtrl* m_sYPosition;
-		wxStaticText* m_staticText17;
+		wxStaticText* m_staticText16;
+		wxFontPickerCtrl* m_fontPicker;
 		wxButton* m_bInfo;
+		wxStaticText* m_staticText17;
 		wxTextCtrl* m_tDisplayString;
 		wxStdDialogButtonSizer* m_sdbSizer2;
 		wxButton* m_sdbSizer2OK;

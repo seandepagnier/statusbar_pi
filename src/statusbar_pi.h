@@ -5,7 +5,7 @@
  * Author:   Sean D'Epagnier
  *
  ***************************************************************************
- *   Copyright (C) 2013 by Sean D'Epagnier
+ *   Copyright (C) 2014 by Sean D'Epagnier
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -73,21 +73,21 @@ public:
     wxString GetShortDescription();
     wxString GetLongDescription();
 
-    wxString RenderString(PlugIn_ViewPort *vp);
+    wxString StatusString(PlugIn_ViewPort *vp);
 
     bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
     bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
     void SetCursorLatLon(double lat, double lon);
     void SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
     void ShowPreferencesDialog( wxWindow* parent );
+    void SetColorScheme(PI_ColorScheme cs);
 
 private:
+    bool LoadConfig( void );
+    bool SaveConfig( void );
+
     void BuildFont();
-
-    wxFont m_font;
-    bool m_blur;
-
-    void DrawString(wxString str);
+    wxString ColorSchemeName();
 
     wxFileConfig     *m_pConfig;
 
@@ -96,8 +96,9 @@ private:
     double m_cursor_lat, m_cursor_lon;
     PlugIn_Position_Fix_Ex lastfix;
 
-    bool LoadConfig( void );
-    bool SaveConfig( void );
+    TexFont m_texfont;
+
+    PI_ColorScheme m_ColorScheme;
 };
 
 #endif
