@@ -283,7 +283,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 if(last.IsValid()) {
                     static float lpfps;
                     float fps = 1000.0 / (now - last).GetMilliseconds().ToLong();
-                    lpfps = .1 * fps + .9 * fps;
+                    lpfps = .03 * fps + .97 * lpfps;
                     value = lpfps;
                 }
                 last = now;
@@ -311,14 +311,31 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
     
-    dc.SetTextForeground(m_PreferencesDialog->m_colourPicker->GetColour());
-    dc.SetBackgroundMode( wxTRANSPARENT );
+    int px = m_PreferencesDialog->m_sXPosition->GetValue();
+    int py = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
+
+    int width, height;
     dc.SetFont(m_PreferencesDialog->m_fontPicker->GetSelectedFont());
+    dc.GetTextExtent(outputtext, &width, &height);
+    py -= height;
 
-    int xp = m_PreferencesDialog->m_sXPosition->GetValue();
-    int yp = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
+    wxColour color = m_PreferencesDialog->m_colourPickerBG->GetColour();
+    int alpha = 255 - m_PreferencesDialog->m_sTransparencyBG->GetValue();
 
-    dc.DrawText(outputtext, xp, yp);
+    if(alpha) {
+#if wxUSE_GRAPHICS_CONTEXT
+        wxWindowDC *wdc = dynamic_cast<wxWindowDC*>(&dc);
+        wxGraphicsContext *pgc = wxGraphicsContext::Create( *wdc );
+        pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
+        pgc->DrawRectangle(px, py, width, height);
+#else
+        dc.SetTextBackground(color);
+        dc.SetBackgroundMode( wxSOLID );
+#endif
+    }
+
+    dc.SetTextForeground(m_PreferencesDialog->m_colourPicker->GetColour());
+    dc.DrawText(outputtext, px, py);
 
     return true;
 }
@@ -334,7 +351,7 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     int py = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
 
     int height;
-    m_texfont.GetStringMetrics(outputtext, 0, &height);
+    m_texfont.GetTextExtent(outputtext, 0, &height);
     py -= height;
 
     glEnable( GL_BLEND );

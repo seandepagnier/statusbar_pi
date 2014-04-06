@@ -136,7 +136,7 @@ void TexFont::Delete( )
     texobj = 0;
 }
 
-void TexFont::GetStringMetrics(const char *string, int len, int *width, int *height)
+void TexFont::GetTextExtent(const char *string, int len, int *width, int *height)
 {
     int w=0, h=0;
 
@@ -158,9 +158,9 @@ void TexFont::GetStringMetrics(const char *string, int len, int *width, int *hei
     if(height) *height = h;
 }
 
-void TexFont::GetStringMetrics(const wxString &string, int *width, int *height)
+void TexFont::GetTextExtent(const wxString &string, int *width, int *height)
 {
-    GetStringMetrics(string.ToUTF8(), string.size(), width, height);
+    GetTextExtent(string.ToUTF8(), string.size(), width, height);
 }
 
 void TexFont::RenderGlyph( int c )
