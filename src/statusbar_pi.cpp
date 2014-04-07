@@ -135,13 +135,13 @@ The statusbar plugin improves on some of these difficulties.\
   Best used with OpenGL enabled (requires some basic OpenGL extensions).\n");
 }
 
-wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J    \
-%02O %2.4P %R   %02S %2.4T %V   %03W  %.1X NMi    Scale %Z");
+wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J    \
+%02O %2.4P %R   %02S %2.4T %V   %03W  %.1X    Scale %Z");
 void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
 {
-    wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I kts  COG %03J");
-    wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I kts %03J\
-\\n%02O %2.2P%R %02S %2.2T%V %03W %.2X NMi %03.a");
+    wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J");
+    wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I %03J\
+\\n%02O %2.2P%R %02S %2.2T%V %03W %.2X %03.a");
     
     switch(event.GetSelection()) {
     case 0: break;
@@ -224,6 +224,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             wxString fmt = _T("%") + ipart + _T(".") + fpart + _T("f");
 
             bool degree = false;
+            wxString units;
             double value = NAN;
             switch(text[i]) {
             case 'A': value = fabs(lastfix.Lat); break;
@@ -234,7 +235,9 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             case 'F': value = Minutes(lastfix.Lon); break;
             case 'G': value = Seconds(lastfix.Lon); break;
             case 'H': outputtext += (lastfix.Lon > 0) ? 'E' : 'W'; break;
-            case 'I': value = lastfix.Sog; break;
+            case 'I':
+                value = toUsrSpeed_Plugin(lastfix.Sog);
+                units = getUsrSpeedUnit_Plugin(); break;
             case 'J': value = lastfix.Cog; degree=true; break;
             case 'K': value = lastfix.Hdt; degree=true; break;
             case 'L': value = lastfix.Hdm; degree=true; break;
@@ -263,16 +266,21 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 if(wxIsNaN(dist))
                     DistanceBearingMercator_Plugin(lastfix.Lat, lastfix.Lon,
                                                    m_cursor_lat, m_cursor_lon, &brg, &dist);
-                value = dist;
+                value = toUsrDistance_Plugin(dist);
+                units = getUsrDistanceUnit_Plugin();
             } break;
             case 'Y': {
-                value = DistGreatCircle_Plugin(lastfix.Lat, lastfix.Lon, m_cursor_lat, m_cursor_lon);
+                double gcdist = toUsrDistance_Plugin(
+                    DistGreatCircle_Plugin(lastfix.Lat, lastfix.Lon, m_cursor_lat, m_cursor_lon));
+                value = toUsrDistance_Plugin(gcdist);
+                units = getUsrDistanceUnit_Plugin();
             } break;
 
             case 'Z':
                 outputtext += wxString::Format(_T(" %.0f (%3.1fx)"),
-                                               vp->chart_scale, vp->view_scale_ppm*265 );
+                                               vp->chart_scale, 265*vp->view_scale_ppm );
                 break;
+
             case 'a':
                 value = vp->rotation * 180 / M_PI;
                 break;
@@ -299,6 +307,8 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 outputtext += wxString::Format(fmt, value);
                 if(degree)
                     outputtext += _T("°");
+                if(units.size())
+                    outputtext += _T(" ") + units;
             }
         } else
             outputtext += text[i];
