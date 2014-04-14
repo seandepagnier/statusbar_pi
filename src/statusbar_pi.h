@@ -89,6 +89,8 @@ private:
     void BuildFont();
     wxString ColorSchemeName();
 
+    wxDateTime m_LastRefreshTime;
+
     wxFileConfig     *m_pConfig;
 
     StatusbarPrefsDialog *m_PreferencesDialog;

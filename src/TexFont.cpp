@@ -48,7 +48,11 @@ void TexFont::Build( wxFont &font, bool blur )
     int maxglyphw = 0, maxglyphh = 0;
     for( int i = MIN_GLYPH; i < MAX_GLYPH; i++ ) {
         wxCoord gw, gh;
-        wxString text = wxString::Format(_T("%c"), i);
+        wxString text;
+        if(i == DEGREE_GLYPH)
+            text = _T("°");
+        else
+            text = wxString::Format(_T("%c"), i);
         wxCoord descent, exlead;
         dc.GetTextExtent( text, &gw, &gh, &descent, &exlead, &font ); // measure the text
 
@@ -61,10 +65,15 @@ void TexFont::Build( wxFont &font, bool blur )
         maxglyphh = wxMax(gh, maxglyphh);
     }
 
+    /* add extra pixel to give a border between rows of characters
+       without this, in some cases a faint line can be see on the edge
+       from the character above */
+    maxglyphh++;
+
     int w = COLS_GLYPHS * maxglyphw;
     int h = ROWS_GLYPHS * maxglyphh;
 
-    wxASSERT(tex_width < 2048 && tex_height < 2048);
+    wxASSERT(w < 2048 && h < 2048);
 
     /* make power of 2 */
     for(tex_w = 1; tex_w < w; tex_w *= 2);
@@ -90,7 +99,13 @@ void TexFont::Build( wxFont &font, bool blur )
         tgi[i].x = col * maxglyphw;
         tgi[i].y = row * maxglyphh;
 
-        dc.DrawText(wxString::Format(_T("%c"), i), tgi[i].x, tgi[i].y );
+        wxString text;
+        if(i == DEGREE_GLYPH)
+            text = _T("°");
+        else
+            text = wxString::Format(_T("%c"), i);
+
+        dc.DrawText(text, tgi[i].x, tgi[i].y );
         col++;
     }
 
@@ -99,9 +114,9 @@ void TexFont::Build( wxFont &font, bool blur )
     GLuint format, internalformat;
     int stride;
 
-    format = GL_LUMINANCE_ALPHA;
-    internalformat = GL_LUMINANCE_ALPHA;
-    stride = 2;
+    format = GL_ALPHA;
+    internalformat = format;
+    stride = 1;
 
     if( m_blur )
         image = image.Blur(1);
@@ -109,11 +124,9 @@ void TexFont::Build( wxFont &font, bool blur )
     unsigned char *imgdata = image.GetData();
     unsigned char *teximage = (unsigned char *) malloc( stride * tex_w * tex_h );
 
-    for( int j = 0; j < tex_w*tex_h; j++ ) {
-        teximage[j * stride] = imgdata[3*j];
-        if( stride > 1 )
-            teximage[j * stride + 1] = imgdata[3*j];
-    }
+    for( int j = 0; j < tex_w*tex_h; j++ )
+        for( int k = 0; k < stride; k++ )
+            teximage[j * stride + k] = imgdata[3*j];
 
     if(texobj)
         Delete();
@@ -121,6 +134,8 @@ void TexFont::Build( wxFont &font, bool blur )
     glGenTextures( 1, &texobj );
     glBindTexture( GL_TEXTURE_2D, texobj );
 
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 
@@ -141,9 +156,9 @@ void TexFont::GetTextExtent(const char *string, int len, int *width, int *height
     int w=0, h=0;
 
     for(int i = 0; i < len; i++ ) {
-        int c =string[i];
+        int c = string[i];
         if(c == '\n') {
-            h += tgi['A'].height;
+            h += tgi[(int)'A'].height;
             continue;
         }
         if( c < MIN_GLYPH || c >= MAX_GLYPH)
@@ -199,8 +214,16 @@ void TexFont::RenderString( const char *string, int x, int y )
     for( int i = 0; string[i]; i++ ) {
         if(string[i] == '\n') {
             glPopMatrix();
-            glTranslatef(0, tgi['A'].height, 0);
+            glTranslatef(0, tgi[(int)'A'].height, 0);
             glPushMatrix();
+            continue;
+        }
+        /* degree symbol */
+        if((unsigned char)string[i] == 0xc2 &&
+           (unsigned char)string[i+1] == 0xb0) {
+            RenderGlyph( DEGREE_GLYPH );
+            i++;
+            continue;
         }
         RenderGlyph( string[i] );
     }
@@ -211,7 +234,7 @@ void TexFont::RenderString( const char *string, int x, int y )
 
 void TexFont::RenderString( const wxString &string, int x, int y )
 {
-    RenderString(string.ToUTF8(), x, y);
+    RenderString((const char*)string.ToUTF8(), x, y);
 }
 
 #endif     //#ifdef ocpnUSE_GL

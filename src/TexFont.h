@@ -23,7 +23,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
  **************************************************************************/
 
-/* support ascii for now? pack font in a single texture 16x8 */
+/* support ascii plus degree symbol for now pack font in a single texture 16x8 */
+#define DEGREE_GLYPH 127
 #define MIN_GLYPH 32
 #define MAX_GLYPH 128
 
