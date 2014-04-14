@@ -318,6 +318,8 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
 
 bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 {
+    m_LastRefreshTime = wxDateTime::UNow();
+
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
     
@@ -352,6 +354,8 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 
 bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
 {
+    m_LastRefreshTime = wxDateTime::UNow();
+
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
 
@@ -400,12 +404,9 @@ void statusbar_pi::SetCursorLatLon(double lat, double lon)
     m_cursor_lat = lat, m_cursor_lon = lon;
 
     /* refresh but not too fast as it consumes much cpu */
-    wxDateTime now = wxDateTime::UNow();
-    int diff = (now - m_LastRefreshTime).GetMilliseconds().ToLong();
-    if(diff > 400) {
+    int diff = (wxDateTime::UNow() - m_LastRefreshTime).GetMilliseconds().ToLong();
+    if(diff > 400)
         RequestRefresh(GetOCPNCanvasWindow());
-        m_LastRefreshTime = now;
-    }
 }
 
 void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
