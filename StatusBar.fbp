@@ -287,7 +287,7 @@
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
                                                 <event name="OnChar"></event>
-                                                <event name="OnColourChanged"></event>
+                                                <event name="OnColourChanged">Refresh</event>
                                                 <event name="OnEnterWindow"></event>
                                                 <event name="OnEraseBackground"></event>
                                                 <event name="OnKeyDown"></event>
@@ -488,7 +488,7 @@
                                                 <event name="OnRightDClick"></event>
                                                 <event name="OnRightDown"></event>
                                                 <event name="OnRightUp"></event>
-                                                <event name="OnScroll"></event>
+                                                <event name="OnScroll">Refresh</event>
                                                 <event name="OnScrollBottom"></event>
                                                 <event name="OnScrollChanged"></event>
                                                 <event name="OnScrollLineDown"></event>
@@ -566,7 +566,7 @@
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
                                                 <event name="OnChar"></event>
-                                                <event name="OnCheckBox"></event>
+                                                <event name="OnCheckBox">Refresh</event>
                                                 <event name="OnEnterWindow"></event>
                                                 <event name="OnEraseBackground"></event>
                                                 <event name="OnKeyDown"></event>
@@ -736,7 +736,7 @@
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
                                                 <event name="OnChar"></event>
-                                                <event name="OnColourChanged"></event>
+                                                <event name="OnColourChanged">Refresh</event>
                                                 <event name="OnEnterWindow"></event>
                                                 <event name="OnEraseBackground"></event>
                                                 <event name="OnKeyDown"></event>
@@ -937,7 +937,7 @@
                                                 <event name="OnRightDClick"></event>
                                                 <event name="OnRightDown"></event>
                                                 <event name="OnRightUp"></event>
-                                                <event name="OnScroll"></event>
+                                                <event name="OnScroll">Refresh</event>
                                                 <event name="OnScrollBottom"></event>
                                                 <event name="OnScrollChanged"></event>
                                                 <event name="OnScrollLineDown"></event>
@@ -1015,7 +1015,7 @@
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
                                                 <event name="OnChar"></event>
-                                                <event name="OnCheckBox"></event>
+                                                <event name="OnCheckBox">Refresh</event>
                                                 <event name="OnEnterWindow"></event>
                                                 <event name="OnEraseBackground"></event>
                                                 <event name="OnKeyDown"></event>
@@ -1227,7 +1227,7 @@
                                 <event name="OnRightUp"></event>
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
-                                <event name="OnSpinCtrl"></event>
+                                <event name="OnSpinCtrl">Refresh</event>
                                 <event name="OnSpinCtrlText"></event>
                                 <event name="OnUpdateUI"></event>
                             </object>
@@ -1397,7 +1397,7 @@
                                 <event name="OnRightUp"></event>
                                 <event name="OnSetFocus"></event>
                                 <event name="OnSize"></event>
-                                <event name="OnSpinCtrl"></event>
+                                <event name="OnSpinCtrl">Refresh</event>
                                 <event name="OnSpinCtrlText"></event>
                                 <event name="OnUpdateUI"></event>
                             </object>
@@ -1550,7 +1550,7 @@
                                 <event name="OnChar"></event>
                                 <event name="OnEnterWindow"></event>
                                 <event name="OnEraseBackground"></event>
-                                <event name="OnFontChanged"></event>
+                                <event name="OnFontChanged">Refresh</event>
                                 <event name="OnKeyDown"></event>
                                 <event name="OnKeyUp"></event>
                                 <event name="OnKillFocus"></event>
@@ -1918,7 +1918,7 @@
                         <event name="OnRightUp"></event>
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
-                        <event name="OnText"></event>
+                        <event name="OnText">Refresh</event>
                         <event name="OnTextEnter"></event>
                         <event name="OnTextMaxLen"></event>
                         <event name="OnTextURL"></event>

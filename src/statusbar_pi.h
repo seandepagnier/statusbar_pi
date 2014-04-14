@@ -46,6 +46,12 @@ class StatusbarPrefsDialog : public StatusbarPrefsDialogBase
 {
 public:
 StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
+    void Refresh() { RequestRefresh(GetOCPNCanvasWindow()); }
+    virtual void Refresh( wxColourPickerEvent& event ) { Refresh(); }
+    virtual void Refresh( wxScrollEvent& event ) { Refresh(); }
+    virtual void Refresh( wxCommandEvent& event ) { Refresh(); }
+    virtual void Refresh( wxSpinEvent& event ) { Refresh(); }
+    virtual void Refresh( wxFontPickerEvent& event ) { Refresh(); }
     void OnBuiltinString( wxCommandEvent& event );
     void OnDisplayStringInfo( wxCommandEvent& event );
     void OnAboutAuthor( wxCommandEvent& event );

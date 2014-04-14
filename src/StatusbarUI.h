@@ -46,6 +46,11 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxButton* m_bAboutAuthor;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void Refresh( wxColourPickerEvent& event ) { event.Skip(); }
+		virtual void Refresh( wxScrollEvent& event ) { event.Skip(); }
+		virtual void Refresh( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Refresh( wxSpinEvent& event ) { event.Skip(); }
+		virtual void Refresh( wxFontPickerEvent& event ) { event.Skip(); }
 		virtual void OnBuiltinString( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDisplayStringInfo( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnAboutAuthor( wxCommandEvent& event ) { event.Skip(); }

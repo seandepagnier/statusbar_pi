@@ -150,16 +150,68 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	this->Centre( wxBOTH );
 	
 	// Connect Events
+	m_colourPicker->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_cbInvertBackground->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_colourPickerBG->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_cbBlur->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sXPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sYPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_fontPicker->Connect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
+	m_tDisplayString->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_bAboutAuthor->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnAboutAuthor ), NULL, this );
 }
 
 StatusbarPrefsDialogBase::~StatusbarPrefsDialogBase()
 {
 	// Disconnect Events
+	m_colourPicker->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparency->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_cbInvertBackground->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_colourPickerBG->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sTransparencyBG->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_cbBlur->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sXPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_sYPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_fontPicker->Disconnect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
+	m_tDisplayString->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_bAboutAuthor->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnAboutAuthor ), NULL, this );
 	
 }
