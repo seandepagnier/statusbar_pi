@@ -320,6 +320,13 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 {
     m_LastRefreshTime = wxDateTime::UNow();
 
+    m_PreferencesDialog->m_cbInvertBackground->Disable();
+    m_PreferencesDialog->m_cbBlur->Disable();
+    m_PreferencesDialog->m_sTransparency->Disable();
+#if !wxUSE_GRAPHICS_CONTEXT
+    m_PreferencesDialog->m_sTransparencyBG->Disable();
+#endif
+
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
     
@@ -355,6 +362,11 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
 {
     m_LastRefreshTime = wxDateTime::UNow();
+
+    m_PreferencesDialog->m_cbInvertBackground->Enable();
+    m_PreferencesDialog->m_cbBlur->Enable();
+    m_PreferencesDialog->m_sTransparency->Enable();
+    m_PreferencesDialog->m_sTransparencyBG->Enable();
 
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
@@ -542,5 +554,5 @@ void statusbar_pi::BuildFont()
     wxFont font = m_PreferencesDialog->m_fontPicker->GetSelectedFont();
     bool blur = m_PreferencesDialog->m_cbBlur->GetValue();
 
-    m_texfont.Build(font, blur);
+    m_texfont.Build(font, blur, true);
 }

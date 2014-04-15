@@ -31,7 +31,7 @@
 
 #include "TexFont.h"
 
-void TexFont::Build( wxFont &font, bool blur )
+void TexFont::Build( wxFont &font, bool blur, bool luminance )
 {
     /* avoid rebuilding if the parameters are the same */
     if(font == m_font && blur == m_blur)
@@ -114,9 +114,15 @@ void TexFont::Build( wxFont &font, bool blur )
     GLuint format, internalformat;
     int stride;
 
-    format = GL_ALPHA;
+    if(luminance) {
+        format = GL_LUMINANCE_ALPHA;
+        stride = 2;
+    } else {
+        format = GL_ALPHA;
+        stride = 1;
+    }
+
     internalformat = format;
-    stride = 1;
 
     if( m_blur )
         image = image.Blur(1);
