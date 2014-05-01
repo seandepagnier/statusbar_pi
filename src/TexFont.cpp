@@ -162,15 +162,20 @@ void TexFont::GetTextExtent(const char *string, int len, int *width, int *height
     int w=0, h=0;
 
     for(int i = 0; i < len; i++ ) {
-        int c = string[i];
+        unsigned char c = string[i];
         if(c == '\n') {
             h += tgi[(int)'A'].height;
             continue;
+        }
+        if(c == 0xc2 && (unsigned char)string[i+1] == 0xb0) {
+            c = DEGREE_GLYPH;
+            i++;
         }
         if( c < MIN_GLYPH || c >= MAX_GLYPH)
             continue;
 
         TexGlyphInfo &tgisi = tgi[c];
+
         w += tgisi.advance;
         if(tgisi.height > h)
             h = tgisi.height;
