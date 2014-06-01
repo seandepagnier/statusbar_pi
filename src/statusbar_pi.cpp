@@ -25,6 +25,7 @@
  */
 
 #include <wx/wx.h>
+#include <wx/graphics.h>
 
 #include "StatusbarUI.h"
 #include "TexFont.h"
@@ -226,7 +227,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             bool degree = false;
             wxString units;
             double value = NAN;
-            switch(text[i]) {
+            switch((char)text[i]) {
             case 'A': value = fabs(lastfix.Lat); break;
             case 'B': value = Minutes(lastfix.Lat); break;
             case 'C': value = Seconds(lastfix.Lat); break;
@@ -416,8 +417,8 @@ void statusbar_pi::SetCursorLatLon(double lat, double lon)
     m_cursor_lat = lat, m_cursor_lon = lon;
 
     /* refresh but not too fast as it consumes much cpu */
-    int diff = (wxDateTime::UNow() - m_LastRefreshTime).GetMilliseconds().ToLong();
-    if(diff > 400)
+    if(!m_LastRefreshTime.IsValid() ||
+       (wxDateTime::UNow() - m_LastRefreshTime).GetMilliseconds().ToLong() > 400)
         RequestRefresh(GetOCPNCanvasWindow());
 }
 
@@ -541,7 +542,7 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("YPosition"), m_PreferencesDialog->m_sYPosition->GetValue() );
     wxFont font = m_PreferencesDialog->m_fontPicker->GetSelectedFont();
     pConf->Write( _T("FontSize"), font.GetPointSize() );
-    pConf->Write( _T("FontWeight"), font.GetWeight() );
+    pConf->Write( _T("FontWeight"), (int)font.GetWeight() );
     pConf->Write( _T("FontFaceName"), font.GetFaceName() );
     
     pConf->Write( _T("DisplayString"), m_PreferencesDialog->m_tDisplayString->GetValue() );
