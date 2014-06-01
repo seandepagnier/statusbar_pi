@@ -344,10 +344,17 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 
     if(alpha) {
 #if wxUSE_GRAPHICS_CONTEXT
-        wxWindowDC *wdc = dynamic_cast<wxWindowDC*>(&dc);
-        wxGraphicsContext *pgc = wxGraphicsContext::Create( *wdc );
-        pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
-        pgc->DrawRectangle(px, py, width, height);
+        wxGraphicsContext *pgc = NULL;
+        wxMemoryDC *pmdc = wxDynamicCast(&dc, wxMemoryDC);
+        if( pmdc ) pgc = wxGraphicsContext::Create( *pmdc );
+        else {
+            wxClientDC *pcdc = wxDynamicCast(&dc, wxClientDC);
+            if( pcdc ) pgc = wxGraphicsContext::Create( *pcdc );
+        }
+        if(pgc) {
+            pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
+            pgc->DrawRectangle(px, py, width, height);
+        }
 #else
         dc.SetTextBackground(color);
         dc.SetBackgroundMode( wxSOLID );
