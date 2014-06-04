@@ -228,11 +228,11 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             wxString units;
             double value = NAN;
             switch((char)text[i]) {
-            case 'A': value = fabs(lastfix.Lat); break;
+            case 'A': value = fabs(trunc(lastfix.Lat)); break;
             case 'B': value = Minutes(lastfix.Lat); break;
             case 'C': value = Seconds(lastfix.Lat); break;
             case 'D': outputtext += (lastfix.Lat > 0) ? 'N' : 'S'; break;
-            case 'E': value = fabs(lastfix.Lon); break;
+            case 'E': value = fabs(trunc(lastfix.Lon)); break;
             case 'F': value = Minutes(lastfix.Lon); break;
             case 'G': value = Seconds(lastfix.Lon); break;
             case 'H': outputtext += (lastfix.Lon > 0) ? 'E' : 'W'; break;
@@ -243,11 +243,11 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             case 'K': value = lastfix.Hdt; degree=true; break;
             case 'L': value = lastfix.Hdm; degree=true; break;
 
-            case 'O': value = fabs(m_cursor_lat); break;
+            case 'O': value = fabs(trunc(m_cursor_lat)); break;
             case 'P': value = Minutes(m_cursor_lat); break;
             case 'Q': value = Seconds(m_cursor_lat); break;
             case 'R': outputtext += (m_cursor_lat > 0) ? 'N' : 'S'; break;
-            case 'S': value = fabs(m_cursor_lon); break;
+            case 'S': value = fabs(trunc(m_cursor_lon)); break;
             case 'T': value = Minutes(m_cursor_lon); break;
             case 'U': value = Seconds(m_cursor_lon); break;
             case 'V': outputtext += (m_cursor_lon > 0) ? 'E' : 'W'; break;
