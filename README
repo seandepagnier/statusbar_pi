@@ -6,9 +6,6 @@ and lower cpu usage than the builtin statusbar.
 
 Compiling
 =========
-You have to be able to compile OpenCPN itself - Get the info at http://opencpn.org/ocpn/developers_manual
-
-Outside of the source tree:
 
 * git clone git://github.com/seandepagnier/statusbar_pi.git
 
@@ -21,7 +18,6 @@ Build as normally:
 * cmake ..
 * make
 * make install
-* make package
 
 License
 =======
