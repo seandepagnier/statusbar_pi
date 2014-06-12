@@ -1,2 +1,4 @@
 src/statusbar_pi.cpp
 src/statusbar_pi.h
+src/StatusbarUI.cpp
+src/StatusbarUI.h

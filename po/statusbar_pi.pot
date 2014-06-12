@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: statusbar_pi 3.3.1303\n"
+"Project-Id-Version: statusbar_pi 0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-12 13:30+0800\n"
+"POT-Creation-Date: 2014-06-12 19:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/statusbar_pi.cpp:126
+#: src/statusbar_pi.cpp:120
 msgid "StatusBar"
 msgstr ""
 
-#: src/statusbar_pi.cpp:131
+#: src/statusbar_pi.cpp:125
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
 msgstr ""
 
-#: src/statusbar_pi.cpp:136
+#: src/statusbar_pi.cpp:130
 msgid ""
-"StatusBar replaces builtin statusbar\n"
+"StatusBar plugin replaces builtin statusbar\n"
 "The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and therefore can be very "
-"difficult to read.\n"
-"  It also uses excessive cpu to operate (under gtk).\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
 "\n"
-"The statusbar plugin improves on some of these difficulties.  Requires OpenGL "
-"and some basic OpenGL extensions.\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
 msgstr ""
 
-#: src/statusbar_pi.cpp:262
+#: src/statusbar_pi.cpp:159
 msgid ""
-"To see the statusbar updated, close the opencpn options window, leaving the "
-"Status Bar Preferences  window open.\n"
 "Display String can include formats eg: \"%03.0E\" gives ship longitude the "
 "format specifier 03.0 gives how many places to round to, and to use leading "
 "0's etc..\n"
@@ -59,9 +56,78 @@ msgid ""
 "%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
 "scale\n"
 "%a viewport orientation angle\n"
+"%f frames rendered per second\n"
 "%% print a percent"
 msgstr ""
 
-#: src/statusbar_pi.cpp:276
+#: src/statusbar_pi.cpp:172
 msgid "Statusbar Information"
+msgstr ""
+
+#: src/StatusbarUI.cpp:22
+msgid "Current Color Scheme"
+msgstr ""
+
+#: src/StatusbarUI.cpp:35
+msgid "Color"
+msgstr ""
+
+#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
+msgid "Transparency"
+msgstr ""
+
+#: src/StatusbarUI.cpp:51
+msgid "Invert Background"
+msgstr ""
+
+#: src/StatusbarUI.cpp:54
+msgid "Background Color"
+msgstr ""
+
+#: src/StatusbarUI.cpp:68
+msgid "Blur"
+msgstr ""
+
+#: src/StatusbarUI.cpp:85
+msgid "X Position"
+msgstr ""
+
+#: src/StatusbarUI.cpp:92
+msgid "Y Position"
+msgstr ""
+
+#: src/StatusbarUI.cpp:99
+msgid "Font"
+msgstr ""
+
+#: src/StatusbarUI.cpp:107
+msgid "Select"
+msgstr ""
+
+#: src/StatusbarUI.cpp:107
+msgid "Default"
+msgstr ""
+
+#: src/StatusbarUI.cpp:107
+msgid "OwnShip"
+msgstr ""
+
+#: src/StatusbarUI.cpp:107
+msgid "Multiline"
+msgstr ""
+
+#: src/StatusbarUI.cpp:113
+msgid "Info"
+msgstr ""
+
+#: src/StatusbarUI.cpp:119
+msgid "Display String"
+msgstr ""
+
+#: src/StatusbarUI.cpp:132
+msgid "About Author"
+msgstr ""
+
+#: src/StatusbarUI.h:80
+msgid "Status Bar Preferences"
 msgstr ""
