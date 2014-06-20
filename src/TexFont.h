@@ -45,20 +45,17 @@ public:
     void Build( wxFont &font, bool blur = false, bool luminance = false );
     void Delete();
 
-    void GetTextExtent( const char *string, int len, int *width, int *height);
     void GetTextExtent( const wxString &string, int *width, int *height);
-    void RenderString( const char *string, int x=0, int y=0 );
     void RenderString( const wxString &string, int x=0, int y=0 );
 
-
 private:
-    void RenderGlyph( int c );
+    void RenderGlyph( wchar_t c );
 
     wxFont m_font;
     bool m_blur;
 
     TexGlyphInfo tgi[MAX_GLYPH];
 
-    unsigned  int texobj;
+    unsigned int texobj;
     int tex_w, tex_h;
 };

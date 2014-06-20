@@ -50,7 +50,7 @@ void TexFont::Build( wxFont &font, bool blur, bool luminance )
         wxCoord gw, gh;
         wxString text;
         if(i == DEGREE_GLYPH)
-            text = _T("°");
+            text = wxString::Format(_T("%c"), 0x00B0); //_T("°");
         else
             text = wxString::Format(_T("%c"), i);
         wxCoord descent, exlead;
@@ -101,7 +101,7 @@ void TexFont::Build( wxFont &font, bool blur, bool luminance )
 
         wxString text;
         if(i == DEGREE_GLYPH)
-            text = _T("°");
+            text = wxString::Format(_T("%c"), 0x00B0); //_T("°");
         else
             text = wxString::Format(_T("%c"), i);
 
@@ -157,22 +157,31 @@ void TexFont::Delete( )
     texobj = 0;
 }
 
-void TexFont::GetTextExtent(const char *string, int len, int *width, int *height)
+void TexFont::GetTextExtent(const wxString &string, int *width, int *height)
 {
     int w=0, h=0;
 
-    for(int i = 0; i < len; i++ ) {
-        unsigned char c = string[i];
+    for(unsigned int i = 0; i < string.size(); i++ ) {
+        wchar_t c = string[i];
         if(c == '\n') {
             h += tgi[(int)'A'].height;
             continue;
         }
-        if(c == 0xc2 && (unsigned char)string[i+1] == 0xb0) {
+
+        if(c == 0x00B0)
             c = DEGREE_GLYPH;
-            i++;
-        }
-        if( c < MIN_GLYPH || c >= MAX_GLYPH)
+
+        if( c < MIN_GLYPH || c >= MAX_GLYPH) {
+            // outside font
+            wxMemoryDC dc;
+            dc.SetFont( m_font );
+            wxCoord gw, gh;
+            dc.GetTextExtent( c, &gw, &gh ); // measure the text
+            w += gw;
+            if(h > gh)
+                gh = h;
             continue;
+        }
 
         TexGlyphInfo &tgisi = tgi[c];
 
@@ -184,15 +193,64 @@ void TexFont::GetTextExtent(const char *string, int len, int *width, int *height
     if(height) *height = h;
 }
 
-void TexFont::GetTextExtent(const wxString &string, int *width, int *height)
+void TexFont::RenderGlyph( wchar_t c )
 {
-    GetTextExtent(string.ToUTF8(), string.size(), width, height);
-}
+    /* degree symbol */
+    if(c == 0x00B0)
+        c = DEGREE_GLYPH;
+    else
+    if( c < MIN_GLYPH || c >= MAX_GLYPH) {
+        // outside font, render with draw pixels (slow)
+        wxMemoryDC dc;
+        dc.SetFont( m_font );
+        wxCoord gw, gh;
+        dc.GetTextExtent( c, &gw, &gh ); // measure the text
+        wxBitmap bmp(gw, gh);
+        dc.SelectObject(bmp);
+        dc.SetBackground( wxBrush( wxColour( 0, 0, 0 ) ) );
+        dc.Clear();
+        /* draw the text white */
+        dc.SetTextForeground( wxColour( 255, 255, 255 ) );
+        dc.DrawText(c, 0, 0);
+        wxImage image = bmp.ConvertToImage();
+        if( m_blur )
+            image = image.Blur(1);
+        unsigned char *imgdata = image.GetData();
 
-void TexFont::RenderGlyph( int c )
-{
-    if( c < MIN_GLYPH || c >= MAX_GLYPH)
+        char *data = new char[gw*gh*2];
+        for(int i=0; i<gw*gh; i++) {
+            data[2*i+0] = imgdata[3*i];
+            data[2*i+1] = imgdata[3*i];
+        }
+
+        glBindTexture( GL_TEXTURE_2D, 0);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+
+        /* make power of 2 */
+        int w, h;
+        for(w = 1; w < gw; w *= 2);
+        for(h = 1; h < gh; h *= 2);
+        glTexImage2D( GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, w, h, 0,
+                      GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, NULL );
+        glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, gw, gh,
+                        GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+        float u = (float)gw/w, v = (float)gh/h;
+        glBegin( GL_QUADS );
+        glTexCoord2f( 0, 0 );  glVertex2i( 0, 0 );
+        glTexCoord2f( u, 0 );  glVertex2i( gw, 0 );
+        glTexCoord2f( u, v );  glVertex2i( gw, gh );
+        glTexCoord2f( 0, v );  glVertex2i( 0, gh );
+        glEnd();
+
+        glBindTexture( GL_TEXTURE_2D, texobj);
+        delete [] data;
+        
+        glTranslatef( gw, 0.0, 0.0 );
         return;
+    }
 
     TexGlyphInfo &tgic = tgi[c];
 
@@ -214,7 +272,7 @@ void TexFont::RenderGlyph( int c )
     glTranslatef( tgic.advance, 0.0, 0.0 );
 }
 
-void TexFont::RenderString( const char *string, int x, int y )
+void TexFont::RenderString( const wxString &string, int x, int y )
 {
     glPushMatrix();
     glTranslatef(x, y, 0);
@@ -222,30 +280,20 @@ void TexFont::RenderString( const char *string, int x, int y )
     glPushMatrix();
     glBindTexture( GL_TEXTURE_2D, texobj);
 
-    for( int i = 0; string[i]; i++ ) {
-        if(string[i] == '\n') {
+    for(unsigned int i=0; i<string.size(); i++) {
+        wchar_t x = string[i]; 
+
+        if(x == '\n') {
             glPopMatrix();
             glTranslatef(0, tgi[(int)'A'].height, 0);
             glPushMatrix();
             continue;
         }
-        /* degree symbol */
-        if((unsigned char)string[i] == 0xc2 &&
-           (unsigned char)string[i+1] == 0xb0) {
-            RenderGlyph( DEGREE_GLYPH );
-            i++;
-            continue;
-        }
-        RenderGlyph( string[i] );
+        RenderGlyph( x );
     }
 
     glPopMatrix();
     glPopMatrix();
-}
-
-void TexFont::RenderString( const wxString &string, int x, int y )
-{
-    RenderString((const char*)string.ToUTF8(), x, y);
 }
 
 #endif     //#ifdef ocpnUSE_GL
