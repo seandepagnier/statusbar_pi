@@ -332,7 +332,7 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
     wxWindow *parent_window = GetOCPNCanvasWindow();
     
     int px = m_PreferencesDialog->m_sXPosition->GetValue();
-    int py = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
+    int py = parent_window->GetSize().y - GetYPosition();
 
     int width, height;
     dc.SetFont(m_PreferencesDialog->m_fontPicker->GetSelectedFont());
@@ -382,7 +382,7 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     BuildFont();
 
     int px = m_PreferencesDialog->m_sXPosition->GetValue();
-    int py = parent_window->GetSize().y - m_PreferencesDialog->m_sYPosition->GetValue();
+    int py = parent_window->GetSize().y - GetYPosition();
 
     int height;
     m_texfont.GetTextExtent(outputtext, 0, &height);
@@ -465,6 +465,16 @@ wxString statusbar_pi::ColorSchemeName()
     }
 }
 
+int statusbar_pi::GetYPosition()
+{
+    int YPosition = m_PreferencesDialog->m_sYPosition->GetValue();
+    if(YPosition == -100) {
+        YPosition = GetChartbarHeight();
+        m_PreferencesDialog->m_sYPosition->SetValue(YPosition);
+    }
+    return YPosition;
+}
+
 bool statusbar_pi::LoadConfig(void)
 {
     wxFileConfig *pConf = (wxFileConfig *)m_pConfig;
@@ -503,7 +513,7 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("XPosition"), &XPosition, XPosition );
     m_PreferencesDialog->m_sXPosition->SetValue(XPosition);
 
-    int YPosition = 0;
+    int YPosition = -100;
     pConf->Read( _T("YPosition"), &YPosition, YPosition );
     m_PreferencesDialog->m_sYPosition->SetValue(YPosition);
     

@@ -89,6 +89,8 @@ public:
     void SetColorScheme(PI_ColorScheme cs);
 
 private:
+    int GetYPosition();
+
     bool LoadConfig( void );
     bool SaveConfig( void );
 
