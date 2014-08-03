@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
  *
  * Project:  OpenCPN
  * Purpose:  Status Bar Plugin
@@ -291,7 +291,10 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 static wxDateTime last;
                 if(last.IsValid()) {
                     static float lpfps;
-                    float fps = 1000.0 / (now - last).GetMilliseconds().ToLong();
+                    int ms = (now - last).GetMilliseconds().ToLong();
+                    if(ms < 1)
+                        ms = 1;
+                    float fps = 1000.0 / ms;
                     lpfps = .03 * fps + .97 * lpfps;
                     value = lpfps;
                 }
