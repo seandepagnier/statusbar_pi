@@ -27,7 +27,7 @@ SET(PACKAGE_NAME statusbar_pi)
 SET(CPACK_PACKAGE_CONTACT "Sean D'Epagnier ")
 
 SET(VERSION_MAJOR "0")
-SET(VERSION_MINOR "4")
+SET(VERSION_MINOR "5")
 
 INCLUDE("cmake/PluginConfigure.cmake")
 
