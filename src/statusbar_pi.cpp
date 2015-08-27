@@ -74,6 +74,11 @@ int statusbar_pi::Init(void)
     m_ColorScheme = PI_GLOBAL_COLOR_SCHEME_RGB;
     LoadConfig();
 
+    m_TimeRefreshTimer.Connect(wxEVT_TIMER, wxTimerEventHandler
+                               ( statusbar_pi::OnRefreshTimer ), NULL, this);
+    m_DateRefreshTimer.Connect(wxEVT_TIMER, wxTimerEventHandler
+                               ( statusbar_pi::OnRefreshTimer ), NULL, this);
+
     return (WANTS_OVERLAY_CALLBACK    |
             WANTS_OPENGL_OVERLAY_CALLBACK    |
             WANTS_CURSOR_LATLON       |
@@ -169,6 +174,7 @@ The following are formats:\n\
 %X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n\
 %a viewport orientation angle\n\
 %f frames rendered per second\n\
+%d Date    %t Time    %z Time Zone\n\
 %% print a percent"), _("Statusbar Information"), wxOK | wxICON_INFORMATION );
     dlg.ShowModal();
 }
@@ -300,6 +306,21 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 }
                 last = now;
             } break;
+            case 'd':
+                outputtext += wxDateTime::Now().FormatDate();
+                // force refresh at midnight
+                if(!m_DateRefreshTimer.IsRunning())
+                    m_DateRefreshTimer.Start
+                        (1000 * (24*60*60 - (wxDateTime::Now() -
+                                             wxDateTime::Today()).GetSeconds().ToLong()));
+                break;
+            case 't':
+                outputtext += wxDateTime::Now().Format(_T("%H:%M"));
+                m_TimeRefreshTimer.Start(1000 * 60);
+                break;
+            case 'z':
+                outputtext += wxDateTime::Now().Format(_T("%Z"));
+                break;
             case '%': outputtext += _T("%"); break;
             }
 
@@ -522,12 +543,12 @@ bool statusbar_pi::LoadConfig(void)
     
     int fontsize = 18;
     pConf->Read( _T("FontSize"), &fontsize, fontsize );
-    int fontweight = wxNORMAL;
+    int fontweight = wxFONTWEIGHT_NORMAL;
     pConf->Read( _T("FontWeight"), &fontweight, fontweight );
     wxString fontfacename;
     pConf->Read( _T("FontFaceName"), &fontfacename, fontfacename );
     
-    wxFont font(fontsize, wxDEFAULT, wxNORMAL, fontweight, false, fontfacename);
+    wxFont font(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, (wxFontWeight)fontweight, false, fontfacename);
     m_PreferencesDialog->m_fontPicker->SetSelectedFont(font);
 
     wxString DisplayString = DefaultString;
@@ -576,4 +597,9 @@ void statusbar_pi::BuildFont()
     bool blur = m_PreferencesDialog->m_cbBlur->GetValue();
 
     m_texfont.Build(font, blur, true);
+}
+
+void statusbar_pi::OnRefreshTimer( wxTimerEvent & )
+{
+    RequestRefresh(GetOCPNCanvasWindow());
 }

@@ -5,7 +5,7 @@
  * Author:   Sean D'Epagnier
  *
  ***************************************************************************
- *   Copyright (C) 2014 by Sean D'Epagnier
+ *   Copyright (C) 2015 by Sean D'Epagnier
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -61,7 +61,7 @@ StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
-class statusbar_pi : public opencpn_plugin_19
+class statusbar_pi : public wxEvtHandler, public opencpn_plugin_19
 {
 public:
     statusbar_pi( void *ppimgr );
@@ -97,7 +97,10 @@ private:
     void BuildFont();
     wxString ColorSchemeName();
 
+    void OnRefreshTimer( wxTimerEvent & );
+
     wxDateTime m_LastRefreshTime;
+    wxTimer m_TimeRefreshTimer, m_DateRefreshTimer;
 
     wxFileConfig     *m_pConfig;
 
