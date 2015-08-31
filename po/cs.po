@@ -3,37 +3,36 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-06-02 20:34-0400\n"
+"PO-Revision-Date: 2015-05-23 05:01-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: French\n"
-"Language: fr_FR\n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: fr\n"
+"X-Crowdin-Language: cs\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
 
 #: src/statusbar_pi.cpp:120
 msgid "StatusBar"
-msgstr "Barre d'état"
+msgstr "Stavová řádka"
 
 #: src/statusbar_pi.cpp:125
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Complément StatusBar permet la mise en place d'une barre d'état optionnelle en remplacement de la barre d'état standard d'OpenCPN."
+msgstr "Rozšíření pro stavovou řádku je volitelnou náhradou za originální řádku"
 
 #: src/statusbar_pi.cpp:130
 msgid "StatusBar plugin replaces builtin statusbar\n"
 "The builtin status bar (disable from the User Interface tab)\n"
 "is very limited in it's configuration options and can be very difficult to read.\n\n"
 "The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "StatusBar remplace la barre d'état normale d'OpenCPN\n"
-"La nouvelle barre d'état est activable ou désactivable depuis l'onglet Complément des options d'OpenCPN\n"
-"La barre d état d'origine est assez limitée dans ses options, peut être difficile à lire\n"
-"et consomme aussi beaucoup de temps de calcul du CPU du PC sous linux (gtk).\n\n"
-"Le complément StatusBar propose des améliorations à ces problèmes. Il requiert OpenGL et quelques extensions basiques d'OpenGL.\n"
+msgstr "Rozšíření stavové řádky nahrazuje originální řádku\n"
+"Originální řádka (je vyřazena z panelu  uživatelského rozhraní)\n"
+"je velmi omezená, co se týče možností a muže být obtížně čitelná.\n\n"
+"Rozšíření stavové řádky vylepšuje tyto nedostatky. Je dobré použít se zapnutým OpenGL (kvůli použití některých základních OpenGL rozšíření).\n"
 
 #: src/statusbar_pi.cpp:159
 msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
@@ -48,74 +47,63 @@ msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude th
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
 "%% print a percent"
-msgstr "Pour voir cette nouvelle barre d'état améliorée, activez le complément StatusBar dans les options d'OpenCPN et fermez la fenêtre des options d'openCPN en laissant la fenêtre des préférences du complément Statusbar ouverte.\n"
-"La chainer d'affichage peut inclure des formats, par exemple : \"%03.0E\" spécifie le format d'affichage de la longitude du bateau  où 03.0 indique l'arrondi, et combien de chiffres significatifs etc..\n"
-"Voici le détail des formats :\n"
-"%A bateau lat degrés    %B bateau lat minutes   %C bateau lat secondes  %D bateau N/S\n"
-"%E bateau lon degrés    %F bateau lon minutes   %G bateau lon secondes  %H bateau E/W\n"
-"%I bateau sog            %J bateau cog           %K bateau cap      %L bateau heading rate\n"
-"%O curseur lat degrés    %P curseur lat minutes   %Q curseur lat secondes   %R curseur N/S\n"
-"%S curseur lon degrés    %T curseur lon minutes   %U curseur lon secondes   %V curseur E/W\n"
-"%W relèvement du curseur depuis le bateau\n"
-"%X distance au le curseur sur la ligne droite %Y distance au curseur sur le grand cerclee  %Z échelle de la carte\n"
-"%a angle d'orientation en degré de la fenêtre\n"
-"%% afficher un pourcent"
+msgstr ""
 
 #: src/statusbar_pi.cpp:172
 msgid "Statusbar Information"
-msgstr "Information"
+msgstr "Informace stavového řádku"
 
 #: src/StatusbarUI.cpp:22
 msgid "Current Color Scheme"
-msgstr "Etat actuel des  couleurs"
+msgstr "Aktuální barevné schéma"
 
 #: src/StatusbarUI.cpp:35
 msgid "Color"
-msgstr "Couleur"
+msgstr "Barva"
 
 #: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
 msgid "Transparency"
-msgstr "Transparence"
+msgstr "Průhlednost"
 
 #: src/StatusbarUI.cpp:51
 msgid "Invert Background"
-msgstr "Inverser le fond"
+msgstr "Obrátit pozadí"
 
 #: src/StatusbarUI.cpp:54
 msgid "Background Color"
-msgstr "Couleur de fond"
+msgstr "Barva pozadí"
 
 #: src/StatusbarUI.cpp:68
 msgid "Blur"
-msgstr "Blur"
+msgstr "Rozmazání"
 
 #: src/StatusbarUI.cpp:85
 msgid "X Position"
-msgstr "X Position"
+msgstr "X souřadnice"
 
 #: src/StatusbarUI.cpp:92
 msgid "Y Position"
-msgstr "Y Position"
+msgstr "Y souřadnice"
 
 #: src/StatusbarUI.cpp:99
 msgid "Font"
-msgstr "Police de caractères"
+msgstr "Font"
 
 #: src/StatusbarUI.cpp:107
 msgid "Select"
-msgstr "Sélectionner"
+msgstr "Výběr"
 
 #: src/StatusbarUI.cpp:107
 msgid "Default"
-msgstr "Par défaut"
+msgstr "Výchozí"
 
 #: src/StatusbarUI.cpp:107
 msgid "OwnShip"
-msgstr "Bateau de l'utilisateur"
+msgstr "Vlastní loď"
 
 #: src/StatusbarUI.cpp:107
 msgid "Multiline"
-msgstr "Multiligne"
+msgstr "Víceřádkový"
 
 #: src/StatusbarUI.cpp:113
 msgid "Info"
@@ -123,13 +111,13 @@ msgstr "Info"
 
 #: src/StatusbarUI.cpp:119
 msgid "Display String"
-msgstr "Chaine d'affichage"
+msgstr "Zobraz řetězec"
 
 #: src/StatusbarUI.cpp:132
 msgid "About Author"
-msgstr "Au sujet de l'auteur"
+msgstr "O Autorovi"
 
 #: src/StatusbarUI.h:80
 msgid "Status Bar Preferences"
-msgstr "Préférences"
+msgstr "Předvolby stavové řádky"
 

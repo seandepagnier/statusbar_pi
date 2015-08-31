@@ -5,35 +5,34 @@ msgstr ""
 "POT-Creation-Date: 2015-04-22 11:58-0500\n"
 "PO-Revision-Date: 2015-06-02 20:34-0400\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: French\n"
-"Language: fr_FR\n"
+"Language-Team: Finnish\n"
+"Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: fr\n"
+"X-Crowdin-Language: fi\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
 
 #: src/statusbar_pi.cpp:120
 msgid "StatusBar"
-msgstr "Barre d'état"
+msgstr "Näytä tilapalkki"
 
 #: src/statusbar_pi.cpp:125
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Complément StatusBar permet la mise en place d'une barre d'état optionnelle en remplacement de la barre d'état standard d'OpenCPN."
+msgstr "StatusBar lisäosa on valinnainen korvaaja alkuperäiselle"
 
 #: src/statusbar_pi.cpp:130
 msgid "StatusBar plugin replaces builtin statusbar\n"
 "The builtin status bar (disable from the User Interface tab)\n"
 "is very limited in it's configuration options and can be very difficult to read.\n\n"
 "The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "StatusBar remplace la barre d'état normale d'OpenCPN\n"
-"La nouvelle barre d'état est activable ou désactivable depuis l'onglet Complément des options d'OpenCPN\n"
-"La barre d état d'origine est assez limitée dans ses options, peut être difficile à lire\n"
-"et consomme aussi beaucoup de temps de calcul du CPU du PC sous linux (gtk).\n\n"
-"Le complément StatusBar propose des améliorations à ces problèmes. Il requiert OpenGL et quelques extensions basiques d'OpenGL.\n"
+msgstr "StatusBar plugin korvaa sisäänrakennetun statusbarin\n"
+"Sisäänrakennetun tilarivi (Poista käyttöliittymä-välilehti) \n"
+"on hyvin rajallinen, ja sen asetuksia voi olla hyvin vaikeaa lukea.\n\n"
+"Statusbar plugin parantaa joitakin näistä ongelmista.  Parasta käyttää OpenGL käytössä (vaatii perus OpenGL laajennuksia). \n"
 
 #: src/statusbar_pi.cpp:159
 msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
@@ -48,88 +47,88 @@ msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude th
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
 "%% print a percent"
-msgstr "Pour voir cette nouvelle barre d'état améliorée, activez le complément StatusBar dans les options d'OpenCPN et fermez la fenêtre des options d'openCPN en laissant la fenêtre des préférences du complément Statusbar ouverte.\n"
-"La chainer d'affichage peut inclure des formats, par exemple : \"%03.0E\" spécifie le format d'affichage de la longitude du bateau  où 03.0 indique l'arrondi, et combien de chiffres significatifs etc..\n"
-"Voici le détail des formats :\n"
-"%A bateau lat degrés    %B bateau lat minutes   %C bateau lat secondes  %D bateau N/S\n"
-"%E bateau lon degrés    %F bateau lon minutes   %G bateau lon secondes  %H bateau E/W\n"
-"%I bateau sog            %J bateau cog           %K bateau cap      %L bateau heading rate\n"
-"%O curseur lat degrés    %P curseur lat minutes   %Q curseur lat secondes   %R curseur N/S\n"
-"%S curseur lon degrés    %T curseur lon minutes   %U curseur lon secondes   %V curseur E/W\n"
-"%W relèvement du curseur depuis le bateau\n"
-"%X distance au le curseur sur la ligne droite %Y distance au curseur sur le grand cerclee  %Z échelle de la carte\n"
-"%a angle d'orientation en degré de la fenêtre\n"
-"%% afficher un pourcent"
+msgstr "Näyttö merkkijonossa voi olla muodossa esim: \"%03.0E\" antaa aluksen pituutta muotomääritys 03.0 antaa, kuinka monta paikkaa kierroksen ja käyttää johtava 0 jne...\n"
+"The ovat muodossa: \n"
+"%A aluksen lat astetta %B aluksen lat minuuttia %C aluksen lat sekuntia %D aluksen N/S\n"
+"%E aluksen lon astetta %F aluksen lon minuuttia %G aluksen lon sekuntia %h Haluatko aluksen E/W\n"
+"%I aluksen sog %J aluksen ratas %k nimikkeen %L alusten otsikko rate\n"
+"%O kohdistin lat astetta    %P kursori lat minuutin %Q kohdistin lat sekuntia %R kohdistin N/S\n"
+"%S kohdistin lon astetta tekstin %t tunnistaminen kohdistin lon minuuttia %U kohdistin lon sekuntia %V kohdistimen E/W\n"
+"%W laivan cursor\n"
+"%X etäisyys kohdistin mercator %Y etäisyys kohdistin Isoympyrä %Z kaavion scale\n"
+"%a viewport suunta angle\n"
+"%f kehykset on suoritettu per second\n"
+"%% tulostaa prosentti"
 
 #: src/statusbar_pi.cpp:172
 msgid "Statusbar Information"
-msgstr "Information"
+msgstr "Statusbarin infomaatiota"
 
 #: src/StatusbarUI.cpp:22
 msgid "Current Color Scheme"
-msgstr "Etat actuel des  couleurs"
+msgstr "Nykyinen värimalli"
 
 #: src/StatusbarUI.cpp:35
 msgid "Color"
-msgstr "Couleur"
+msgstr "Väri"
 
 #: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
 msgid "Transparency"
-msgstr "Transparence"
+msgstr "Läpinäkyvyys"
 
 #: src/StatusbarUI.cpp:51
 msgid "Invert Background"
-msgstr "Inverser le fond"
+msgstr "Käännetty tausta"
 
 #: src/StatusbarUI.cpp:54
 msgid "Background Color"
-msgstr "Couleur de fond"
+msgstr "Taustaväri"
 
 #: src/StatusbarUI.cpp:68
 msgid "Blur"
-msgstr "Blur"
+msgstr "Sumennus"
 
 #: src/StatusbarUI.cpp:85
 msgid "X Position"
-msgstr "X Position"
+msgstr "X-sijainti"
 
 #: src/StatusbarUI.cpp:92
 msgid "Y Position"
-msgstr "Y Position"
+msgstr "Y sijainti"
 
 #: src/StatusbarUI.cpp:99
 msgid "Font"
-msgstr "Police de caractères"
+msgstr "Kirjasin"
 
 #: src/StatusbarUI.cpp:107
 msgid "Select"
-msgstr "Sélectionner"
+msgstr "Valitse"
 
 #: src/StatusbarUI.cpp:107
 msgid "Default"
-msgstr "Par défaut"
+msgstr "Oletusarvo"
 
 #: src/StatusbarUI.cpp:107
 msgid "OwnShip"
-msgstr "Bateau de l'utilisateur"
+msgstr "Oma alus"
 
 #: src/StatusbarUI.cpp:107
 msgid "Multiline"
-msgstr "Multiligne"
+msgstr "Monirivi"
 
 #: src/StatusbarUI.cpp:113
 msgid "Info"
-msgstr "Info"
+msgstr "Tietoa"
 
 #: src/StatusbarUI.cpp:119
 msgid "Display String"
-msgstr "Chaine d'affichage"
+msgstr "Näyttömerkkijonon"
 
 #: src/StatusbarUI.cpp:132
 msgid "About Author"
-msgstr "Au sujet de l'auteur"
+msgstr "Tietoa Tekijä"
 
 #: src/StatusbarUI.h:80
 msgid "Status Bar Preferences"
-msgstr "Préférences"
+msgstr "Tilarivin asetukset"
 
