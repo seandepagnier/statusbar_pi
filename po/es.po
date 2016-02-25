@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-04-22 13:08-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2016-02-18 16:08-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -15,92 +15,127 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "StatusBar"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "EL plugin StatusBar es un sustituto opcional de la barra de estado incorporada."
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\nThe builtin status bar (disable from the User Interface tab)\nis very limited in it's configuration options and can be very difficult to read.\n\nThe statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "El plugin StatusBar sustituye la barra de estado incorporada.\nLa barra de estado que incorpora OpenCPN (desactivar desde la pestaña Interfaz Usuario)\nestá muy limitada en sus opciones de configuración y puede resultar dificil de leer.\n\nEl plugin StatusBar mejora algunos de estos aspectos. Usar mejor con OpenGL activado (requiere de algunas extensiones básicas OpenGL).\n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\nThe following are formats:\n%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n%W from ship bearing to cursor\n%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n%a viewport orientation angle\n%f frames rendered per second\n%% print a percent"
-msgstr "La secuencia mostrada puede incluir formatos ej. \"%03.0E\" daría la eslora con el formato 03.0 con redondeo y ceros a la izquierda a emplear..\nA continuación se muestran formatos\n%A grados Lat barco    %B minutos Lat barco   %C segundos Lat barco  %D barco N/S\n%E grados Lon barco    %F minutos Lon barco   %G segundos Lon barco  %H barco E/W\n%I Velocidad efectiva barco (GPS)           %J Rumbo efectivo barco (GPS)           %K Rumbo verdadero      %L Velocidad de giro\n%O grados Lat cursor    %P minutos Lat cursor   %Q segundos Lat cursor   %R cursor N/S\n%S grados Lon cursor    %T minutos Lon cursor   %U segundos lon cursor   %V cursor E/W\n%W demora desde barco a cursor\n%X distancia loxodrómica al cursor  %Y distancia ortodrómica al cursor  %Z escala de carta\n%a ángulo de orientación de la ventana\n%f cuadros renderizados por segundo\n%% pone un porcentaje"
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "Información de Status Bar"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Configuración actual de colores"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Color"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Transparencia"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Invertir fondo"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Color de fondo"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Difuminar"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "Posición X"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "Posición Y"
-
-#: src/StatusbarUI.cpp:99
-msgid "Font"
-msgstr "Fuente"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Seleccionar"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Predeterminada"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "Propio barco"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Multilínea"
-
-#: src/StatusbarUI.cpp:113
-msgid "Info"
-msgstr "Info"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Formato de visualización"
-
-#: src/StatusbarUI.cpp:132
+#
 msgid "About Author"
 msgstr "Sobre el autor"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Background Color"
+msgstr "Color de fondo"
+#
+msgid "Blur"
+msgstr "Difuminar"
+#
+msgid "Color"
+msgstr "Color"
+#
+msgid "Current Color Scheme"
+msgstr "Configuración actual de colores"
+#
+msgid "Default"
+msgstr "Predeterminada"
+#
+msgid "Display String"
+msgstr "Formato de visualización"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr ""
+"La secuencia mostrada puede incluir formatos ej. \"%03.0E\" daría la eslora "
+"con el formato 03.0 con redondeo y ceros a la izquierda a emplear..\n"
+"A continuación se muestran formatos\n"
+"%A grados Lat barco    %B minutos Lat barco   %C segundos Lat barco  %D barco "
+"N/S\n"
+"%E grados Lon barco    %F minutos Lon barco   %G segundos Lon barco  %H barco "
+"E/W\n"
+"%I Velocidad efectiva barco (GPS)           %J Rumbo efectivo barco "
+"(GPS)           %K Rumbo verdadero      %L Velocidad de giro\n"
+"%O grados Lat cursor    %P minutos Lat cursor   %Q segundos Lat cursor   %R "
+"cursor N/S\n"
+"%S grados Lon cursor    %T minutos Lon cursor   %U segundos lon cursor   %V "
+"cursor E/W\n"
+"%W demora desde barco a cursor\n"
+"%X distancia loxodrómica al cursor  %Y distancia ortodrómica al cursor  %Z "
+"escala de carta\n"
+"%a ángulo de orientación de la ventana\n"
+"%f cuadros renderizados por segundo\n"
+"%% pone un porcentaje"
+#
+msgid "Font"
+msgstr "Fuente"
+#
+msgid "Info"
+msgstr "Info"
+#
+msgid "Invert Background"
+msgstr "Invertir fondo"
+#
+msgid "Multiline"
+msgstr "Multilínea"
+#
+msgid "OwnShip"
+msgstr "Propio barco"
+#
+msgid "Select"
+msgstr "Seleccionar"
+#
 msgid "Status Bar Preferences"
 msgstr "Preferencias de Status Bar"
-
+#
+msgid "StatusBar"
+msgstr "StatusBar"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr ""
+"EL plugin StatusBar es un sustituto opcional de la barra de estado "
+"incorporada."
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"El plugin StatusBar sustituye la barra de estado incorporada.\n"
+"La barra de estado que incorpora OpenCPN (desactivar desde la pestaña "
+"Interfaz Usuario)\n"
+"está muy limitada en sus opciones de configuración y puede resultar dificil "
+"de leer.\n"
+"\n"
+"El plugin StatusBar mejora algunos de estos aspectos. Usar mejor con OpenGL "
+"activado (requiere de algunas extensiones básicas OpenGL).\n"
+#
+msgid "Statusbar Information"
+msgstr "Información de Status Bar"
+#
+msgid "Transparency"
+msgstr "Transparencia"
+#
+msgid "X Position"
+msgstr "Posición X"
+#
+msgid "Y Position"
+msgstr "Posición Y"

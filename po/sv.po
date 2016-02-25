@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-05-29 14:06-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2016-02-18 16:09-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -15,109 +15,103 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: sv-SE\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "Statuslist"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Statuslist modul är ett alternativ till den inbyggda statuslisten"
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\n"
-"The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and can be very difficult to read.\n\n"
-"The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "Statuslist-modulen ersätter den inbyggda statuslisten\n"
-"Den inbyggda statuslisten (kan inaktiveras från fliken användargränssnitt)\n"
-"har begränsade konfigurationsalternativ och kan vara svårt att läsa.\n\n"
-"Modulen ger möjlighet  för egna anpassningar. Bäst resultat är när OpenGl är aktiverat. (Kräver vissa grundläggande OpenGL-tillägg.) \n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
-"The following are formats:\n"
-"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
-"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
-"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
-"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
-"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
-"%W from ship bearing to cursor\n"
-"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
-"%a viewport orientation angle\n"
-"%f frames rendered per second\n"
-"%% print a percent"
-msgstr ""
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "StatuslistInformation"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Aktuella färgschema"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Färg"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Transparent"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Inverterad bakgrund"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Bakgrundsfärg"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Oskärpa"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "X Position"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "X Position"
-
-#: src/StatusbarUI.cpp:99
-msgid "Font"
-msgstr "Teckensnitt"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Välj"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Standard"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "OwnShip"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Flera rader"
-
-#: src/StatusbarUI.cpp:113
-msgid "Info"
-msgstr "Info"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Visa texsträngen"
-
-#: src/StatusbarUI.cpp:132
+#
 msgid "About Author"
 msgstr "Om utgivaren"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Background Color"
+msgstr "Bakgrundsfärg"
+#
+msgid "Blur"
+msgstr "Oskärpa"
+#
+msgid "Color"
+msgstr "Färg"
+#
+msgid "Current Color Scheme"
+msgstr "Aktuella färgschema"
+#
+msgid "Default"
+msgstr "Standard"
+#
+msgid "Display String"
+msgstr "Visa textsträng"
+#
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr ""
+#
+msgid "Font"
+msgstr "Teckensnitt"
+#
+msgid "Info"
+msgstr "Info"
+#
+msgid "Invert Background"
+msgstr "Inverterad bakgrund"
+#
+msgid "Multiline"
+msgstr "Flera rader"
+#
+msgid "OwnShip"
+msgstr "OwnShip"
+#
+msgid "Select"
+msgstr "Välj"
+#
 msgid "Status Bar Preferences"
 msgstr "Statuslistens Inställningar"
-
+#
+msgid "StatusBar"
+msgstr "Statuslist"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "Statuslist modul är ett alternativ till den inbyggda statuslisten"
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"Statuslist-modulen ersätter den inbyggda statuslisten\n"
+"Den inbyggda statuslisten (kan inaktiveras från fliken användargränssnitt)\n"
+"har begränsade konfigurationsalternativ och kan vara svårt att läsa.\n"
+"\n"
+"Modulen ger möjlighet  för egna anpassningar. Bäst resultat är när OpenGl är "
+"aktiverat. (Kräver vissa grundläggande OpenGL-tillägg.) \n"
+#
+msgid "Statusbar Information"
+msgstr "StatuslistInformation"
+#
+msgid "Transparency"
+msgstr "Transparens"
+#
+msgid "X Position"
+msgstr "X Position"
+#
+msgid "Y Position"
+msgstr "X Position"

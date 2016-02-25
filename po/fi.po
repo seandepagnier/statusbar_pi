@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-06-02 20:34-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2016-02-25 14:14-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -15,120 +15,123 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "Näytä tilapalkki"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "StatusBar lisäosa on valinnainen korvaaja alkuperäiselle"
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\n"
-"The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and can be very difficult to read.\n\n"
-"The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "StatusBar plugin korvaa sisäänrakennetun statusbarin\n"
-"Sisäänrakennetun tilarivi (Poista käyttöliittymä-välilehti) \n"
-"on hyvin rajallinen, ja sen asetuksia voi olla hyvin vaikeaa lukea.\n\n"
-"Statusbar plugin parantaa joitakin näistä ongelmista.  Parasta käyttää OpenGL käytössä (vaatii perus OpenGL laajennuksia). \n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+#
+msgid "About Author"
+msgstr "Tietoa Tekijä"
+#
+msgid "Background Color"
+msgstr "Taustaväri"
+#
+msgid "Blur"
+msgstr "Sumennus"
+#
+msgid "Color"
+msgstr "Väri"
+#
+msgid "Current Color Scheme"
+msgstr "Nykyinen värimalli"
+#
+msgid "Default"
+msgstr "Oletusarvo"
+#
+msgid "Display String"
+msgstr "Näyttömerkkijonon"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
 "The following are formats:\n"
-"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
-"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
-"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
-"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
-"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
 "%W from ship bearing to cursor\n"
-"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
 "%% print a percent"
-msgstr "Näyttö merkkijonossa voi olla muodossa esim: \"%03.0E\" antaa aluksen pituutta muotomääritys 03.0 antaa, kuinka monta paikkaa kierroksen ja käyttää johtava 0 jne...\n"
+msgstr ""
+"Näyttö merkkijonossa voi olla muodossa esim: \"%03.0E\" antaa aluksen "
+"pituutta muotomääritys 03.0 antaa, kuinka monta paikkaa kierroksen ja käyttää "
+"johtava 0 jne...\n"
 "The ovat muodossa: \n"
-"%A aluksen lat astetta %B aluksen lat minuuttia %C aluksen lat sekuntia %D aluksen N/S\n"
-"%E aluksen lon astetta %F aluksen lon minuuttia %G aluksen lon sekuntia %h Haluatko aluksen E/W\n"
+"%A aluksen lat astetta %B aluksen lat minuuttia %C aluksen lat sekuntia %D "
+"aluksen N/S\n"
+"%E aluksen lon astetta %F aluksen lon minuuttia %G aluksen lon sekuntia %h "
+"Haluatko aluksen E/W\n"
 "%I aluksen sog %J aluksen ratas %k nimikkeen %L alusten otsikko rate\n"
-"%O kohdistin lat astetta    %P kursori lat minuutin %Q kohdistin lat sekuntia %R kohdistin N/S\n"
-"%S kohdistin lon astetta tekstin %t tunnistaminen kohdistin lon minuuttia %U kohdistin lon sekuntia %V kohdistimen E/W\n"
+"%O kohdistin lat astetta    %P kursori lat minuutin %Q kohdistin lat sekuntia "
+"%R kohdistin N/S\n"
+"%S kohdistin lon astetta tekstin %t tunnistaminen kohdistin lon minuuttia %U "
+"kohdistin lon sekuntia %V kohdistimen E/W\n"
 "%W laivan cursor\n"
-"%X etäisyys kohdistin mercator %Y etäisyys kohdistin Isoympyrä %Z kaavion scale\n"
+"%X etäisyys kohdistin mercator %Y etäisyys kohdistin Isoympyrä %Z kaavion "
+"scale\n"
 "%a viewport suunta angle\n"
 "%f kehykset on suoritettu per second\n"
 "%% tulostaa prosentti"
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "Statusbarin infomaatiota"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Nykyinen värimalli"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Väri"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Läpinäkyvyys"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Käännetty tausta"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Taustaväri"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Sumennus"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "X-sijainti"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "Y sijainti"
-
-#: src/StatusbarUI.cpp:99
+#
 msgid "Font"
 msgstr "Kirjasin"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Valitse"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Oletusarvo"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "Oma alus"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Monirivi"
-
-#: src/StatusbarUI.cpp:113
+#
 msgid "Info"
 msgstr "Tietoa"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Näyttömerkkijonon"
-
-#: src/StatusbarUI.cpp:132
-msgid "About Author"
-msgstr "Tietoa Tekijä"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Invert Background"
+msgstr "Käännetty tausta"
+#
+msgid "Multiline"
+msgstr "Monirivi"
+#
+msgid "OwnShip"
+msgstr "Oma alus"
+#
+msgid "Select"
+msgstr "Valitse"
+#
 msgid "Status Bar Preferences"
 msgstr "Tilarivin asetukset"
-
+#
+msgid "StatusBar"
+msgstr "Näytä tilapalkki"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "StatusBar lisäosa on valinnainen korvaaja alkuperäiselle"
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"StatusBar plugin korvaa sisäänrakennetun statusbarin\n"
+"Sisäänrakennetun tilarivi (Poista käyttöliittymä-välilehti) \n"
+"on hyvin rajallinen, ja sen asetuksia voi olla hyvin vaikeaa lukea.\n"
+"\n"
+"Statusbar plugin parantaa joitakin näistä ongelmista.  Parasta käyttää OpenGL "
+"käytössä (vaatii perus OpenGL laajennuksia). \n"
+#
+msgid "Statusbar Information"
+msgstr "Statusbarin infomaatiota"
+#
+msgid "Transparency"
+msgstr "Läpinäkyvyys"
+#
+msgid "X Position"
+msgstr "X-sijainti"
+#
+msgid "Y Position"
+msgstr "Y sijainti"
