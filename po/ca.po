@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-05-23 05:01-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2015-12-31 15:36-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -15,106 +15,128 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr ""
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr ""
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\n"
-"The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and can be very difficult to read.\n\n"
-"The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr ""
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+#
+msgid "About Author"
+msgstr "Sobre l'autor"
+#
+msgid "Background Color"
+msgstr "Color de fons"
+#
+msgid "Blur"
+msgstr "Desenfocament"
+#
+msgid "Color"
+msgstr "Color"
+#
+msgid "Current Color Scheme"
+msgstr "Esquema del Color actual"
+#
+msgid "Default"
+msgstr "Per Defecte"
+#
+msgid "Display String"
+msgstr "Mode de visualització"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
 "The following are formats:\n"
-"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
-"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
-"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
-"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
-"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
 "%W from ship bearing to cursor\n"
-"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
 "%% print a percent"
 msgstr ""
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr ""
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr ""
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr ""
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr ""
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr ""
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr ""
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr ""
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr ""
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr ""
-
-#: src/StatusbarUI.cpp:99
+"Veure cadena pot incloure formats com per exemple: \"%03.0E\" dóna posició de "
+"longitud del vaixell el especificador de format 03.0 dóna el nombre de llocs "
+"per arrodonir i decimals significatius, etc...\n"
+"Els següents són els formats:\n"
+"%A graus de lat. del vaixell %B minuts de lat. del vaixell %C segons de lat. "
+"del vaixell %D vaixell N/S\n"
+"%E graus de lon. del vaixell %F minuts de lon. del vaixell %G segons de lon. "
+"del vaixell %H vaixell E/O\n"
+"%I vaixell sog %J vaixell cog %K rumb del vaixell %L índex del rumb del "
+"vaixell\n"
+"%O graus de lat. del cursor    %P minuts de lat. del cursor   %Q segons de "
+"lat. del cursor    %R cursor N/S\n"
+"%S graus de lon. del cursor    %T minuts de lon. del cursor   %U segons de "
+"lon. del cursor    %V cursor E/O\n"
+"%W demora del vaixell al cursor\n"
+"%X  distància al cursor mercator    %Y Diostància ortodròmica al cursor    %Z "
+"Escala de la carta\n"
+"%a angle d'orientació de la vista\n"
+"%f quadres visualitzats per segon\n"
+"%% imprimir percentatge"
+#
 msgid "Font"
-msgstr ""
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr ""
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr ""
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr ""
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr ""
-
-#: src/StatusbarUI.cpp:113
+msgstr "Lletra"
+#
 msgid "Info"
-msgstr ""
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr ""
-
-#: src/StatusbarUI.cpp:132
-msgid "About Author"
-msgstr ""
-
-#: src/StatusbarUI.h:80
+msgstr "Info"
+#
+msgid "Invert Background"
+msgstr "Inverteix el fons"
+#
+msgid "Multiline"
+msgstr "Multilínia"
+#
+msgid "OwnShip"
+msgstr "El propi vaixell"
+#
+msgid "Select"
+msgstr "Selecciona"
+#
 msgid "Status Bar Preferences"
+msgstr "Preferències de la barra d'estat"
+#
+msgid "StatusBar"
+msgstr "Barra d'Estat"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
 msgstr ""
-
+"El connector Barra d'estat és una opció per a substituir la barra d'estat "
+"original"
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"El connector Barra d'estat substitueix la barra d'estat original OpenCPN\n"
+"La barra d'estat original (es desactiva desde la pestanya d'interfície de "
+"l'usuari)\n"
+"és molt limitada en les opcions de configuració i pot resultar difícil de "
+"llegir.\n"
+"\n"
+"El connector Barra d'Estat millora alguns aspectes. Requereix activar OpenGL "
+"(i algunes extensions bàsiques d'OpenGL).\n"
+#
+msgid "Statusbar Information"
+msgstr "Informació de Barra d'Estat"
+#
+msgid "Transparency"
+msgstr "Transparència"
+#
+msgid "X Position"
+msgstr "Posició X"
+#
+msgid "Y Position"
+msgstr "Posició Y"

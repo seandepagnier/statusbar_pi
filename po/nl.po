@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-06-02 20:34-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2016-02-25 14:14-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -15,120 +15,125 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: nl\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "StatusBar"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "De StatusBar Plugin is een optionele vervanger van de standaard OpenCPN  statusbalk"
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\n"
-"The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and can be very difficult to read.\n\n"
-"The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "De StatusBar PlugIn vervangt de standaard statusbalk.\n"
-"De standaard statusbalk (uitzetten via de tab Gebruikersinterface van Optionele Instellingen)\n"
-"is gelimiteerd in configuratieopties en is lastig te lezen.\n\n"
-"De StatusBar PlugIn lost deze problemen deels op. Gebruik bij voorkeur met OpenGL geactiveerd (vereist enkele basis OpenGL uitbreidingen).\n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+#
+msgid "About Author"
+msgstr "Over de auteur"
+#
+msgid "Background Color"
+msgstr "Achtergrondkleur"
+#
+msgid "Blur"
+msgstr "Vervagen"
+#
+msgid "Color"
+msgstr "Kleur"
+#
+msgid "Current Color Scheme"
+msgstr "Huidige kleurenschema"
+#
+msgid "Default"
+msgstr "Standaard"
+#
+msgid "Display String"
+msgstr "Weergavestring"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
 "The following are formats:\n"
-"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
-"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
-"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
-"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
-"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
 "%W from ship bearing to cursor\n"
-"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
 "%% print a percent"
-msgstr "De weergavestring kan worden opgemaakt, bijvoorbeeld: \"%03.0E\" geeft de lengte een notatiespecificatie, die aangeeft op hoeveel decimalen af te ronden en voorloopnulen te gebruiken.\n"
-"De volgende formats zijn er:\n"
-"%A positie breedte graden %B positie breedte minuten %C positie breedte seconden %D positie N/Z\n"
-"%E positie lengte graden %F positie lengte minuten %G positie lengte seconden %H positie O/W\n"
+msgstr ""
+"De weergavestring kan worden opgemaakt, bijvoorbeeld: \"%03.0E\" geeft de "
+"lengte een notatiespecificatie, die aangeeft op hoeveel decimalen af te "
+"ronden en voorloopnullen te gebruiken.\n"
+"De volgende formats zijn beschikbaar:\n"
+"%A positie breedtegraden %B positie breedteminuten %C positie breedteseconden "
+"%D positie N/Z\n"
+"%E positie lengtegraden %F positie lengteminuten %G positie lengteseconden %H "
+"positie O/W\n"
 "%I SOG %J grondkoers %K koers %L draaisnelheid\n"
-"%O cursor breedte graden %P cursor breedte minuten %Q cursor breedte seconden %R cursor N/Z\n"
-"%S cursor lengte graden %T cursor lengte minuten %U cursor lengte seconden %V cursor O/W\n"
+"%O cursor breedtegraden %P cursor breedteminuten %Q cursor breedteseconden %R "
+"cursor N/Z\n"
+"%S cursor lengtegraden %T cursor lengteminuten %U cursor lengteseconden %V "
+"cursor O/W\n"
 "%W peiling naar cursor\n"
 "%X afstand tot cursor %Y grootcirkelafstand naar cursor %Z kaartschaal\n"
 "%a viewport oriëntatiehoek\n"
 "%f frames gerenderd per seconde\n"
-"%% afdrukken een procent"
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "StatusBar informatie"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Huidige kleurenschema"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Kleur"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Transparantie"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Inverteer achtergrond"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Achtergrondkleur"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Vervagen"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "X-positie"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "Y-positie"
-
-#: src/StatusbarUI.cpp:99
+"%% afdrukken van een procent"
+#
 msgid "Font"
 msgstr "Lettertype"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Selecteer"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Standaard"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "Eigen vaartuig"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Meerdere regels"
-
-#: src/StatusbarUI.cpp:113
+#
 msgid "Info"
 msgstr "Info"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Weergavestring"
-
-#: src/StatusbarUI.cpp:132
-msgid "About Author"
-msgstr "Over de auteur"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Invert Background"
+msgstr "Inverteer achtergrond"
+#
+msgid "Multiline"
+msgstr "Meerdere regels"
+#
+msgid "OwnShip"
+msgstr "Eigen vaartuig"
+#
+msgid "Select"
+msgstr "Selecteren"
+#
 msgid "Status Bar Preferences"
-msgstr "StatusBar voorkeuren"
-
+msgstr "Statusbalkvoorkeuren"
+#
+msgid "StatusBar"
+msgstr "StatusBalk"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr ""
+"De StatusBalk PlugIn is een optionele vervanger van de standaard OpenCPN "
+"statusbalk"
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"De StatusBalk PlugIn vervangt de standaard statusbalk.\n"
+"De standaard statusbalk (uitzetten via Gereedschap/Opties/"
+"Gebruikersinterface)\n"
+"is gelimiteerd in mogelijke configuraties en is lastig te lezen.\n"
+"\n"
+"De StatusBalk PlugIn lost deze problemen deels op. Gebruik bij voorkeur met "
+"OpenGL geactiveerd (vereist enkele standaard OpenGL uitbreidingen).\n"
+#
+msgid "Statusbar Information"
+msgstr "StatusBalk informatie"
+#
+msgid "Transparency"
+msgstr "Transparantie"
+#
+msgid "X Position"
+msgstr "X-positie"
+#
+msgid "Y Position"
+msgstr "Y-positie"

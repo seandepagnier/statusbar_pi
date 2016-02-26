@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-06-02 20:34-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2016-02-25 08:03-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -15,121 +15,132 @@ msgstr ""
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "Barre d'état"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Complément StatusBar permet la mise en place d'une barre d'état optionnelle en remplacement de la barre d'état standard d'OpenCPN."
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\n"
-"The builtin status bar (disable from the User Interface tab)\n"
-"is very limited in it's configuration options and can be very difficult to read.\n\n"
-"The statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "StatusBar remplace la barre d'état normale d'OpenCPN\n"
-"La nouvelle barre d'état est activable ou désactivable depuis l'onglet Complément des options d'OpenCPN\n"
-"La barre d état d'origine est assez limitée dans ses options, peut être difficile à lire\n"
-"et consomme aussi beaucoup de temps de calcul du CPU du PC sous linux (gtk).\n\n"
-"Le complément StatusBar propose des améliorations à ces problèmes. Il requiert OpenGL et quelques extensions basiques d'OpenGL.\n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
-"The following are formats:\n"
-"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
-"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
-"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
-"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
-"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
-"%W from ship bearing to cursor\n"
-"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
-"%a viewport orientation angle\n"
-"%f frames rendered per second\n"
-"%% print a percent"
-msgstr "Pour voir cette nouvelle barre d'état améliorée, activez le complément StatusBar dans les options d'OpenCPN et fermez la fenêtre des options d'openCPN en laissant la fenêtre des préférences du complément Statusbar ouverte.\n"
-"La chainer d'affichage peut inclure des formats, par exemple : \"%03.0E\" spécifie le format d'affichage de la longitude du bateau  où 03.0 indique l'arrondi, et combien de chiffres significatifs etc..\n"
-"Voici le détail des formats :\n"
-"%A bateau lat degrés    %B bateau lat minutes   %C bateau lat secondes  %D bateau N/S\n"
-"%E bateau lon degrés    %F bateau lon minutes   %G bateau lon secondes  %H bateau E/W\n"
-"%I bateau sog            %J bateau cog           %K bateau cap      %L bateau heading rate\n"
-"%O curseur lat degrés    %P curseur lat minutes   %Q curseur lat secondes   %R curseur N/S\n"
-"%S curseur lon degrés    %T curseur lon minutes   %U curseur lon secondes   %V curseur E/W\n"
-"%W relèvement du curseur depuis le bateau\n"
-"%X distance au le curseur sur la ligne droite %Y distance au curseur sur le grand cerclee  %Z échelle de la carte\n"
-"%a angle d'orientation en degré de la fenêtre\n"
-"%% afficher un pourcent"
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "Information"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Etat actuel des  couleurs"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Couleur"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Transparence"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Inverser le fond"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Couleur de fond"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Blur"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "X Position"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "Y Position"
-
-#: src/StatusbarUI.cpp:99
-msgid "Font"
-msgstr "Police de caractères"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Sélectionner"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Par défaut"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "Bateau de l'utilisateur"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Multiligne"
-
-#: src/StatusbarUI.cpp:113
-msgid "Info"
-msgstr "Info"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Chaine d'affichage"
-
-#: src/StatusbarUI.cpp:132
+#
 msgid "About Author"
 msgstr "Au sujet de l'auteur"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Background Color"
+msgstr "Couleur de fond"
+#
+msgid "Blur"
+msgstr "Blur"
+#
+msgid "Color"
+msgstr "Couleur"
+#
+msgid "Current Color Scheme"
+msgstr "Etat actuel des  couleurs"
+#
+msgid "Default"
+msgstr "Par défaut"
+#
+msgid "Display String"
+msgstr "Chaine d'affichage"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr ""
+"Pour voir cette nouvelle barre d'état améliorée, activez le complément "
+"StatusBar dans les options d'OpenCPN et fermez la fenêtre des options "
+"d'openCPN en laissant la fenêtre des préférences du complément Statusbar "
+"ouverte.\n"
+"La chainer d'affichage peut inclure des formats, par exemple : \"%03.0E\" "
+"spécifie le format d'affichage de la longitude du bateau  où 03.0 indique "
+"l'arrondi, et combien de chiffres significatifs etc..\n"
+"Voici le détail des formats :\n"
+"%A bateau lat degrés    %B bateau lat minutes   %C bateau lat secondes  %D "
+"bateau N/S\n"
+"%E bateau lon degrés    %F bateau lon minutes   %G bateau lon secondes  %H "
+"bateau E/W\n"
+"%I bateau sog            %J bateau cog           %K bateau cap      %L bateau "
+"heading rate\n"
+"%O curseur lat degrés    %P curseur lat minutes   %Q curseur lat secondes   "
+"%R curseur N/S\n"
+"%S curseur lon degrés    %T curseur lon minutes   %U curseur lon secondes   "
+"%V curseur E/W\n"
+"%W relèvement du curseur depuis le bateau\n"
+"%X distance au le curseur sur la ligne droite %Y distance au curseur sur le "
+"grand cerclee  %Z échelle de la carte\n"
+"%a angle d'orientation en degré de la fenêtre\n"
+"%% afficher un pourcent"
+#
+msgid "Font"
+msgstr "Police de caractères"
+#
+msgid "Info"
+msgstr "Info"
+#
+msgid "Invert Background"
+msgstr "Inverser le fond"
+#
+msgid "Multiline"
+msgstr "Multiligne"
+#
+msgid "OwnShip"
+msgstr "Bateau de l'utilisateur"
+#
+msgid "Select"
+msgstr "Sélectionner"
+#
 msgid "Status Bar Preferences"
 msgstr "Préférences"
-
+#
+msgid "StatusBar"
+msgstr "Barre d'état"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr ""
+"Complément StatusBar permet la mise en place d'une barre d'état optionnelle "
+"en remplacement de la barre d'état standard d'OpenCPN."
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"StatusBar remplace la barre d'état normale d'OpenCPN\n"
+"La nouvelle barre d'état est activable ou désactivable depuis l'onglet "
+"Complément des options d'OpenCPN\n"
+"La barre d état d'origine est assez limitée dans ses options, peut être "
+"difficile à lire\n"
+"et consomme aussi beaucoup de temps de calcul du CPU du PC sous linux (gtk).\n"
+"\n"
+"Le complément StatusBar propose des améliorations à ces problèmes. Il "
+"requiert OpenGL et quelques extensions basiques d'OpenGL.\n"
+#
+msgid "Statusbar Information"
+msgstr "Information"
+#
+msgid "Transparency"
+msgstr "Transparence"
+#
+msgid "X Position"
+msgstr "X Position"
+#
+msgid "Y Position"
+msgstr "Y Position"
