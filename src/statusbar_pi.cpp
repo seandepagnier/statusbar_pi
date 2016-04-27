@@ -72,9 +72,6 @@ int statusbar_pi::Init(void)
     m_PreferencesDialog = new StatusbarPrefsDialog(GetOCPNCanvasWindow());
     AddLocaleCatalog( _T("opencpn-statusbar_pi") );
 
-    //    Get a pointer to the opencpn configuration object
-    m_pConfig = GetOCPNConfigObject();
-
     // This is bugged, need to fix in core program so we know the scheme at start
     m_ColorScheme = PI_GLOBAL_COLOR_SCHEME_RGB;
     LoadConfig();
@@ -506,7 +503,7 @@ int statusbar_pi::GetYPosition()
 
 bool statusbar_pi::LoadConfig(void)
 {
-    wxFileConfig *pConf = (wxFileConfig *)m_pConfig;
+    wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(!pConf)
         return false;
@@ -565,7 +562,7 @@ bool statusbar_pi::LoadConfig(void)
 
 bool statusbar_pi::SaveConfig(void)
 {
-    wxFileConfig *pConf = (wxFileConfig *)m_pConfig;
+    wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(!pConf)
         return false;

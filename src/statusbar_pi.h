@@ -102,8 +102,6 @@ private:
     wxDateTime m_LastRefreshTime;
     wxTimer m_TimeRefreshTimer, m_DateRefreshTimer;
 
-    wxFileConfig     *m_pConfig;
-
     StatusbarPrefsDialog *m_PreferencesDialog;
 
     double m_cursor_lat, m_cursor_lon;
