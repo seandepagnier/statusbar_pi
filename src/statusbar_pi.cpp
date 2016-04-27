@@ -27,6 +27,11 @@
 #include <wx/wx.h>
 #include <wx/graphics.h>
 
+#ifdef __OCPN__ANDROID__
+#include "qopengl.h"                  // this gives us the qt runtime gles2.h
+#include "GL/gl_private.h"
+#endif
+
 #include "StatusbarUI.h"
 #include "TexFont.h"
 #include "statusbar_pi.h"
@@ -137,7 +142,7 @@ The builtin status bar (disable from the User Interface tab)\n\
 is very limited in it's configuration options and \
 can be very difficult to read.\n\
 \n\
-The statusbar plugin improves on some of these difficulties.\
+The statusbar plugin improves on some of these difficulties.\n\
   Best used with OpenGL enabled (requires some basic OpenGL extensions).\n");
 }
 

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: statusbar_pi 0.4\n"
+"Project-Id-Version: statusbar_pi 0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
+"POT-Creation-Date: 2015-11-01 16:43+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/statusbar_pi.cpp:120
+#: src/statusbar_pi.cpp:125
 msgid "StatusBar"
 msgstr ""
 
-#: src/statusbar_pi.cpp:125
+#: src/statusbar_pi.cpp:130
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
 msgstr ""
 
-#: src/statusbar_pi.cpp:130
+#: src/statusbar_pi.cpp:135
 msgid ""
 "StatusBar plugin replaces builtin statusbar\n"
 "The builtin status bar (disable from the User Interface tab)\n"
@@ -36,7 +36,7 @@ msgid ""
 "OpenGL enabled (requires some basic OpenGL extensions).\n"
 msgstr ""
 
-#: src/statusbar_pi.cpp:159
+#: src/statusbar_pi.cpp:164
 msgid ""
 "Display String can include formats eg: \"%03.0E\" gives ship longitude the "
 "format specifier 03.0 gives how many places to round to, and to use leading "
@@ -57,10 +57,11 @@ msgid ""
 "scale\n"
 "%a viewport orientation angle\n"
 "%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
 "%% print a percent"
 msgstr ""
 
-#: src/statusbar_pi.cpp:172
+#: src/statusbar_pi.cpp:178
 msgid "Statusbar Information"
 msgstr ""
 
