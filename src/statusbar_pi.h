@@ -42,11 +42,31 @@
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool
 
+struct StatusbarConfig
+{
+    wxColour color;
+    bool invertbackground, blur;
+    int transparency;
+    
+    wxColour bgcolor;
+    int bgtransparency;
+    
+    int XPosition, YPosition;
+
+    wxFont font;
+
+    wxString DisplayString;
+};
+
+class statusbar_pi;
 class StatusbarPrefsDialog : public StatusbarPrefsDialogBase
 {
 public:
-StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
-    void Refresh() { RequestRefresh(GetOCPNCanvasWindow()); }
+StatusbarPrefsDialog( wxWindow *parent, statusbar_pi &_statusbar_pi )
+    : StatusbarPrefsDialogBase( parent ),
+        m_statusbar_pi(_statusbar_pi)
+        { LoadConfig(); }
+    void Refresh() { SaveConfig(); RequestRefresh(GetOCPNCanvasWindow()); }
     virtual void Refresh( wxColourPickerEvent& event ) { Refresh(); }
     virtual void Refresh( wxScrollEvent& event ) { Refresh(); }
     virtual void Refresh( wxCommandEvent& event ) { Refresh(); }
@@ -55,6 +75,11 @@ StatusbarPrefsDialog( wxWindow *parent ) : StatusbarPrefsDialogBase( parent ) {}
     void OnBuiltinString( wxCommandEvent& event );
     void OnDisplayStringInfo( wxCommandEvent& event );
     void OnAboutAuthor( wxCommandEvent& event );
+
+    void LoadConfig();
+    void SaveConfig();
+
+    statusbar_pi &m_statusbar_pi;
 };
 
 //----------------------------------------------------------------------------------------------------------
@@ -87,6 +112,8 @@ public:
     void SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
     void ShowPreferencesDialog( wxWindow* parent );
     void SetColorScheme(PI_ColorScheme cs);
+
+    StatusbarConfig m_config;
 
 private:
     int GetYPosition();
