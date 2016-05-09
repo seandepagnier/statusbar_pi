@@ -2,105 +2,139 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 11:58-0500\n"
-"PO-Revision-Date: 2015-04-22 13:08-0400\n"
+"POT-Creation-Date: 2016-02-25 17:27-0300\n"
+"PO-Revision-Date: 2015-12-31 15:38-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Language: tr\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
-
-#: src/statusbar_pi.cpp:120
-msgid "StatusBar"
-msgstr "Durum Çubuğu"
-
-#: src/statusbar_pi.cpp:125
-msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Durum Çubuğu Eklentisi, kullanılan durum çubuğunun yerine seçimlik kullanılabilir."
-
-#: src/statusbar_pi.cpp:130
-msgid "StatusBar plugin replaces builtin statusbar\nThe builtin status bar (disable from the User Interface tab)\nis very limited in it's configuration options and can be very difficult to read.\n\nThe statusbar plugin improves on some of these difficulties.  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "Durum Çubuğu eklentisi mevcut durum çubuğunun yerine kullanılır.\nMevcut durum çubuğunun (Kullanıcı Arayüzünden etkinleştirilir)\nkullanıcı seçenekleri hem sınırlıdır hem de okuması çok zordur.\n\nDurum Çubuğu Eklentisi bu zorluklardan bir kısmını gideriyorç. OpenGL etkinleştiridiğinde kullanımı daha etkilidir.\n"
-
-#: src/statusbar_pi.cpp:159
-msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\nThe following are formats:\n%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n%W from ship bearing to cursor\n%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n%a viewport orientation angle\n%f frames rendered per second\n%% print a percent"
-msgstr "Ayrırım Gösterimi şu şekillerde olabilir: \"%03.0E\" Teknenin enlemini 03.0 formatıyla kaç yerden döneceğini ve öncü 0'ları kullanacağını verir...\nFormatlar aşağıda verilmiştir:\n%A tekne enlem derece   %B tekne enlem dakika   %C tekne enlem saniye  %D tekne N/S\n%E tekne boylam derece    %F tekne boylam dakika  %G tekne boylam saniye  %H tekne E/W\n%I tekne sog            %J tekne cog          %K tekne pruva      %L tekne pruva derece\n%O fare enlem derece    %P fare enlem dakika   %Q fare enlem saniye   %R fare N/S\n%S fare boylam derece    %T fare boylam dakika   %U fare boylam saniye   %V fare E/W\n%W tekneden fareye kerteriz\n%X fareye mesafe mercator  %Y büyülk daire seyrine göre fareye uzakılık  %Z harita ölçeği\n%a bakış noktası yönlendirme açısı\n%f her saniye için düzenlenmiş çerçeveler\n%% bir yüzde bas"
-
-#: src/statusbar_pi.cpp:172
-msgid "Statusbar Information"
-msgstr "Durum Çubuğu Bilgisi"
-
-#: src/StatusbarUI.cpp:22
-msgid "Current Color Scheme"
-msgstr "Kullanılan Renk TAblosu"
-
-#: src/StatusbarUI.cpp:35
-msgid "Color"
-msgstr "Renk"
-
-#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
-msgid "Transparency"
-msgstr "Geçirgenlik"
-
-#: src/StatusbarUI.cpp:51
-msgid "Invert Background"
-msgstr "Arkaplanı ters çevir"
-
-#: src/StatusbarUI.cpp:54
-msgid "Background Color"
-msgstr "Arkaplan rengi"
-
-#: src/StatusbarUI.cpp:68
-msgid "Blur"
-msgstr "Vurgu"
-
-#: src/StatusbarUI.cpp:85
-msgid "X Position"
-msgstr "X Durumu"
-
-#: src/StatusbarUI.cpp:92
-msgid "Y Position"
-msgstr "Y Durumu"
-
-#: src/StatusbarUI.cpp:99
-msgid "Font"
-msgstr "Harf Özelliği"
-
-#: src/StatusbarUI.cpp:107
-msgid "Select"
-msgstr "Seç"
-
-#: src/StatusbarUI.cpp:107
-msgid "Default"
-msgstr "Varsayılan"
-
-#: src/StatusbarUI.cpp:107
-msgid "OwnShip"
-msgstr "Teknem"
-
-#: src/StatusbarUI.cpp:107
-msgid "Multiline"
-msgstr "Çokçizgili"
-
-#: src/StatusbarUI.cpp:113
-msgid "Info"
-msgstr "Bilgi"
-
-#: src/StatusbarUI.cpp:119
-msgid "Display String"
-msgstr "Dizin Göster"
-
-#: src/StatusbarUI.cpp:132
+#
 msgid "About Author"
 msgstr "YAzar hakkında"
-
-#: src/StatusbarUI.h:80
+#
+msgid "Background Color"
+msgstr "Arkaplan rengi"
+#
+msgid "Blur"
+msgstr "Vurgu"
+#
+msgid "Color"
+msgstr "Renk"
+#
+msgid "Current Color Scheme"
+msgstr "Kullanılan Renk TAblosu"
+#
+msgid "Default"
+msgstr "Varsayılan"
+#
+msgid "Display String"
+msgstr "Dizin Göster"
+#
+#, fuzzy
+msgid ""
+"Display String can include formats eg: \"%03.0E\" gives ship longitude the "
+"format specifier 03.0 gives how many places to round to, and to use leading "
+"0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/"
+"S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/"
+"W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship "
+"heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R "
+"cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V "
+"cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart "
+"scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr ""
+"Ayrırım Gösterimi şu şekillerde olabilir: \"%03.0E\" Teknenin enlemini 03.0 "
+"formatıyla kaç yerden döneceğini ve öncü 0'ları kullanacağını verir...\n"
+"Formatlar aşağıda verilmiştir:\n"
+"%A tekne enlem derece   %B tekne enlem dakika   %C tekne enlem saniye  %D "
+"tekne N/S\n"
+"%E tekne boylam derece    %F tekne boylam dakika  %G tekne boylam saniye  %H "
+"tekne E/W\n"
+"%I tekne sog            %J tekne cog          %K tekne pruva      %L tekne "
+"pruva derece\n"
+"%O fare enlem derece    %P fare enlem dakika   %Q fare enlem saniye   %R fare "
+"N/S\n"
+"%S fare boylam derece    %T fare boylam dakika   %U fare boylam saniye   %V "
+"fare E/W\n"
+"%W tekneden fareye kerteriz\n"
+"%X fareye mesafe mercator  %Y büyülk daire seyrine göre fareye uzakılık  %Z "
+"harita ölçeği\n"
+"%a bakış noktası yönlendirme açısı\n"
+"%f her saniye için düzenlenmiş çerçeveler\n"
+"%% bir yüzde bas"
+#
+msgid "Font"
+msgstr "Harf Özelliği"
+#
+msgid "Info"
+msgstr "Bilgi"
+#
+msgid "Invert Background"
+msgstr "Arkaplanı ters çevir"
+#
+msgid "Multiline"
+msgstr "Çokçizgili"
+#
+msgid "OwnShip"
+msgstr "Teknem"
+#
+msgid "Select"
+msgstr "Seç"
+#
 msgid "Status Bar Preferences"
 msgstr "Durum Çubuğu Yapılandırması"
-
+#
+msgid "StatusBar"
+msgstr "Durum Çubuğu"
+#
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr ""
+"Durum Çubuğu Eklentisi, kullanılan durum çubuğunun yerine seçimlik "
+"kullanılabilir."
+#
+msgid ""
+"StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to "
+"read.\n"
+"\n"
+"The statusbar plugin improves on some of these difficulties.  Best used with "
+"OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+"Durum Çubuğu eklentisi mevcut durum çubuğunun yerine kullanılır.\n"
+"Mevcut durum çubuğunun (Kullanıcı Arayüzünden etkinleştirilir)\n"
+"kullanıcı seçenekleri hem sınırlıdır hem de okuması çok zordur.\n"
+"\n"
+"Durum Çubuğu Eklentisi bu zorluklardan bir kısmını gideriyorç. OpenGL "
+"etkinleştiridiğinde kullanımı daha etkilidir.\n"
+#
+msgid "Statusbar Information"
+msgstr "Durum Çubuğu Bilgisi"
+#
+msgid "Transparency"
+msgstr "Geçirgenlik"
+#
+msgid "X Position"
+msgstr "X Durumu"
+#
+msgid "Y Position"
+msgstr "Y Durumu"
