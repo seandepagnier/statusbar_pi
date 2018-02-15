@@ -1,0 +1,134 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-15 14:10-0300\n"
+"PO-Revision-Date: 2018-02-15 13:05-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Greek\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: el\n"
+"X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
+
+#: src/statusbar_pi.cpp:165
+msgid "StatusBar"
+msgstr "Μπάρα κατάστασης"
+
+#: src/statusbar_pi.cpp:170
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "Το πρόσθετο StatusBar είναι ένα υποκατάστατο για τη λωρίδα πληροφοριών"
+
+#: src/statusbar_pi.cpp:175
+msgid "StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to read.\n\n"
+"The statusbar plugin improves on some of these difficulties.\n"
+"  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+
+#: src/statusbar_pi.cpp:204
+msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr "Το κείμενο μπορεί να περιέχει φορμά, όπως, π.χ., \"%03.0E\" (γ. μήκος), που δείχνει τον αριθμό των στοιχείων για τη στρογγυλοποίηση και τη χρήση αρχικών μηδενικών κ.ά.\n"
+"Μερικά φορμά είναι:\n"
+"%A,  %B  και   %C:  μοίρες, λεπτά, δευτερόλεπτα πλάτους θέσης πλοίου,  %D: Β/Ν\n"
+"%E,   %F και %G μοίρες, λεπτά και δευτερόλεπτα μήκους θέσης πλοίου,  %H: Α/Δ πλοίου\n"
+"%I: SOG,  %J: COG, %K: πορεία  %L: ωφ. ταχύτητα πλοίου\n"
+"%O, %P, %Q: γ. πλάτος δρομέα (μοίρες, λεπτά, δευτερ.)   %R Β/Ν δρομέα\n"
+"%S, %T, %U: γ. μήκος δρομέα (μοίρες, λεπτά, δευτερ.), %V: Α/Δ δρομέα\n"
+"%W: κατεύθυνση από πλοίο προς δρομέα\n"
+"%X: μερκατορική απόσταση δρομέα,  %Y: απόσταση δρομέα μεγίστου κύκλου,  %Z: κλίμακα χάρτη\n"
+"%a γωνία θέασης\n"
+"%f: κάδρα/s\n"
+"%d: ημερομηνία, %t: ώρα, %z: Ζώνη ώρας\n"
+"%% σύμβολο \"επί τοις εκατό\""
+
+#: src/statusbar_pi.cpp:218
+msgid "Statusbar Information"
+msgstr "Πληροφορίες στη λωρίδα"
+
+#: src/StatusbarUI.cpp:22
+msgid "Current Color Scheme"
+msgstr "Τρέχον σύστημα χρωμάτων"
+
+#: src/StatusbarUI.cpp:35
+msgid "Color"
+msgstr "Χρώμα"
+
+#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
+msgid "Transparency"
+msgstr "Διαφάνεια"
+
+#: src/StatusbarUI.cpp:51
+msgid "Invert Background"
+msgstr "Αντιστροφή φόντου"
+
+#: src/StatusbarUI.cpp:54
+msgid "Background Color"
+msgstr "Χρώμα φόντου"
+
+#: src/StatusbarUI.cpp:68
+msgid "Blur"
+msgstr "Θόλωμα"
+
+#: src/StatusbarUI.cpp:85
+msgid "X Position"
+msgstr "Θέση Χ"
+
+#: src/StatusbarUI.cpp:92
+msgid "Y Position"
+msgstr "Θέση Υ"
+
+#: src/StatusbarUI.cpp:99
+msgid "Font"
+msgstr "Γραμματοσειρά"
+
+#: src/StatusbarUI.cpp:107
+msgid "Select"
+msgstr "Επιλογή"
+
+#: src/StatusbarUI.cpp:107
+msgid "Default"
+msgstr "Προεπιλεγμένο"
+
+#: src/StatusbarUI.cpp:107
+msgid "OwnShip"
+msgstr "Ίδιον πλοίο"
+
+#: src/StatusbarUI.cpp:107
+msgid "Multiline"
+msgstr "Πολλαπλή γραμμή"
+
+#: src/StatusbarUI.cpp:113
+msgid "Info"
+msgstr "Πληροφορίες"
+
+#: src/StatusbarUI.cpp:119
+msgid "Display String"
+msgstr "Display String"
+
+#: src/StatusbarUI.cpp:132
+msgid "About Author"
+msgstr "Σχετικά με το συγγραφέα"
+
+#: src/StatusbarUI.h:80
+msgid "Status Bar Preferences"
+msgstr "Προτιμήσεις λωρίδας κατάστασης"
+

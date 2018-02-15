@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-15 14:10-0300\n"
+"PO-Revision-Date: 2018-02-15 13:04-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Dutch\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: nl\n"
+"X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
+
+#: src/statusbar_pi.cpp:165
+msgid "StatusBar"
+msgstr "StatusBalk"
+
+#: src/statusbar_pi.cpp:170
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "De StatusBalk PlugIn is een optionele vervanger van de standaard OpenCPN statusbalk"
+
+#: src/statusbar_pi.cpp:175
+msgid "StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to read.\n\n"
+"The statusbar plugin improves on some of these difficulties.\n"
+"  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+
+#: src/statusbar_pi.cpp:204
+msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr "De weergavestring kan worden opgemaakt, bijvoorbeeld: \"%03.0E\" geeft de lengte een notatiespecificatie, die aangeeft op hoeveel decimalen af te ronden en voorloopnullen te gebruiken.\n"
+"De volgende formats zijn beschikbaar:\n"
+"%A positie breedtegraden %B positie breedteminuten %C positie breedteseconden %D positie N/Z\n"
+"%E positie lengtegraden %F positie lengteminuten %G positie lengteseconden %H positie O/W\n"
+"%I SOG %J grondkoers %K koers %L draaisnelheid\n"
+"%O cursor breedtegraden %P cursor breedteminuten %Q cursor breedteseconden %R cursor N/Z\n"
+"%S cursor lengtegraden %T cursor lengteminuten %U cursor lengteseconden %V cursor O/W\n"
+"%W peiling naar cursor\n"
+"%X afstand tot cursor %Y grootcirkelafstand naar cursor %Z kaartschaal\n"
+"%a viewport oriëntatiehoek\n"
+"%f frames gerenderd per seconde\n"
+"%% afdrukken van een procent"
+
+#: src/statusbar_pi.cpp:218
+msgid "Statusbar Information"
+msgstr "StatusBalk informatie"
+
+#: src/StatusbarUI.cpp:22
+msgid "Current Color Scheme"
+msgstr "Huidige kleurenschema"
+
+#: src/StatusbarUI.cpp:35
+msgid "Color"
+msgstr "Kleur"
+
+#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
+msgid "Transparency"
+msgstr "Transparantie"
+
+#: src/StatusbarUI.cpp:51
+msgid "Invert Background"
+msgstr "Inverteer achtergrond"
+
+#: src/StatusbarUI.cpp:54
+msgid "Background Color"
+msgstr "Achtergrondkleur"
+
+#: src/StatusbarUI.cpp:68
+msgid "Blur"
+msgstr "Vervagen"
+
+#: src/StatusbarUI.cpp:85
+msgid "X Position"
+msgstr "X-positie"
+
+#: src/StatusbarUI.cpp:92
+msgid "Y Position"
+msgstr "Y-positie"
+
+#: src/StatusbarUI.cpp:99
+msgid "Font"
+msgstr "Lettertype"
+
+#: src/StatusbarUI.cpp:107
+msgid "Select"
+msgstr "Selecteren"
+
+#: src/StatusbarUI.cpp:107
+msgid "Default"
+msgstr "Standaard"
+
+#: src/StatusbarUI.cpp:107
+msgid "OwnShip"
+msgstr "Eigen vaartuig"
+
+#: src/StatusbarUI.cpp:107
+msgid "Multiline"
+msgstr "Meerdere regels"
+
+#: src/StatusbarUI.cpp:113
+msgid "Info"
+msgstr "Info"
+
+#: src/StatusbarUI.cpp:119
+msgid "Display String"
+msgstr "Weergavestring"
+
+#: src/StatusbarUI.cpp:132
+msgid "About Author"
+msgstr "Over de auteur"
+
+#: src/StatusbarUI.h:80
+msgid "Status Bar Preferences"
+msgstr "Statusbalkvoorkeuren"
+
