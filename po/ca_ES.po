@@ -1,0 +1,122 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-15 14:10-0300\n"
+"PO-Revision-Date: 2018-02-15 13:04-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Catalan\n"
+"Language: ca_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: ca\n"
+"X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
+
+#: src/statusbar_pi.cpp:165
+msgid "StatusBar"
+msgstr "Barra d'Estat"
+
+#: src/statusbar_pi.cpp:170
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "El connector Barra d'estat és una opció per a substituir la barra d'estat original"
+
+#: src/statusbar_pi.cpp:175
+msgid "StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to read.\n\n"
+"The statusbar plugin improves on some of these difficulties.\n"
+"  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+
+#: src/statusbar_pi.cpp:204
+msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr ""
+
+#: src/statusbar_pi.cpp:218
+msgid "Statusbar Information"
+msgstr "Informació de Barra d'Estat"
+
+#: src/StatusbarUI.cpp:22
+msgid "Current Color Scheme"
+msgstr "Esquema del Color actual"
+
+#: src/StatusbarUI.cpp:35
+msgid "Color"
+msgstr "Color"
+
+#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
+msgid "Transparency"
+msgstr "Transparència"
+
+#: src/StatusbarUI.cpp:51
+msgid "Invert Background"
+msgstr "Inverteix el fons"
+
+#: src/StatusbarUI.cpp:54
+msgid "Background Color"
+msgstr "Color de fons"
+
+#: src/StatusbarUI.cpp:68
+msgid "Blur"
+msgstr "Desenfocament"
+
+#: src/StatusbarUI.cpp:85
+msgid "X Position"
+msgstr "Posició X"
+
+#: src/StatusbarUI.cpp:92
+msgid "Y Position"
+msgstr "Posició Y"
+
+#: src/StatusbarUI.cpp:99
+msgid "Font"
+msgstr "Lletra"
+
+#: src/StatusbarUI.cpp:107
+msgid "Select"
+msgstr "Selecciona"
+
+#: src/StatusbarUI.cpp:107
+msgid "Default"
+msgstr "Per Defecte"
+
+#: src/StatusbarUI.cpp:107
+msgid "OwnShip"
+msgstr "El propi vaixell"
+
+#: src/StatusbarUI.cpp:107
+msgid "Multiline"
+msgstr "Multilínia"
+
+#: src/StatusbarUI.cpp:113
+msgid "Info"
+msgstr "Info"
+
+#: src/StatusbarUI.cpp:119
+msgid "Display String"
+msgstr "Mode de visualització"
+
+#: src/StatusbarUI.cpp:132
+msgid "About Author"
+msgstr "Sobre l'autor"
+
+#: src/StatusbarUI.h:80
+msgid "Status Bar Preferences"
+msgstr "Preferències de la barra d'estat"
+

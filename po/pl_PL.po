@@ -1,0 +1,134 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-15 14:10-0300\n"
+"PO-Revision-Date: 2018-02-15 13:06-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: pl\n"
+"X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
+
+#: src/statusbar_pi.cpp:165
+msgid "StatusBar"
+msgstr "Pasek statusu"
+
+#: src/statusbar_pi.cpp:170
+msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
+msgstr "StatusBar wtyczka jest zamiennikiem dla wbudowanego paska stanu"
+
+#: src/statusbar_pi.cpp:175
+msgid "StatusBar plugin replaces builtin statusbar\n"
+"The builtin status bar (disable from the User Interface tab)\n"
+"is very limited in it's configuration options and can be very difficult to read.\n\n"
+"The statusbar plugin improves on some of these difficulties.\n"
+"  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
+msgstr ""
+
+#: src/statusbar_pi.cpp:204
+msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
+"The following are formats:\n"
+"%A ship lat degrees    %B ship lat minutes   %C ship lat seconds  %D ship N/S\n"
+"%E ship lon degrees    %F ship lon minutes   %G ship lon seconds  %H ship E/W\n"
+"%I ship sog            %J ship cog           %K ship heading      %L ship heading rate\n"
+"%O cursor lat degrees    %P cursor lat minutes   %Q cursor lat seconds   %R cursor N/S\n"
+"%S cursor lon degrees    %T cursor lon minutes   %U cursor lon seconds   %V cursor E/W\n"
+"%W from ship bearing to cursor\n"
+"%X distance to cursor mercator  %Y distance to cursor great circle  %Z chart scale\n"
+"%a viewport orientation angle\n"
+"%f frames rendered per second\n"
+"%d Date    %t Time    %z Time Zone\n"
+"%% print a percent"
+msgstr "Wyświeltaany ciąg może zawierać formaty np: \"%03.0E\" nadając długości geogr. statku specyfikator formatu 03.0 podając ilość miejsc do zaokrąglenia i użycie poprzedzających 0's etc..\n"
+"Następujące formaty:\n"
+"%A szer.geogr.statku stopnie %B szer geogr.statku minuty %C szer.geogr.statku sekundy %D statek N/S\n"
+"%E dł.geogr.statku stopnie %F dł.geogr.statku minuty %G dł.geogr.statku sekundy %H statek E/W\n"
+"%I SOG statku %J COG statku %K kurs statku %L prędkość zmiany kursu\n"
+"%O szer.geogr.kursora stopnie %P szer.geogr.kursora minuty %Q szer.geogr.kursora sekundy %R kursor N/S\n"
+"%S dł.geogr.kursora stopnie %T dł.geogr.kursora minuty %U dł.geogr.kursora sekundy %V kursor E/W\n"
+"%W namiar od statku do kursora\n"
+"%X odległość do kursora loksodroma %Y odległość do kursora ortodroma %Z skala mapy\n"
+"%a kąt orientacji zobrazowania\n"
+"%f klatek na sekundę\n"
+"%d Data %t Czas %z Strefa Czasowa\n"
+"%% wydruk procent"
+
+#: src/statusbar_pi.cpp:218
+msgid "Statusbar Information"
+msgstr "Informacja o pasku stanu"
+
+#: src/StatusbarUI.cpp:22
+msgid "Current Color Scheme"
+msgstr "Bieżący schemat kolorów"
+
+#: src/StatusbarUI.cpp:35
+msgid "Color"
+msgstr "Kolor"
+
+#: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
+msgid "Transparency"
+msgstr "Przezroczystość"
+
+#: src/StatusbarUI.cpp:51
+msgid "Invert Background"
+msgstr "Odwróć tło"
+
+#: src/StatusbarUI.cpp:54
+msgid "Background Color"
+msgstr "Kolor tła"
+
+#: src/StatusbarUI.cpp:68
+msgid "Blur"
+msgstr "Rozmycie"
+
+#: src/StatusbarUI.cpp:85
+msgid "X Position"
+msgstr "Pozycja X"
+
+#: src/StatusbarUI.cpp:92
+msgid "Y Position"
+msgstr "Pozycja Y"
+
+#: src/StatusbarUI.cpp:99
+msgid "Font"
+msgstr "Czcionka"
+
+#: src/StatusbarUI.cpp:107
+msgid "Select"
+msgstr "Wybierz"
+
+#: src/StatusbarUI.cpp:107
+msgid "Default"
+msgstr "Domyślny(a/e)"
+
+#: src/StatusbarUI.cpp:107
+msgid "OwnShip"
+msgstr "Nasz statek"
+
+#: src/StatusbarUI.cpp:107
+msgid "Multiline"
+msgstr "Wiele linii"
+
+#: src/StatusbarUI.cpp:113
+msgid "Info"
+msgstr "Info"
+
+#: src/StatusbarUI.cpp:119
+msgid "Display String"
+msgstr "Ciąg wyświetlany"
+
+#: src/StatusbarUI.cpp:132
+msgid "About Author"
+msgstr "O autorze"
+
+#: src/StatusbarUI.h:80
+msgid "Status Bar Preferences"
+msgstr "Ustawienia paska stanu"
+

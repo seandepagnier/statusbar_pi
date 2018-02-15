@@ -7,19 +7,14 @@
 SET(PLUGIN_SOURCE_DIR .)
 
 # This should be 2.8.0 to have FindGTK2 module
-IF (COMMAND cmake_policy)
-  CMAKE_POLICY(SET CMP0003 OLD)
-  CMAKE_POLICY(SET CMP0005 OLD)
-  CMAKE_POLICY(SET CMP0011 OLD)
-ENDIF (COMMAND cmake_policy)
 
 MESSAGE (STATUS "*** Staging to build ${PACKAGE_NAME} ***")
 
 configure_file(cmake/version.h.in ${PROJECT_SOURCE_DIR}/src/version.h)
-SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}" )
+SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" )
 
 #SET(CMAKE_BUILD_TYPE Debug)
-#SET(CMAKE_VERBOSE_MAKEFILE ON)
+SET(CMAKE_VERBOSE_MAKEFILE ON)
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/src)
 
@@ -31,7 +26,7 @@ IF(NOT MSVC)
   ADD_DEFINITIONS( "-Wall -g -fprofile-arcs -ftest-coverage -fexceptions" )
  ELSE(PROFILING)
 #  ADD_DEFINITIONS( "-Wall -g -fexceptions" )
- ADD_DEFINITIONS( "-Wall -Wno-unused-result -g -O2 -fexceptions" )
+  ADD_DEFINITIONS( "-Wall -Wno-unused-result -g -O2 -fexceptions -fPIC" )
  ENDIF(PROFILING)
 
  IF(NOT APPLE)
@@ -48,51 +43,24 @@ IF(MSVC)
     ADD_DEFINITIONS(-D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_DEPRECATE)
 ENDIF(MSVC)
 
-
 SET_PROPERTY(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS TRUE)
 SET(BUILD_SHARED_LIBS "ON")
 
-IF(QT_ANDROID)
-  SET(CMAKE_BUILD_TYPE Debug)
-  ADD_DEFINITIONS(-D__WXQT__)
-  ADD_DEFINITIONS(-DOCPN_USE_WRAPPER)
-  ADD_DEFINITIONS(-D__OCPN__ANDROID__)
-  ADD_DEFINITIONS(-DANDROID)
-
-  SET(CMAKE_CXX_FLAGS "-pthread -fPIC -s -O2")
-
-  ## Compiler flags
- #   if(CMAKE_COMPILER_IS_GNUCXX)
- #       set(CMAKE_CXX_FLAGS "-O2")        ## Optimize
-        set(CMAKE_EXE_LINKER_FLAGS "-s")  ## Strip binary
- #   endif()
-    
-  INCLUDE_DIRECTORIES("${Qt_Base}/include/QtCore")
-  INCLUDE_DIRECTORIES("${Qt_Base}/include")
-  INCLUDE_DIRECTORIES("${Qt_Base}/include/QtWidgets")
-  INCLUDE_DIRECTORIES("${Qt_Base}/include/QtGui")
-  INCLUDE_DIRECTORIES("${Qt_Base}/include/QtOpenGL")
-  INCLUDE_DIRECTORIES("${Qt_Base}/include/QtTest")
-  INCLUDE_DIRECTORIES("${Qt_Base}/../qtandroidextras/include")
-
-  INCLUDE_DIRECTORIES( "${wxQt_Base}/${wxQt_Build}/lib/wx/include/arm-linux-androideabi-qt-unicode-static-3.1")
-  INCLUDE_DIRECTORIES("${wxQt_Base}/include")
-
-  ADD_DEFINITIONS(-DQT_WIDGETS_LIB)
-
-ENDIF(QT_ANDROID)
 
 #  QT_ANDROID is a cross-build, so the native FIND_PACKAGE(wxWidgets...) and wxWidgets_USE_FILE is not useful.
 IF(NOT QT_ANDROID)
 IF(NOT DEFINED wxWidgets_USE_FILE)
   SET(wxWidgets_USE_LIBS base core net xml html adv)
   SET(BUILD_SHARED_LIBS TRUE)
+  set (WXWIDGETS_FORCE_VERSION CACHE VERSION "Force usage of a specific wxWidgets version.")
+  if(WXWIDGETS_FORCE_VERSION)
+    set (wxWidgets_CONFIG_OPTIONS --version=${WXWIDGETS_FORCE_VERSION})
+  endif()
   FIND_PACKAGE(wxWidgets REQUIRED)
 ENDIF(NOT DEFINED wxWidgets_USE_FILE)
 
   INCLUDE(${wxWidgets_USE_FILE})
 ENDIF(NOT QT_ANDROID)
-
 
 IF(MSYS)
 # this is just a hack. I think the bug is in FindwxWidgets.cmake
@@ -117,50 +85,6 @@ ELSE(OPENGL_GLU_FOUND)
 ENDIF(OPENGL_GLU_FOUND)
 ENDIF(NOT QT_ANDROID)
 
-#  Building for QT_ANDROID involves a cross-building environment,
-#  So the OpenGL include directories, flags, etc must be stated explicitly
-#  without trying to locate them on the host build system.
-IF(QT_ANDROID)
-    MESSAGE (STATUS "Using GLESv1 for Android")
-    ADD_DEFINITIONS(-DocpnUSE_GLES)
-    ADD_DEFINITIONS(-DocpnUSE_GL)
-    ADD_DEFINITIONS(-DUSE_GLU_TESS)
-    ADD_DEFINITIONS(-DARMHF)
-   
-    SET(OPENGLES_FOUND "YES")
-    SET(OPENGL_FOUND "YES")
-
- #   IF(NOT DEFINED wxWidgets_USE_FILE)
-#  SET(wxWidgets_USE_LIBS base core net xml html adv)
-#  SET(BUILD_SHARED_LIBS TRUE)
-#  FIND_PACKAGE(wxWidgets REQUIRED)
-#ENDIF(NOT DEFINED wxWidgets_USE_FILE)
-
- # INCLUDE(${wxWidgets_USE_FILE})
-  #  MESSAGE (STATUS "wxwidgets: " ${wxWidgets_USE_FILE})
-    
-#    SET(wxWidgets_USE_LIBS ${wxWidgets_USE_LIBS} gl )
-#    add_subdirectory(src/glshim)
-
-#    add_subdirectory(src/glu)
-
-ELSE(QT_ANDROID)
-    FIND_PACKAGE(OpenGL)
-    IF(OPENGL_GLU_FOUND)
-
-        SET(wxWidgets_USE_LIBS ${wxWidgets_USE_LIBS} gl)
-        INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
-
-        MESSAGE (STATUS "Found OpenGL..." )
-        MESSAGE (STATUS "    Lib: " ${OPENGL_LIBRARIES})
-        MESSAGE (STATUS "    Include: " ${OPENGL_INCLUDE_DIR})
-        ADD_DEFINITIONS(-DocpnUSE_GL)
-    ELSE(OPENGL_GLU_FOUND)
-        MESSAGE (STATUS "OpenGL not found..." )
-    ENDIF(OPENGL_GLU_FOUND)
-
-ENDIF(QT_ANDROID)
-
 # On Android, PlugIns need a specific linkage set....
 IF (QT_ANDROID )
   # These libraries are needed to create PlugIns on Android.
@@ -170,7 +94,7 @@ IF (QT_ANDROID )
         # flow to this module from above.  If we want to build Android plugins out-of-core, this will need improvement.
 
         # TODO This is pretty ugly, but there seems no way to avoid specifying a full path in a cross build....
-        /home/sean/build/OpenCPN/build-android/libopencpn.so
+        /home/dsr/Projects/opencpn_sf/opencpn/build-opencpn-Android_for_armeabi_v7a_GCC_4_8_Qt_5_5_0-Debug/libopencpn.so
 
         ${wxQt_Base}/${wxQt_Build}/lib/libwx_baseu-3.1-arm-linux-androideabi.a
         ${wxQt_Base}/${wxQt_Build}/lib/libwx_qtu_core-3.1-arm-linux-androideabi.a
@@ -181,16 +105,17 @@ IF (QT_ANDROID )
         ${wxQt_Base}/${wxQt_Build}/lib/libwx_qtu_aui-3.1-arm-linux-androideabi.a
         ${wxQt_Base}/${wxQt_Build}/lib/libwx_baseu_net-3.1-arm-linux-androideabi.a
         ${wxQt_Base}/${wxQt_Build}/lib/libwx_qtu_gl-3.1-arm-linux-androideabi.a
-        ${Qt_Base}/lib/libQt5Core.so
-        ${Qt_Base}/lib/libQt5OpenGL.so
-        ${Qt_Base}/lib/libQt5Widgets.so
-        ${Qt_Base}/lib/libQt5Gui.so
-        ${Qt_Base}/lib/libQt5AndroidExtras.so
+        ${Qt_Base}/android_armv7/lib/libQt5Core.so
+        ${Qt_Base}/android_armv7/lib/libQt5OpenGL.so
+        ${Qt_Base}/android_armv7/lib/libQt5Widgets.so
+        ${Qt_Base}/android_armv7/lib/libQt5Gui.so
+        ${Qt_Base}/android_armv7/lib/libQt5AndroidExtras.so
 
         #${NDK_Base}/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a/libgnustl_shared.so
         )
 
 ENDIF(QT_ANDROID)
+
 
 SET(BUILD_SHARED_LIBS TRUE)
 
