@@ -3,26 +3,26 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-15 14:10-0300\n"
-"PO-Revision-Date: 2018-03-03 08:25-0500\n"
+"PO-Revision-Date: 2018-03-03 08:23-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Russian\n"
-"Language: ru_RU\n"
+"Language-Team: Filipino\n"
+"Language: fil_PH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: ru\n"
+"X-Crowdin-Language: fil\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
 
 #: src/statusbar_pi.cpp:165
 msgid "StatusBar"
-msgstr "Строка состояния"
+msgstr ""
 
 #: src/statusbar_pi.cpp:170
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Модуль \"Строки состояния\" для OpenCPN"
+msgstr ""
 
 #: src/statusbar_pi.cpp:175
 msgid "StatusBar plugin replaces builtin statusbar\n"
@@ -30,7 +30,7 @@ msgid "StatusBar plugin replaces builtin statusbar\n"
 "is very limited in it's configuration options and can be very difficult to read.\n\n"
 "The statusbar plugin improves on some of these difficulties.\n"
 "  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "Модуль \"Строки состояния\" для OpenCPN\n"
+msgstr ""
 
 #: src/statusbar_pi.cpp:204
 msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
@@ -50,73 +50,73 @@ msgstr ""
 
 #: src/statusbar_pi.cpp:218
 msgid "Statusbar Information"
-msgstr "Справка"
+msgstr ""
 
 #: src/StatusbarUI.cpp:22
 msgid "Current Color Scheme"
-msgstr "Цветовая схема"
+msgstr ""
 
 #: src/StatusbarUI.cpp:35
 msgid "Color"
-msgstr "Цвет"
+msgstr ""
 
 #: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
 msgid "Transparency"
-msgstr "Прозрачность"
+msgstr ""
 
 #: src/StatusbarUI.cpp:51
 msgid "Invert Background"
-msgstr "Инвертировать цвет фона"
+msgstr ""
 
 #: src/StatusbarUI.cpp:54
 msgid "Background Color"
-msgstr "Цвет фона"
+msgstr ""
 
 #: src/StatusbarUI.cpp:68
 msgid "Blur"
-msgstr "Размытие"
+msgstr ""
 
 #: src/StatusbarUI.cpp:85
 msgid "X Position"
-msgstr "X Позиция"
+msgstr ""
 
 #: src/StatusbarUI.cpp:92
 msgid "Y Position"
-msgstr "Y Позиция"
+msgstr ""
 
 #: src/StatusbarUI.cpp:99
 msgid "Font"
-msgstr "Шрифт"
+msgstr ""
 
 #: src/StatusbarUI.cpp:107
 msgid "Select"
-msgstr "Выберите"
+msgstr ""
 
 #: src/StatusbarUI.cpp:107
 msgid "Default"
-msgstr "По умолчанию"
+msgstr ""
 
 #: src/StatusbarUI.cpp:107
 msgid "OwnShip"
-msgstr "Судно"
+msgstr ""
 
 #: src/StatusbarUI.cpp:107
 msgid "Multiline"
-msgstr "Многострочный"
+msgstr ""
 
 #: src/StatusbarUI.cpp:113
 msgid "Info"
-msgstr "Информация"
+msgstr ""
 
 #: src/StatusbarUI.cpp:119
 msgid "Display String"
-msgstr "Отображаемая строка"
+msgstr ""
 
 #: src/StatusbarUI.cpp:132
 msgid "About Author"
-msgstr "О программе"
+msgstr ""
 
 #: src/StatusbarUI.h:80
 msgid "Status Bar Preferences"
-msgstr "Настройки строки состояния"
+msgstr ""
 
