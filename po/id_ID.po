@@ -3,26 +3,26 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-15 14:10-0300\n"
-"PO-Revision-Date: 2018-03-03 08:25-0500\n"
+"PO-Revision-Date: 2018-03-03 08:24-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Russian\n"
-"Language: ru_RU\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: ru\n"
+"X-Crowdin-Language: id\n"
 "X-Crowdin-File: /plugins/statusbar_pi/po/statusbar_pi.pot\n"
 
 #: src/statusbar_pi.cpp:165
 msgid "StatusBar"
-msgstr "Строка состояния"
+msgstr "Status bar"
 
 #: src/statusbar_pi.cpp:170
 msgid "StatusBar Plugin is an optional replacement for the builtin statusbar"
-msgstr "Модуль \"Строки состояния\" для OpenCPN"
+msgstr "Plugin StatusBar adalah pengganti opsional untuk statusbar builtin"
 
 #: src/statusbar_pi.cpp:175
 msgid "StatusBar plugin replaces builtin statusbar\n"
@@ -30,7 +30,11 @@ msgid "StatusBar plugin replaces builtin statusbar\n"
 "is very limited in it's configuration options and can be very difficult to read.\n\n"
 "The statusbar plugin improves on some of these difficulties.\n"
 "  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n"
-msgstr "Модуль \"Строки состояния\" для OpenCPN\n"
+msgstr "Plugin StatusBar menggantikan builtin statusbar\n"
+" Bilah status builtin (nonaktifkan dari tab Antarmuka Pengguna)\n"
+" sangat terbatas dalam opsi konfigurasi dan mungkin sangat sulit untuk dibaca.\n\n"
+" Plugin statusbar meningkatkan beberapa kesulitan ini.\n"
+" Terbaik yang digunakan dengan OpenGL diaktifkan (memerlukan beberapa ekstensi OpenGL dasar).\n"
 
 #: src/statusbar_pi.cpp:204
 msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude the format specifier 03.0 gives how many places to round to, and to use leading 0's etc..\n"
@@ -46,77 +50,89 @@ msgid "Display String can include formats eg: \"%03.0E\" gives ship longitude th
 "%f frames rendered per second\n"
 "%d Date    %t Time    %z Time Zone\n"
 "%% print a percent"
-msgstr ""
+msgstr "String Tampilan dapat mencakup format misalnya: \"%03.0E\" memberi bordil pada petanda format 03.0 memberikan berapa banyak tempat yang akan digunakan, dan untuk menggunakan 0 terkemuka dll..\n"
+"Berikut adalah formatnya:\n"
+"%A Derajat laten kapal     %B kapal lat menit   %C kapal lat detik   %D kapal N/S\n"
+"%E kapal lon derajat    %F kapal lon menit    %G kapal lon detik   %H kapal E/W\n"
+"%I  saya kapal sog          %J kapal cog          %K judul kapal       %L tarif judul kapal\n"
+"%O cursor lat degrees     %P cursor lat minutes    %Q cursor lat seconds    %R kursor N/S\n"
+"%S kursor lon derajat    %T kursor lon menit    %U kursor lon detik %V kursor E/W\n"
+"%W dari bantalan kapal ke kursor\n"
+"%X ke kursor kursor   %Y jarak ke lingkaran kursor besar   %Z grafik skala \n"
+"%a sudut pandang pandang pandang\n"
+"%f frame yang diberikan per detik\n"
+"%d Tanggal     %t Waktu     %z Zona Waktu\n"
+"%% mencetak satu persen"
 
 #: src/statusbar_pi.cpp:218
 msgid "Statusbar Information"
-msgstr "Справка"
+msgstr "Informasi Statusbar"
 
 #: src/StatusbarUI.cpp:22
 msgid "Current Color Scheme"
-msgstr "Цветовая схема"
+msgstr "Skema Warna Saat Ini"
 
 #: src/StatusbarUI.cpp:35
 msgid "Color"
-msgstr "Цвет"
+msgstr "Warna"
 
 #: src/StatusbarUI.cpp:42 src/StatusbarUI.cpp:61
 msgid "Transparency"
-msgstr "Прозрачность"
+msgstr "Transparansi"
 
 #: src/StatusbarUI.cpp:51
 msgid "Invert Background"
-msgstr "Инвертировать цвет фона"
+msgstr "Balikkan Latar Belakang"
 
 #: src/StatusbarUI.cpp:54
 msgid "Background Color"
-msgstr "Цвет фона"
+msgstr "Warna latar belakang"
 
 #: src/StatusbarUI.cpp:68
 msgid "Blur"
-msgstr "Размытие"
+msgstr "Mengaburkan"
 
 #: src/StatusbarUI.cpp:85
 msgid "X Position"
-msgstr "X Позиция"
+msgstr "Posisi X"
 
 #: src/StatusbarUI.cpp:92
 msgid "Y Position"
-msgstr "Y Позиция"
+msgstr "Posisi Y"
 
 #: src/StatusbarUI.cpp:99
 msgid "Font"
-msgstr "Шрифт"
+msgstr "Huruf"
 
 #: src/StatusbarUI.cpp:107
 msgid "Select"
-msgstr "Выберите"
+msgstr "Memilih"
 
 #: src/StatusbarUI.cpp:107
 msgid "Default"
-msgstr "По умолчанию"
+msgstr "Default"
 
 #: src/StatusbarUI.cpp:107
 msgid "OwnShip"
-msgstr "Судно"
+msgstr "Kepemilikan"
 
 #: src/StatusbarUI.cpp:107
 msgid "Multiline"
-msgstr "Многострочный"
+msgstr "Multiline"
 
 #: src/StatusbarUI.cpp:113
 msgid "Info"
-msgstr "Информация"
+msgstr "Info"
 
 #: src/StatusbarUI.cpp:119
 msgid "Display String"
-msgstr "Отображаемая строка"
+msgstr "Menampilkan String"
 
 #: src/StatusbarUI.cpp:132
 msgid "About Author"
-msgstr "О программе"
+msgstr "Tentang penulis"
 
 #: src/StatusbarUI.h:80
 msgid "Status Bar Preferences"
-msgstr "Настройки строки состояния"
+msgstr "Status bar preferensi"
 
