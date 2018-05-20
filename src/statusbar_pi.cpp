@@ -24,14 +24,11 @@
  ***************************************************************************
  */
 
-#include <wx/wx.h>
+#include "wx/wx.h"
 #include <wx/graphics.h>
 
-#ifdef __OCPN__ANDROID__
-#include "qopengl.h"                  // this gives us the qt runtime gles2.h
-#include "GL/gl_private.h"
-#endif
-
+#include "linmath.h"
+#include "shaders.h"
 #include "StatusbarUI.h"
 #include "TexFont.h"
 #include "statusbar_pi.h"
@@ -40,6 +37,10 @@
 # if !defined(NAN)
 # define NAN std::numeric_limits<double>::quiet_NaN ()
 # endif
+
+#ifdef USE_ANDROID_GLES2    
+#include "qdebug.h"
+#endif
 
 // the class factories, used to create and destroy instances of the PlugIn
 
@@ -63,12 +64,14 @@ void StatusbarPrefsDialog::LoadConfig()
     m_sTransparency->SetValue(c.transparency);
     m_colourPickerBG->SetColour(c.bgcolor);
     m_sTransparencyBG->SetValue(c.bgtransparency);
+    c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255 - c.bgtransparency);
 
     m_sXPosition->SetValue(c.XPosition);
     m_sYPosition->SetValue(c.YPosition);
 
+#ifndef __OCPN__ANDROID__
     m_fontPicker->SetSelectedFont(c.font);
-
+#endif
     m_tDisplayString->SetValue(c.DisplayString);
 }
 
@@ -86,8 +89,9 @@ void StatusbarPrefsDialog::SaveConfig()
     c.XPosition = m_sXPosition->GetValue();
     c.YPosition = m_sYPosition->GetValue();
 
+#ifndef __OCPN__ANDROID__
     c.font = m_fontPicker->GetSelectedFont();
-
+#endif
     c.DisplayString = m_tDisplayString->GetValue();
 }
 
@@ -458,28 +462,85 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     int px = c.XPosition;
     int py = parent_window->GetSize().y - GetYPosition();
 
-    int height;
-    m_texfont.GetTextExtent(outputtext, 0, &height);
-    py -= height;
+    int w, h;
+    m_texfont.GetTextExtent(outputtext, &w, &h);
+    py -= h;
 
     glEnable( GL_BLEND );
-
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-    glColor4ub(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255 - c.bgtransparency);
+
+    float coords[8];
+
+    // pixels
+    coords[0] = 0; coords[1] = 0; coords[2] = w; coords[3] = 0;
+    coords[4] = w; coords[5] = h; coords[6] = 0; coords[7] = h;
+
+    glUseProgram( color_tri_shader_program );
+    // Get pointers to the attributes in the program.
+
+    glBindBuffer( GL_ARRAY_BUFFER, 0 );
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
+    // Set the attribute mPosAttrib with the vertices in the screen coordinates...
+    GLint mPosAttrib = glGetAttribLocation( color_tri_shader_program, "position" );
+    glVertexAttribPointer( mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, coords );
+    // ... and enable it.
+    glEnableVertexAttribArray( mPosAttrib );
+
+    GLint colloc = glGetUniformLocation(color_tri_shader_program,"color");
+
+    float colorv[4] = {c.bgcolor.Red()/255.0f, c.bgcolor.Green()/255.0f, c.bgcolor.Blue()/255.0f, c.bgcolor.Alpha()/255.0f};
+    glUniform4fv(colloc, 1, colorv);
+
+    // Rotate 
+    float angle = 0;
+    mat4x4 I, Q;
+    mat4x4_identity(I);
+    mat4x4_rotate_Z(Q, I, angle);
+
+    // Translate
+    Q[3][0] = px;
+    Q[3][1] = py;
+    
+    GLint matloc = glGetUniformLocation(color_tri_shader_program,"TransformMatrix");
+    glUniformMatrix4fv( matloc, 1, GL_FALSE, (const GLfloat*)Q); 
+
+    float co1[8];
+    co1[0] = coords[0];
+    co1[1] = coords[1];
+    co1[2] = coords[2];
+    co1[3] = coords[3];
+    co1[4] = coords[6];
+    co1[5] = coords[7];
+    co1[6] = coords[4];
+    co1[7] = coords[5];
+    
+    glVertexAttribPointer( mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, co1 );
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+
+    m_texfont.SetColor(c.color);
+    m_texfont.RenderString(outputtext, px, py);
+    glDisable( GL_BLEND );
+
+    return true;
+    
+    glEnable( GL_BLEND );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+
+    m_texfont.SetColor(c.bgcolor);
     m_texfont.RenderString(outputtext, px, py);
 
     glEnable( GL_TEXTURE_2D );
     if(c.invertbackground) {
         glBlendFunc( GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA );
-        glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-
+//        glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
         m_texfont.RenderString(outputtext, px, py);
     }
 
-    glColor4ub(c.color.Red(), c.color.Green(), c.color.Blue(), 255 - c.transparency);
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-    glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+//    glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
 
+    m_texfont.SetColor(c.color);
     m_texfont.RenderString(outputtext, px, py);
 
     glDisable( GL_BLEND );
@@ -506,17 +567,14 @@ void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
     SaveConfig();
-    for(int i=0; i<4; i++)
-        parent = parent->GetParent();
-
-    wxDialog *dlg = dynamic_cast<wxDialog*>(parent);
-    if(dlg)
-        dlg->EndModal(0);
-
     if(!m_PreferencesDialog)
         m_PreferencesDialog = new StatusbarPrefsDialog(GetOCPNCanvasWindow(), *this);
     m_PreferencesDialog->LoadConfig();
+#ifdef __OCPN__ANDROID__
+    m_PreferencesDialog->ShowModal();
+#else
     m_PreferencesDialog->Show();
+#endif
 }
 
 void statusbar_pi::SetColorScheme(PI_ColorScheme cs)
@@ -570,7 +628,9 @@ bool statusbar_pi::LoadConfig(void)
     wxString colorstrbg = wxColour(56, 228, 28).GetAsString();
     pConf->Read( _T("ColorBG")+ColorSchemeName(), &colorstrbg, colorstrbg );
     c.bgcolor = wxColour(colorstrbg);
+
     pConf->Read( _T("TransparencyBG")+ColorSchemeName(), &c.bgtransparency, 180 );
+    c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255 - c.bgtransparency);
     
     pConf->Read( _T("XPosition"), &c.XPosition, 0 );
     pConf->Read( _T("YPosition"), &c.YPosition, -100 );
@@ -580,6 +640,9 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("FontSize"), &fontsize, 18 );
     pConf->Read( _T("FontWeight"), &fontweight, wxFONTWEIGHT_NORMAL);
     pConf->Read( _T("FontFaceName"), &fontfacename, wxEmptyString );
+    fontfacename = "Roboto";
+    fontsize = 20;
+    fontweight = wxFONTWEIGHT_NORMAL;
     c.font = wxFont(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, (wxFontWeight)fontweight, false, fontfacename);
 
     pConf->Read( _T("DisplayString"), &c.DisplayString, DefaultString );
@@ -620,7 +683,7 @@ bool statusbar_pi::SaveConfig(void)
 void statusbar_pi::BuildFont()
 {
     StatusbarConfig &c = m_config;
-    m_texfont.Build(c.font, c.blur, true);
+    m_texfont.Build(c.font, c.blur);//, true);
 }
 
 void statusbar_pi::OnRefreshTimer( wxTimerEvent & )

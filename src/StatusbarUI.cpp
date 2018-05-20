@@ -100,9 +100,9 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText16->Wrap( -1 );
 	fgSizer3->Add( m_staticText16, 0, wxALL, 5 );
 	
-	m_fontPicker = new wxFontPickerCtrl( this, wxID_ANY, wxNullFont, wxDefaultPosition, wxDefaultSize, wxFNTP_DEFAULT_STYLE );
-	m_fontPicker->SetMaxPointSize( 100 ); 
-	fgSizer3->Add( m_fontPicker, 0, wxALL, 5 );
+//	m_fontPicker = new wxFontPickerCtrl( this, wxID_ANY, wxNullFont, wxDefaultPosition, wxDefaultSize, wxFNTP_DEFAULT_STYLE );
+//	m_fontPicker->SetMaxPointSize( 100 ); 
+//	fgSizer3->Add( m_fontPicker, 0, wxALL, 5 );
 	
 	wxString m_cBuiltinStringChoices[] = { _("Select"), _("Default"), _("OwnShip"), _("Multiline") };
 	int m_cBuiltinStringNChoices = sizeof( m_cBuiltinStringChoices ) / sizeof( wxString );
@@ -174,7 +174,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_cbBlur->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sXPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sYPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
-	m_fontPicker->Connect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+//	m_fontPicker->Connect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 	m_tDisplayString->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
@@ -208,7 +208,7 @@ StatusbarPrefsDialogBase::~StatusbarPrefsDialogBase()
 	m_cbBlur->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sXPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sYPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
-	m_fontPicker->Disconnect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+//	m_fontPicker->Disconnect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 	m_tDisplayString->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
