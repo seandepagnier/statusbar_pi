@@ -428,6 +428,7 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
         if(pgc) {
             pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
             pgc->DrawRectangle(px, py, width, height);
+	    delete pgc;
         }
 #else
         dc.SetTextBackground(color);
