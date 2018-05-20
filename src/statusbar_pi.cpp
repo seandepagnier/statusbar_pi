@@ -505,15 +505,17 @@ void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 
 void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
+    SaveConfig();
     for(int i=0; i<4; i++)
         parent = parent->GetParent();
 
     wxDialog *dlg = dynamic_cast<wxDialog*>(parent);
     if(dlg)
-        dlg->EndModal(wxID_OK);
+        dlg->EndModal(0);
 
     if(!m_PreferencesDialog)
         m_PreferencesDialog = new StatusbarPrefsDialog(GetOCPNCanvasWindow(), *this);
+    m_PreferencesDialog->LoadConfig();
     m_PreferencesDialog->Show();
 }
 

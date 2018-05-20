@@ -65,7 +65,7 @@ public:
 StatusbarPrefsDialog( wxWindow *parent, statusbar_pi &_statusbar_pi )
     : StatusbarPrefsDialogBase( parent ),
         m_statusbar_pi(_statusbar_pi)
-        { LoadConfig(); }
+        { }
     void Refresh() { SaveConfig(); RequestRefresh(GetOCPNCanvasWindow()); }
     virtual void Refresh( wxColourPickerEvent& event ) { Refresh(); }
     virtual void Refresh( wxScrollEvent& event ) { Refresh(); }
