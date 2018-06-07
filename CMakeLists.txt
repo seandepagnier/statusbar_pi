@@ -32,12 +32,13 @@ INCLUDE("cmake/PluginConfigure.cmake")
 
 SET(SRC_STATUSBAR
     src/statusbar_pi.cpp
-    src/TexFont.cpp
     src/StatusbarUI.cpp
     src/icons.cpp
 )
 
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} )
+INCLUDE("cmake/PluginGL.cmake")
+
+ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} ${SRC_PLUGINGL} )
 
 INCLUDE("cmake/PluginInstall.cmake")
 INCLUDE("cmake/PluginLocalization.cmake")

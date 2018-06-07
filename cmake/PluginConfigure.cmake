@@ -90,6 +90,7 @@ include  ("VERSION.cmake")
 #  thereby allowing building from a read-only source tree.
 IF(NOT SKIP_VERSION_CONFIG)
     configure_file(${PROJECT_SOURCE_DIR}/cmake/version.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/version.h)
+   configure_file(cmake/wxWTranslateCatalog.h.in ${PROJECT_SOURCE_DIR}/src/wxWTranslateCatalog.h)
     INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include)
 ENDIF(NOT SKIP_VERSION_CONFIG)
 
@@ -134,6 +135,7 @@ IF(QT_ANDROID)
   ADD_DEFINITIONS(-D__OCPN__ANDROID__)
   ADD_DEFINITIONS(-DOCPN_USE_WRAPPER)
   ADD_DEFINITIONS(-DANDROID)
+  INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include/android)
 
   SET(CMAKE_CXX_FLAGS "-pthread -s")
 

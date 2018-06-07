@@ -27,10 +27,9 @@
 #include "wx/wx.h"
 #include <wx/graphics.h>
 
-#include "linmath.h"
-#include "shaders.h"
+#include "plugingl/pidc.h"
 #include "StatusbarUI.h"
-#include "TexFont.h"
+#include "plugingl/TexFont.h"
 #include "statusbar_pi.h"
 #include "icons.h"
 
@@ -40,6 +39,12 @@
 
 #ifdef USE_ANDROID_GLES2    
 #include "qdebug.h"
+#endif
+
+#ifdef __OCPN__ANDROID__
+#define MIN_FONT_SIZE 20
+#else
+#define MIN_FONT_SIZE 8
 #endif
 
 // the class factories, used to create and destroy instances of the PlugIn
@@ -61,10 +66,9 @@ void StatusbarPrefsDialog::LoadConfig()
     m_colourPicker->SetColour(c.color);
     m_cbInvertBackground->SetValue(c.invertbackground);
     m_cbBlur->SetValue(c.blur);
-    m_sTransparency->SetValue(c.transparency);
+    m_sTransparency->SetValue(255-c.color.Alpha());
     m_colourPickerBG->SetColour(c.bgcolor);
-    m_sTransparencyBG->SetValue(c.bgtransparency);
-    c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255 - c.bgtransparency);
+    m_sTransparencyBG->SetValue(255-c.bgcolor.Alpha());
 
     m_sXPosition->SetValue(c.XPosition);
     m_sYPosition->SetValue(c.YPosition);
@@ -80,18 +84,23 @@ void StatusbarPrefsDialog::SaveConfig()
     StatusbarConfig &c = m_statusbar_pi.m_config;
 
     c.color = m_colourPicker->GetColour();
+    c.color.Set(c.color.Red(), c.color.Green(), c.color.Blue(), 255-m_sTransparency->GetValue());
+
     c.invertbackground = m_cbInvertBackground->GetValue();
     c.bgcolor = m_colourPickerBG->GetColour();
-    c.bgtransparency = m_sTransparencyBG->GetValue();
+    c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255-m_sTransparencyBG->GetValue());
     c.blur = m_cbBlur->GetValue();
-    c.transparency = m_sTransparency->GetValue();
-
+    
     c.XPosition = m_sXPosition->GetValue();
     c.YPosition = m_sYPosition->GetValue();
 
-#ifndef __OCPN__ANDROID__
-    c.font = m_fontPicker->GetSelectedFont();
+#ifdef __OCPN__ANDROID__
+    if(m_fontPicker->m_bUsed)
 #endif
+        c.font = m_fontPicker->GetSelectedFont();
+    if(c.font.GetPointSize() < MIN_FONT_SIZE)
+        c.font.SetPointSize(MIN_FONT_SIZE);
+
     c.DisplayString = m_tDisplayString->GetValue();
 }
 
@@ -102,7 +111,7 @@ void StatusbarPrefsDialog::SaveConfig()
 //-----------------------------------------------------------------------------
 
 statusbar_pi::statusbar_pi(void *ppimgr)
-    :opencpn_plugin_19(ppimgr)
+    :opencpn_plugin_111(ppimgr)
 {
     // Create the PlugIn icons
     initialize_images();
@@ -389,15 +398,28 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
 
 bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 {
+    piDC pidc(dc);
+    Render(pidc, vp);
+    return true;
+}
+
+bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
+{
+    piDC pidc;
+    glEnable( GL_BLEND );
+    pidc.SetVP(vp);
+    Render(pidc, vp);
+    glDisable( GL_BLEND );
+    return true;
+} 
+
+void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
+{
     m_LastRefreshTime = wxDateTime::UNow();
 
     if(m_PreferencesDialog) {
         m_PreferencesDialog->m_cbInvertBackground->Disable();
         m_PreferencesDialog->m_cbBlur->Disable();
-        m_PreferencesDialog->m_sTransparency->Disable();
-#if !wxUSE_GRAPHICS_CONTEXT
-        m_PreferencesDialog->m_sTransparencyBG->Disable();
-#endif
     }
 
     wxString outputtext = StatusString(vp);
@@ -414,139 +436,29 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
     py -= height;
 
     wxColour color = c.bgcolor;
-    int alpha = 255 - c.bgtransparency;
 
-    if(alpha) {
 #if wxUSE_GRAPHICS_CONTEXT
+    int alpha = c.bgcolor.Alpha();
+    if(alpha && dc.GetDC()) {
         wxGraphicsContext *pgc = NULL;
-        wxMemoryDC *pmdc = wxDynamicCast(&dc, wxMemoryDC);
+        wxMemoryDC *pmdc = wxDynamicCast(dc.GetDC(), wxMemoryDC);
         if( pmdc ) pgc = wxGraphicsContext::Create( *pmdc );
         else {
-            wxClientDC *pcdc = wxDynamicCast(&dc, wxClientDC);
+            wxClientDC *pcdc = wxDynamicCast(dc.GetDC(), wxClientDC);
             if( pcdc ) pgc = wxGraphicsContext::Create( *pcdc );
         }
         if(pgc) {
             pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
             pgc->DrawRectangle(px, py, width, height);
         }
+    } else
 #else
         dc.SetTextBackground(color);
-        dc.SetBackgroundMode( wxSOLID );
+//        dc.SetBackgroundMode( wxSOLID );
 #endif
-    }
 
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
-
-    return true;
-}
-
-bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
-{
-    m_LastRefreshTime = wxDateTime::UNow();
-
-    if(m_PreferencesDialog) {
-        m_PreferencesDialog->m_cbInvertBackground->Enable();
-        m_PreferencesDialog->m_cbBlur->Enable();
-        m_PreferencesDialog->m_sTransparency->Enable();
-        m_PreferencesDialog->m_sTransparencyBG->Enable();
-    }
-
-    wxString outputtext = StatusString(vp);
-    wxWindow *parent_window = GetOCPNCanvasWindow();
-
-    StatusbarConfig &c = m_config;
-    
-    BuildFont();
-
-    int px = c.XPosition;
-    int py = parent_window->GetSize().y - GetYPosition();
-
-    int w, h;
-    m_texfont.GetTextExtent(outputtext, &w, &h);
-    py -= h;
-
-    glEnable( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-
-    float coords[8];
-
-    // pixels
-    coords[0] = 0; coords[1] = 0; coords[2] = w; coords[3] = 0;
-    coords[4] = w; coords[5] = h; coords[6] = 0; coords[7] = h;
-
-    glUseProgram( color_tri_shader_program );
-    // Get pointers to the attributes in the program.
-
-    glBindBuffer( GL_ARRAY_BUFFER, 0 );
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-    // Set the attribute mPosAttrib with the vertices in the screen coordinates...
-    GLint mPosAttrib = glGetAttribLocation( color_tri_shader_program, "position" );
-    glVertexAttribPointer( mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, coords );
-    // ... and enable it.
-    glEnableVertexAttribArray( mPosAttrib );
-
-    GLint colloc = glGetUniformLocation(color_tri_shader_program,"color");
-
-    float colorv[4] = {c.bgcolor.Red()/255.0f, c.bgcolor.Green()/255.0f, c.bgcolor.Blue()/255.0f, c.bgcolor.Alpha()/255.0f};
-    glUniform4fv(colloc, 1, colorv);
-
-    // Rotate 
-    float angle = 0;
-    mat4x4 I, Q;
-    mat4x4_identity(I);
-    mat4x4_rotate_Z(Q, I, angle);
-
-    // Translate
-    Q[3][0] = px;
-    Q[3][1] = py;
-    
-    GLint matloc = glGetUniformLocation(color_tri_shader_program,"TransformMatrix");
-    glUniformMatrix4fv( matloc, 1, GL_FALSE, (const GLfloat*)Q); 
-
-    float co1[8];
-    co1[0] = coords[0];
-    co1[1] = coords[1];
-    co1[2] = coords[2];
-    co1[3] = coords[3];
-    co1[4] = coords[6];
-    co1[5] = coords[7];
-    co1[6] = coords[4];
-    co1[7] = coords[5];
-    
-    glVertexAttribPointer( mPosAttrib, 2, GL_FLOAT, GL_FALSE, 0, co1 );
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-
-    m_texfont.SetColor(c.color);
-    m_texfont.RenderString(outputtext, px, py);
-    glDisable( GL_BLEND );
-
-    return true;
-    
-    glEnable( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-
-    m_texfont.SetColor(c.bgcolor);
-    m_texfont.RenderString(outputtext, px, py);
-
-    glEnable( GL_TEXTURE_2D );
-    if(c.invertbackground) {
-        glBlendFunc( GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA );
-//        glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-        m_texfont.RenderString(outputtext, px, py);
-    }
-
-    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-//    glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-
-    m_texfont.SetColor(c.color);
-    m_texfont.RenderString(outputtext, px, py);
-
-    glDisable( GL_BLEND );
-    glDisable( GL_TEXTURE_2D );
-
-    return true;
 }
 
 void statusbar_pi::SetCursorLatLon(double lat, double lon)
@@ -566,10 +478,16 @@ void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 
 void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
-    if(!m_PreferencesDialog)
+    if(!m_PreferencesDialog) {
         m_PreferencesDialog = new StatusbarPrefsDialog(GetOCPNCanvasWindow(), *this);
 #ifdef __OCPN__ANDROID__
+        m_PreferencesDialog->GetHandle()->setStyleSheet( qtStyleSheet);
+#endif
+    }
+
+#ifdef __OCPN__ANDROID__
     m_PreferencesDialog->ShowModal();
+    m_PreferencesDialog->SaveConfig();
 #else
     m_PreferencesDialog->Show();
 #endif
@@ -621,14 +539,10 @@ bool statusbar_pi::LoadConfig(void)
 
     pConf->Read( _T("InvertBackground")+ColorSchemeName(), &c.invertbackground, true );
     pConf->Read( _T("Blur")+ColorSchemeName(), &m_config.blur, false );
-    pConf->Read( _T("Transparency")+ColorSchemeName(), &c.transparency, 96 );
 
     wxString colorstrbg = wxColour(56, 228, 28).GetAsString();
     pConf->Read( _T("ColorBG")+ColorSchemeName(), &colorstrbg, colorstrbg );
     c.bgcolor = wxColour(colorstrbg);
-
-    pConf->Read( _T("TransparencyBG")+ColorSchemeName(), &c.bgtransparency, 180 );
-    c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255 - c.bgtransparency);
     
     pConf->Read( _T("XPosition"), &c.XPosition, 0 );
     pConf->Read( _T("YPosition"), &c.YPosition, -100 );
@@ -638,14 +552,21 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("FontSize"), &fontsize, 18 );
     pConf->Read( _T("FontWeight"), &fontweight, wxFONTWEIGHT_NORMAL);
     pConf->Read( _T("FontFaceName"), &fontfacename, wxEmptyString );
-    fontfacename = "Roboto";
-    fontsize = 20;
-    fontweight = wxFONTWEIGHT_NORMAL;
+    if(fontsize < MIN_FONT_SIZE)
+        fontsize = MIN_FONT_SIZE;
+
     c.font = wxFont(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, (wxFontWeight)fontweight, false, fontfacename);
 
     pConf->Read( _T("DisplayString"), &c.DisplayString, DefaultString );
 
     return true;
+}
+
+static wxString ColorFormat(wxColour c)
+{
+    return wxString::Format(wxT("rgba(%d, %d, %d, %s)"),
+                            c.Red(), c.Green(), c.Blue(),
+                            wxString::FromCDouble(c.Alpha() / 255., 3));
 }
 
 bool statusbar_pi::SaveConfig(void)
@@ -658,13 +579,11 @@ bool statusbar_pi::SaveConfig(void)
     StatusbarConfig &c = m_config;
 
     pConf->SetPath( _T("/PlugIns/StatusBar") );
-    
-    pConf->Write( _T("Color")+ColorSchemeName(), c.color.GetAsString() );
+
+    pConf->Write( _T("Color")+ColorSchemeName(), ColorFormat(c.color) );
     pConf->Write( _T("InvertBackground")+ColorSchemeName(), c.invertbackground);
-    pConf->Write( _T("ColorBG")+ColorSchemeName(), c.bgcolor.GetAsString() );
-    pConf->Write( _T("TransparencyBG")+ColorSchemeName(), c.bgtransparency );
+    pConf->Write( _T("ColorBG")+ColorSchemeName(), ColorFormat(c.bgcolor) );
     pConf->Write( _T("Blur")+ColorSchemeName(), c.blur );
-    pConf->Write( _T("Transparency")+ColorSchemeName(), c.transparency);
 
     pConf->Write( _T("XPosition"), c.XPosition );
     pConf->Write( _T("YPosition"), c.YPosition );

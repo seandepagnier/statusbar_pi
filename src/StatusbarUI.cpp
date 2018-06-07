@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec  8 2015)
+// C++ code generated with wxFormBuilder (version May 19 2018)
 // http://www.wxformbuilder.org/
 //
-// PLEASE DO "NOT" EDIT THIS FILE!
+// PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
 #include "StatusbarUI.h"
@@ -26,46 +26,46 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	fgSizer61->SetFlexibleDirection( wxBOTH );
 	fgSizer61->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	wxFlexGridSizer* fgSizer6;
 	fgSizer6 = new wxFlexGridSizer( 0, 5, 0, 0 );
 	fgSizer6->AddGrowableCol( 3 );
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_staticText15 = new wxStaticText( this, wxID_ANY, _("Color"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText15 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Color"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText15->Wrap( -1 );
 	fgSizer6->Add( m_staticText15, 0, wxALL, 5 );
 	
-	m_colourPicker = new wxColourPickerCtrl( this, wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPicker = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	fgSizer6->Add( m_colourPicker, 0, wxALL, 5 );
 	
-	m_staticText18 = new wxStaticText( this, wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText18 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText18->Wrap( -1 );
 	fgSizer6->Add( m_staticText18, 0, wxALL, 5 );
 	
-	m_sTransparency = new wxSlider( this, wxID_ANY, 64, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_sTransparency = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 64, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	m_sTransparency->SetMinSize( wxSize( 60,-1 ) );
 	
 	fgSizer6->Add( m_sTransparency, 0, wxALL|wxEXPAND, 5 );
 	
-	m_cbInvertBackground = new wxCheckBox( this, wxID_ANY, _("Invert Background"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbInvertBackground = new wxCheckBox( sbSizer1->GetStaticBox(), wxID_ANY, _("Invert Background"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_cbInvertBackground, 0, wxALL, 5 );
 	
-	m_staticText7 = new wxStaticText( this, wxID_ANY, _("Background Color"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Background Color"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText7->Wrap( -1 );
 	fgSizer6->Add( m_staticText7, 0, wxALL, 5 );
 	
-	m_colourPickerBG = new wxColourPickerCtrl( this, wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPickerBG = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	fgSizer6->Add( m_colourPickerBG, 0, wxALL, 5 );
 	
-	m_staticText8 = new wxStaticText( this, wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
+	wxStaticText* m_staticText8;
+	m_staticText8 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText8->Wrap( -1 );
 	fgSizer6->Add( m_staticText8, 0, wxALL, 5 );
 	
-	m_sTransparencyBG = new wxSlider( this, wxID_ANY, 180, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_sTransparencyBG = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 180, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	fgSizer6->Add( m_sTransparencyBG, 0, wxALL|wxEXPAND, 5 );
 	
-	m_cbBlur = new wxCheckBox( this, wxID_ANY, _("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbBlur = new wxCheckBox( sbSizer1->GetStaticBox(), wxID_ANY, _("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer6->Add( m_cbBlur, 0, wxALL, 5 );
 	
 	
@@ -100,9 +100,9 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText16->Wrap( -1 );
 	fgSizer3->Add( m_staticText16, 0, wxALL, 5 );
 	
-//	m_fontPicker = new wxFontPickerCtrl( this, wxID_ANY, wxNullFont, wxDefaultPosition, wxDefaultSize, wxFNTP_DEFAULT_STYLE );
-//	m_fontPicker->SetMaxPointSize( 100 ); 
-//	fgSizer3->Add( m_fontPicker, 0, wxALL, 5 );
+	m_fontPicker = new wxFontPickerCtrl( this, wxID_ANY, wxNullFont, wxDefaultPosition, wxDefaultSize, wxFNTP_DEFAULT_STYLE );
+	m_fontPicker->SetMaxPointSize( 100 ); 
+	fgSizer3->Add( m_fontPicker, 0, wxALL, 5 );
 	
 	wxString m_cBuiltinStringChoices[] = { _("Select"), _("Default"), _("OwnShip"), _("Multiline") };
 	int m_cBuiltinStringNChoices = sizeof( m_cBuiltinStringChoices ) / sizeof( wxString );
@@ -174,7 +174,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_cbBlur->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sXPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sYPosition->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
-//	m_fontPicker->Connect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_fontPicker->Connect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 	m_tDisplayString->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
@@ -208,7 +208,7 @@ StatusbarPrefsDialogBase::~StatusbarPrefsDialogBase()
 	m_cbBlur->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sXPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_sYPosition->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
-//	m_fontPicker->Disconnect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
+	m_fontPicker->Disconnect( wxEVT_COMMAND_FONTPICKER_CHANGED, wxFontPickerEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );
 	m_cBuiltinString->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnBuiltinString ), NULL, this );
 	m_bInfo->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( StatusbarPrefsDialogBase::OnDisplayStringInfo ), NULL, this );
 	m_tDisplayString->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( StatusbarPrefsDialogBase::Refresh ), NULL, this );

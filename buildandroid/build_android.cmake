@@ -9,6 +9,9 @@
 # otherwise you get:
 # "ADD_LIBRARY for library oesenc_pi is used with the SHARED option, but the target platform supports only STATIC libraries"
 
+# adb push libstatusbar_pi.so  /data/data/org.opencpn.opencpn
+# adb pull /mnt/sdcard/Android/data/org.opencpn.opencpn/files/opencpn.log
+
 #SET(CMAKE_SYSTEM_NAME Generic)
 
 
@@ -16,7 +19,7 @@
 SET(CMAKE_SYSTEM_VERSION 1)
 
 # specify the cross compiler
-SET(CMAKE_C_COMPILER   /home/sean/android-ndk/android-ndk-r10d/ndk-toolchain/bin/arm-linux-androideabi-gcc)
+SET(CMAKE_C_COMPILER /home/sean/android-ndk/android-ndk-r10d/ndk-toolchain/bin/arm-linux-androideabi-gcc)
 SET(CMAKE_CXX_COMPILER   /home/sean/android-ndk/android-ndk-r10d/ndk-toolchain/bin/arm-linux-androideabi-g++)
 
 

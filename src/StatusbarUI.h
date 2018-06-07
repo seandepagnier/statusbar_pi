@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Dec  8 2015)
+// C++ code generated with wxFormBuilder (version May 19 2018)
 // http://www.wxformbuilder.org/
 //
-// PLEASE DO "NOT" EDIT THIS FILE!
+// PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
 #ifndef __STATUSBARUI_H__
@@ -38,10 +38,10 @@
 class StatusbarPrefsDialogBase : public wxDialog 
 {
 	private:
+		wxStaticText* m_staticText18;
 	
 	protected:
 		wxStaticText* m_staticText7;
-		wxStaticText* m_staticText8;
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
 		
@@ -57,9 +57,9 @@ class StatusbarPrefsDialogBase : public wxDialog
 		
 	
 	public:
+		wxFlexGridSizer* fgSizer6;
 		wxStaticText* m_staticText15;
 		wxColourPickerCtrl* m_colourPicker;
-		wxStaticText* m_staticText18;
 		wxSlider* m_sTransparency;
 		wxCheckBox* m_cbInvertBackground;
 		wxColourPickerCtrl* m_colourPickerBG;

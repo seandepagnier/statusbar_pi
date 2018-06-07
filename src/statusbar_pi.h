@@ -32,24 +32,21 @@
 #include "version.h"
 
 #define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    9
+#define     MY_API_VERSION_MINOR    11
 
 #define ABOUT_AUTHOR_URL "http://seandepagnier.users.sourceforge.net"
 
 #include <wx/fileconf.h>
 #include "ocpn_plugin.h"
+#include "plugingl/qtstylesheet.h"
 #include "defs.h"
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool
 
 struct StatusbarConfig
 {
-    wxColour color;
+    wxColour color, bgcolor;
     bool invertbackground, blur;
-    int transparency;
-    
-    wxColour bgcolor;
-    int bgtransparency;
     
     int XPosition, YPosition;
 
@@ -86,7 +83,8 @@ StatusbarPrefsDialog( wxWindow *parent, statusbar_pi &_statusbar_pi )
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
-class statusbar_pi : public wxEvtHandler, public opencpn_plugin_19
+class piDC;
+class statusbar_pi : public wxEvtHandler, public opencpn_plugin_111
 {
 public:
     statusbar_pi( void *ppimgr );
@@ -108,6 +106,7 @@ public:
 
     bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
     bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+    void Render(piDC &dc, PlugIn_ViewPort *vp);
     void SetCursorLatLon(double lat, double lon);
     void SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
     void ShowPreferencesDialog( wxWindow* parent );
