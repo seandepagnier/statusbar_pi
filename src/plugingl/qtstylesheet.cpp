@@ -155,15 +155,10 @@ height: 0px;\
 subcontrol-position: bottom;\
 subcontrol-origin: margin;\
 }\
-QSlider::groove { border: 1px solid #999999;  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #E6E6E6, stop:1 #EEEEEE); } \
-QSlider::handle { background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #7cb0e9, stop:1 #7cb0e9); border: 1px solid #5c5c5c; \
-border-radius: 3px; width: 25px; height: 30px; } \
-}\
 QCheckBox {\
 spacing: 25px;\
 }\
 QCheckBox::indicator {\
-font-size: 16px;\
 width: 30px;\
 height: 30px;\
 }\
@@ -171,12 +166,6 @@ QRadioButton {\
     font-size: 16px;\
 } \
 QPushButton {\
-    font-size: 16px;\
-} \
-QLineEdit {\
-    font-size: 16px;\
-} \
-QComboBox {\
     font-size: 16px;\
 } \
 QTreeWidget::item {\

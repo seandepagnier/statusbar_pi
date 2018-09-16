@@ -450,6 +450,7 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
         if(pgc) {
             pgc->SetBrush(wxColour(color.Red(), color.Green(), color.Blue(), alpha));
             pgc->DrawRectangle(px, py, width, height);
+	    delete pgc;
         }
     } else
 #else
@@ -478,8 +479,10 @@ void statusbar_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 
 void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
 {
+    SaveConfig();
     if(!m_PreferencesDialog) {
         m_PreferencesDialog = new StatusbarPrefsDialog(GetOCPNCanvasWindow(), *this);
+        m_PreferencesDialog->LoadConfig();
 #ifdef __OCPN__ANDROID__
         m_PreferencesDialog->GetHandle()->setStyleSheet( qtStyleSheet);
 #endif
