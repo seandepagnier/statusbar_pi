@@ -32,7 +32,6 @@ install:
 
 before_build:
   - cd c:\project\statusbar_pi
-  - mkdir buildwin
   - mkdir build
   - cd build
   - ps: Start-FileDownload https://downloads.sourceforge.net/project/opencpnplugins/opencpn_lib/4.99.1405-vc141_xp/opencpn.lib
