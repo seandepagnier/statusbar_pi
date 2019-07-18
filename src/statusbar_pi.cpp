@@ -26,6 +26,7 @@
 
 #include "wx/wx.h"
 #include <wx/graphics.h>
+#include <wx/fontdlg.h>
 
 #include "plugingl/pidc.h"
 #include "StatusbarUI.h"
@@ -73,9 +74,6 @@ void StatusbarPrefsDialog::LoadConfig()
     m_sXPosition->SetValue(c.XPosition);
     m_sYPosition->SetValue(c.YPosition);
 
-#ifndef __OCPN__ANDROID__
-    m_fontPicker->SetSelectedFont(c.font);
-#endif
     m_tDisplayString->SetValue(c.DisplayString);
 }
 
@@ -95,9 +93,9 @@ void StatusbarPrefsDialog::SaveConfig()
     c.YPosition = m_sYPosition->GetValue();
 
 #ifdef __OCPN__ANDROID__
-    if(m_fontPicker->m_bUsed)
+//    if(m_fontPicker->m_bUsed)
 #endif
-        c.font = m_fontPicker->GetSelectedFont();
+//        c.font = m_fontPicker->GetSelectedFont();
     if(c.font.GetPointSize() < MIN_FONT_SIZE)
         c.font.SetPointSize(MIN_FONT_SIZE);
 
@@ -196,6 +194,22 @@ The statusbar plugin improves on some of these difficulties.\n\
 
 wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J    \
 %02O %2.4P %R   %02S %2.4T %V   %03W  %.1X    Scale %Z");
+
+
+void StatusbarPrefsDialog::OnFont( wxCommandEvent& event )
+{
+    StatusbarConfig &c = m_statusbar_pi.m_config;
+    wxFontData init_font_data;
+    init_font_data.SetInitialFont(c.font);
+    wxFontDialog dlg(GetParent(), init_font_data);
+    dlg.Centre();
+    if (dlg.ShowModal() != wxID_CANCEL) {
+        wxFontData font_data = dlg.GetFontData();
+        c.font = font_data.GetChosenFont();
+        Refresh();
+    }
+}
+
 void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
 {
     wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J");
@@ -536,14 +550,14 @@ bool statusbar_pi::LoadConfig(void)
 
     pConf->SetPath( _T("/PlugIns/StatusBar") );
 
-    wxString colorstr = wxColour(50, 0, 103).GetAsString();
+    wxString colorstr = "rgba(50, 0, 103, 1.000)";
     pConf->Read( _T("Color")+ColorSchemeName(), &colorstr, colorstr );
     c.color = wxColour(colorstr);
 
     pConf->Read( _T("InvertBackground")+ColorSchemeName(), &c.invertbackground, true );
     pConf->Read( _T("Blur")+ColorSchemeName(), &m_config.blur, false );
 
-    wxString colorstrbg = wxColour(56, 228, 28).GetAsString();
+    wxString colorstrbg = "rgba(56, 228, 28, 1.000)";
     pConf->Read( _T("ColorBG")+ColorSchemeName(), &colorstrbg, colorstrbg );
     c.bgcolor = wxColour(colorstrbg);
     

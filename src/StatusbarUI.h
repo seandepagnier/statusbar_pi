@@ -23,9 +23,8 @@
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/spinctrl.h>
-#include <wx/fontpicker.h>
-#include <wx/choice.h>
 #include <wx/button.h>
+#include <wx/choice.h>
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
 
@@ -42,6 +41,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 	
 	protected:
 		wxStaticText* m_staticText7;
+		wxButton* m_FontPicker;
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
 		
@@ -50,7 +50,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		virtual void Refresh( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxSpinEvent& event ) { event.Skip(); }
-		virtual void Refresh( wxFontPickerEvent& event ) { event.Skip(); }
+		virtual void OnFont( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnBuiltinString( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDisplayStringInfo( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnAboutAuthor( wxCommandEvent& event ) { event.Skip(); }
@@ -70,7 +70,6 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxStaticText* m_staticText20;
 		wxSpinCtrl* m_sYPosition;
 		wxStaticText* m_staticText16;
-		wxFontPickerCtrl* m_fontPicker;
 		wxButton* m_bInfo;
 		wxStaticText* m_staticText17;
 		wxTextCtrl* m_tDisplayString;

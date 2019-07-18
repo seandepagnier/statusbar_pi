@@ -33,6 +33,7 @@ INCLUDE("cmake/PluginConfigure.cmake")
 SET(SRC_STATUSBAR
     src/statusbar_pi.cpp
     src/StatusbarUI.cpp
+#    src/android/wx/fontpicker.cpp
     src/icons.cpp
 )
 
