@@ -31,9 +31,6 @@
 
 #include "version.h"
 
-#define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    11
-
 #define ABOUT_AUTHOR_URL "http://seandepagnier.users.sourceforge.net"
 
 #include <wx/fileconf.h>
