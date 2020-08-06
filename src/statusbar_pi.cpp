@@ -148,12 +148,12 @@ bool statusbar_pi::DeInit(void)
 
 int statusbar_pi::GetAPIVersionMajor()
 {
-    return MY_API_VERSION_MAJOR;
+    return OCPN_API_VERSION_MAJOR;
 }
 
 int statusbar_pi::GetAPIVersionMinor()
 {
-    return MY_API_VERSION_MINOR;
+    return OCPN_API_VERSION_MINOR;
 }
 
 int statusbar_pi::GetPlugInVersionMajor()
@@ -173,23 +173,19 @@ wxBitmap *statusbar_pi::GetPlugInBitmap()
 
 wxString statusbar_pi::GetCommonName()
 {
-    return _("StatusBar");
+     return _T(PLUGIN_COMMON_NAME);
 }
 
 wxString statusbar_pi::GetShortDescription()
 {
-    return _("StatusBar Plugin is an optional replacement for the builtin statusbar");
+   return _(PLUGIN_SHORT_DESCRIPTION);
+   
 }
 
 wxString statusbar_pi::GetLongDescription()
 {
-    return _("StatusBar plugin replaces builtin statusbar\n\
-The builtin status bar (disable from the User Interface tab)\n\
-is very limited in it's configuration options and \
-can be very difficult to read.\n\
-\n\
-The statusbar plugin improves on some of these difficulties.\n\
-  Best used with OpenGL enabled (requires some basic OpenGL extensions).\n");
+    return _(PLUGIN_LONG_DESCRIPTION);
+	
 }
 
 wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J    \
