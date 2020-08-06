@@ -65,7 +65,9 @@ StatusbarPrefsDialog( wxWindow *parent, statusbar_pi &_statusbar_pi )
     virtual void Refresh( wxScrollEvent& event ) { Refresh(); }
     virtual void Refresh( wxCommandEvent& event ) { Refresh(); }
     virtual void Refresh( wxSpinEvent& event ) { Refresh(); }
-    virtual void Refresh( wxFontPickerEvent& event ) { Refresh(); }
+
+    void OnFont( wxCommandEvent& event );
+
     void OnBuiltinString( wxCommandEvent& event );
     void OnDisplayStringInfo( wxCommandEvent& event );
     void OnAboutAuthor( wxCommandEvent& event );

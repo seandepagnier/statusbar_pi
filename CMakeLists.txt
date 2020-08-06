@@ -149,6 +149,7 @@ add_definitions(-DUSE_S57)
 SET(SRC_STATUSBAR
     src/statusbar_pi.cpp
     src/StatusbarUI.cpp
+#    src/android/wx/fontpicker.cpp
     src/icons.cpp
 	api-16/ocpn_plugin.h
 )
