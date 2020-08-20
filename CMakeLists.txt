@@ -53,9 +53,9 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "4")
+set(VERSION_PATCH "5")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "08/05/2020")
+set(VERSION_DATE "08/20/2020")
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -154,6 +154,13 @@ SET(SRC_STATUSBAR
 	api-16/ocpn_plugin.h
 )
 
+SET(HDR_STATUSBAR
+     src/defs.h
+	 src/icons.h
+	 src/statusbar_pi.h
+	 src/statusbarUI.h
+)
+
 # ===========================================================================
 include("PluginGL")
 # ===========================================================================
@@ -182,9 +189,9 @@ include_directories(BEFORE ${PROJECT_SOURCE_DIR}/src/plugingl)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/api-16)
 
-# ===========================================================================
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} ${SRC_PLUGINGL} )
-# ===========================================================================
+# =======================================================================================
+ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} ${HDR_STATUSBAR} ${SRC_PLUGINGL} )
+# =======================================================================================
 
 add_definitions(-DTIXML_USE_STL)
 
