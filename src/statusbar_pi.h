@@ -122,7 +122,6 @@ private:
     bool LoadConfig( void );
     bool SaveConfig( void );
 
-    void BuildFont();
     wxString ColorSchemeName();
 
     void OnRefreshTimer( wxTimerEvent & );

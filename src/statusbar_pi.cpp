@@ -431,11 +431,6 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
 {
     m_LastRefreshTime = wxDateTime::UNow();
 
-    if(m_PreferencesDialog) {
-        m_PreferencesDialog->m_cbInvertBackground->Disable();
-        m_PreferencesDialog->m_cbBlur->Disable();
-    }
-
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
 
@@ -466,8 +461,9 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
             pgc->DrawRectangle(px, py, width, height);
 	    delete pgc;
         }
-    } else
+    }
 #else
+    else
         dc.SetTextBackground(color);
 //        dc.SetBackgroundMode( wxSOLID );
 #endif
@@ -612,12 +608,6 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("DisplayString"), c.DisplayString );
     
     return true;
-}
-
-void statusbar_pi::BuildFont()
-{
-    StatusbarConfig &c = m_config;
-    m_texfont.Build(c.font, c.blur);//, true);
 }
 
 void statusbar_pi::OnRefreshTimer( wxTimerEvent & )
