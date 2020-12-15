@@ -46,7 +46,6 @@
 struct StatusbarConfig
 {
     wxColour color, bgcolor;
-    bool invertbackground, blur;
     
     int XPosition, YPosition;
 
