@@ -461,12 +461,9 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
             pgc->DrawRectangle(px, py, width, height);
 	    delete pgc;
         }
-    }
-#else
-    else
-        dc.SetTextBackground(color);
-//        dc.SetBackgroundMode( wxSOLID );
+    } else
 #endif
+        dc.SetTextBackground(color);
 
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
