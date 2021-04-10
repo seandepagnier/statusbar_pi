@@ -1,0 +1,4 @@
+name: statusbar
+title: statusbar
+version: '0.1'
+start_page: ROOT:statusbar.adoc 
