@@ -1,12 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version May 19 2018)
+// C++ code generated with wxFormBuilder (version 3.9.0 Sep 12 2020)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __STATUSBARUI_H__
-#define __STATUSBARUI_H__
+#pragma once
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
@@ -19,11 +18,13 @@
 #include <wx/settings.h>
 #include <wx/clrpicker.h>
 #include <wx/slider.h>
-#include <wx/checkbox.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/spinctrl.h>
 #include <wx/button.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
 #include <wx/choice.h>
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
@@ -34,37 +35,35 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Class StatusbarPrefsDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class StatusbarPrefsDialogBase : public wxDialog 
+class StatusbarPrefsDialogBase : public wxDialog
 {
 	private:
 		wxStaticText* m_staticText18;
-	
+
 	protected:
 		wxStaticText* m_staticText7;
 		wxButton* m_FontPicker;
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
-		
+
 		// Virtual event handlers, overide them in your derived class
 		virtual void Refresh( wxColourPickerEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxScrollEvent& event ) { event.Skip(); }
-		virtual void Refresh( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxSpinEvent& event ) { event.Skip(); }
 		virtual void OnFont( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnBuiltinString( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDisplayStringInfo( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Refresh( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnAboutAuthor( wxCommandEvent& event ) { event.Skip(); }
-		
-	
+
+
 	public:
 		wxFlexGridSizer* fgSizer6;
 		wxStaticText* m_staticText15;
 		wxColourPickerCtrl* m_colourPicker;
 		wxSlider* m_sTransparency;
-		wxCheckBox* m_cbInvertBackground;
 		wxColourPickerCtrl* m_colourPickerBG;
 		wxSlider* m_sTransparencyBG;
-		wxCheckBox* m_cbBlur;
 		wxStaticText* m_staticText19;
 		wxSpinCtrl* m_sXPosition;
 		wxStaticText* m_staticText20;
@@ -75,10 +74,8 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxTextCtrl* m_tDisplayString;
 		wxStdDialogButtonSizer* m_sdbSizer2;
 		wxButton* m_sdbSizer2OK;
-		
-		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE ); 
-		~StatusbarPrefsDialogBase();
-	
-};
 
-#endif //__STATUSBARUI_H__
+		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
+		~StatusbarPrefsDialogBase();
+
+};

@@ -43,7 +43,6 @@
 struct StatusbarConfig
 {
     wxColour color, bgcolor;
-    bool invertbackground, blur;
     
     int XPosition, YPosition;
 
@@ -119,7 +118,6 @@ private:
     bool LoadConfig( void );
     bool SaveConfig( void );
 
-    void BuildFont();
     wxString ColorSchemeName();
 
     void OnRefreshTimer( wxTimerEvent & );

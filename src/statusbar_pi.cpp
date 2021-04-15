@@ -65,8 +65,6 @@ void StatusbarPrefsDialog::LoadConfig()
     StatusbarConfig &c = m_statusbar_pi.m_config;
 
     m_colourPicker->SetColour(c.color);
-    m_cbInvertBackground->SetValue(c.invertbackground);
-    m_cbBlur->SetValue(c.blur);
     m_sTransparency->SetValue(255-c.color.Alpha());
     m_colourPickerBG->SetColour(c.bgcolor);
     m_sTransparencyBG->SetValue(255-c.bgcolor.Alpha());
@@ -84,10 +82,8 @@ void StatusbarPrefsDialog::SaveConfig()
     c.color = m_colourPicker->GetColour();
     c.color.Set(c.color.Red(), c.color.Green(), c.color.Blue(), 255-m_sTransparency->GetValue());
 
-    c.invertbackground = m_cbInvertBackground->GetValue();
     c.bgcolor = m_colourPickerBG->GetColour();
     c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255-m_sTransparencyBG->GetValue());
-    c.blur = m_cbBlur->GetValue();
     
     c.XPosition = m_sXPosition->GetValue();
     c.YPosition = m_sYPosition->GetValue();
@@ -427,11 +423,6 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
 {
     m_LastRefreshTime = wxDateTime::UNow();
 
-    if(m_PreferencesDialog) {
-        m_PreferencesDialog->m_cbInvertBackground->Disable();
-        m_PreferencesDialog->m_cbBlur->Disable();
-    }
-
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
 
@@ -463,11 +454,9 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
 	    delete pgc;
         }
     } else
-#else
-        dc.SetTextBackground(color);
-//        dc.SetBackgroundMode( wxSOLID );
 #endif
-
+    dc.SetTextBackground(color);
+		
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
 }
@@ -550,9 +539,6 @@ bool statusbar_pi::LoadConfig(void)
     pConf->Read( _T("Color")+ColorSchemeName(), &colorstr, colorstr );
     c.color = wxColour(colorstr);
 
-    pConf->Read( _T("InvertBackground")+ColorSchemeName(), &c.invertbackground, true );
-    pConf->Read( _T("Blur")+ColorSchemeName(), &m_config.blur, false );
-
     wxString colorstrbg = "rgba(56, 228, 28, 1.000)";
     pConf->Read( _T("ColorBG")+ColorSchemeName(), &colorstrbg, colorstrbg );
     c.bgcolor = wxColour(colorstrbg);
@@ -594,9 +580,7 @@ bool statusbar_pi::SaveConfig(void)
     pConf->SetPath( _T("/PlugIns/StatusBar") );
 
     pConf->Write( _T("Color")+ColorSchemeName(), ColorFormat(c.color) );
-    pConf->Write( _T("InvertBackground")+ColorSchemeName(), c.invertbackground);
     pConf->Write( _T("ColorBG")+ColorSchemeName(), ColorFormat(c.bgcolor) );
-    pConf->Write( _T("Blur")+ColorSchemeName(), c.blur );
 
     pConf->Write( _T("XPosition"), c.XPosition );
     pConf->Write( _T("YPosition"), c.YPosition );
@@ -608,12 +592,6 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("DisplayString"), c.DisplayString );
     
     return true;
-}
-
-void statusbar_pi::BuildFont()
-{
-    StatusbarConfig &c = m_config;
-    m_texfont.Build(c.font, c.blur);//, true);
 }
 
 void statusbar_pi::OnRefreshTimer( wxTimerEvent & )
