@@ -19,7 +19,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ***************************************************************************
-# Frontend2 Author: Jon Gough   v1.0.160					 
+# Frontend2 Author: Jon Gough   v1.0.161					 
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -56,7 +56,7 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
 set(VERSION_PATCH "6")
-set(VERSION_TWEAK "1")
+set(VERSION_TWEAK "2")
 set(VERSION_DATE "15/04/2021")
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
@@ -157,43 +157,28 @@ SET(SRCS
 )
 
 SET(HDRS
-     src/defs.h
-	 src/icons.h
-	 src/statusbar_pi.h
-	 src/StatusbarUI.h
-	 src/TexFont.h
+     include/defs.h
+	 include/icons.h
+	 include/statusbar_pi.h
+	 include/StatusbarUI.h
+	 include/TexFont.h
 )
 
 add_definitions(-DPLUGIN_USE_SVG)
 
-# ===========================================================================
+# =================================================
 SET(SRC ${SRCS} ${HDRS} )
-# ===========================================================================
+# =================================================
 
-
-# ===========================================================================
-# include("PluginGL")
-# ===========================================================================
-
-# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/src/plugingl)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
-# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/api-16)
-
-# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/plugingl)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/extinclude)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
-
-##===================================================================================
-# ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} ${HDR_STATUSBAR})
-##====================================================================================
-# ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_STATUSBAR} ${HDR_STATUSBAR} ${SRC_PLUGINGL} )
 
 ##=================================================
 target_sources(${PACKAGE_NAME} PUBLIC ${SRC})
 ##=================================================
 
 add_definitions(-DTIXML_USE_STL)
-
 
 if(UNIX AND NOT APPLE)
     if(PI_JSON_SCHEMA_VALIDATOR)

@@ -2,8 +2,8 @@ src/statusbar_pi.cpp
 src/StatusbarUI.cpp
 src/icons.cpp
 src/TexFont.cpp
-src/defs.h
-src/icons.h
-src/statusbar_pi.h
-src/StatusbarUI.h
-src/TexFont.h
+include/defs.h
+include/icons.h
+include/statusbar_pi.h
+include/StatusbarUI.h
+include/TexFont.h
