@@ -28,9 +28,9 @@
 #include <wx/graphics.h>
 #include <wx/fontdlg.h>
 
-#include "plugingl/pidc.h"
+#include "pidc.h"
 #include "StatusbarUI.h"
-#include "plugingl/TexFont.h"
+#include "TexFont.h"
 #include "statusbar_pi.h"
 #include "icons.h"
 

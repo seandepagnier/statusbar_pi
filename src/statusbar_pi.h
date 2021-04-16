@@ -35,7 +35,7 @@
 
 #include <wx/fileconf.h>
 #include "ocpn_plugin.h"
-#include "plugingl/qtstylesheet.h"
+#include "qtstylesheet.h"
 #include "defs.h"
 
 #define STATUSBAR_TOOL_POSITION -1          // Request default positioning of toolbar tool

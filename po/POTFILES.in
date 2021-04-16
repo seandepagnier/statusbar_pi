@@ -1,0 +1,9 @@
+src/statusbar_pi.cpp
+src/StatusbarUI.cpp
+src/icons.cpp
+src/TexFont.cpp
+src/defs.h
+src/icons.h
+src/statusbar_pi.h
+src/StatusbarUI.h
+src/TexFont.h
