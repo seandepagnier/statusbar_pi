@@ -35,8 +35,6 @@ used with OpenGL enabled (requires some basic OpenGL extensions).
 
 === A. Where to get this plugin:
 
-Github: https://github.com/seandepagnier/statusbar_pi
-
 Available on the Downloads Page:
 https://opencpn.org/OpenCPN/info/downloadplugins.html
 
