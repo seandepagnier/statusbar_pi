@@ -1,7 +1,7 @@
 ##---------------------------------------------------------------------------
 ## Author:      Sean D'Epagnier
 # ---------------------------------------------------------------------------
-# Frontend Author: Jon Gough   Fronend2: v1.0.132
+# Frontend Author: Jon Gough   Frontend2: v1.0.161
 ## ***************************************************************************
 ## *   Copyright (C) 2013 by Sean D'Epagnier                                 *
 ## *   This program is free software; you can redistribute it and/or modify  *
@@ -56,8 +56,8 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
 set(VERSION_PATCH "6")
-set(VERSION_TWEAK "2")
-set(VERSION_DATE "15/04/2021")
+set(VERSION_TWEAK "3")
+set(VERSION_DATE "15/04/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -97,6 +97,8 @@ option(PLUGIN_USE_SVG "Use SVG graphics" ON)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# Use local version of GLU library
+set(USE_LOCAL_GLU TRUE)
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")    #not operational???
 # Don't use local version of GLU library
@@ -106,9 +108,7 @@ option(USE_GL "Enable OpenGL support" ON)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
-    set(CMAKE_BUILD_TYPE
-        "Release"
-        CACHE STRING "Choose the type of build" FORCE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build" FORCE)
 endif("${CMAKE_BUILD_TYPE}" STREQUAL "")
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "" "Debug" "Release" "RelWithDebInfo" "MinSizeRel")
 message(STATUS "${CMLOC}Build type: ${CMAKE_BUILD_TYPE}")
@@ -123,7 +123,7 @@ include("PluginSetup")
 ## ----- The above is used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
 ## ----- Modify section below if there are special requirements for the plugin ----- 
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE "Activate verbose mode for make files" ON)
 
 option(Plugin_CXX11 "Use c++11" OFF)
 
@@ -180,7 +180,7 @@ target_sources(${PACKAGE_NAME} PUBLIC ${SRC})
 
 add_definitions(-DTIXML_USE_STL)
 
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT QT_ANDROID)
     if(PI_JSON_SCHEMA_VALIDATOR)
         # Change OS/ABI to be UNIX - System V to make it run with OCPN
         set(lib_name lib${PACKAGE_NAME}.so)
@@ -199,7 +199,7 @@ if(UNIX AND NOT APPLE)
             message(STATUS "${CMLOC}Cannot correct OS/ABI to match OCPN if it is generated incorrectly. Package binutils needed")
         endif(NOT (${elfedit} STREQUAL "elfedit-NOTFOUND"))
     endif(PI_JSON_SCHEMA_VALIDATOR)
-endif(UNIX AND NOT APPLE)
+endif(UNIX AND NOT APPLE AND NOT QT_ANDROID)
 
 ## ----- Change above to match project requirements ----- ##
 
@@ -216,16 +216,8 @@ include("PluginPackage")
 # ===========================================================================
 ## ----- do not change section above - needed to configure build process ----- ##
 ##
-
-get_target_property(OUT ${PACKAGE_NAME} LINK_LIBRARIES)
-message(STATUS "${CMLOC}Libraries: ${OUT}")
-
-## ----- do not change section above - needed to configure build process ----- ##
-
-get_property(
-    dirs
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    PROPERTY INCLUDE_DIRECTORIES)
+message(STATUS "${CMLOC}include directories: ")
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
-    message(STATUS "${CMLOC}include dir='${dir}'")
+    message(STATUS "${CMLOC}dir='${dir}'")
 endforeach()
