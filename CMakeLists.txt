@@ -55,8 +55,8 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "6")
-set(VERSION_TWEAK "5")
+set(VERSION_PATCH "7")
+set(VERSION_TWEAK "0")
 set(VERSION_DATE "17/04/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
