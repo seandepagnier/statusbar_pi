@@ -19,7 +19,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ***************************************************************************
-# Frontend2 Author: Jon Gough   v1.0.161					 
+# Frontend2 Author: Jon Gough   v1.0.161
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -123,7 +123,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include("PluginSetup")
 # ===========================================================================
 ## ----- The above is used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
-## ----- Modify section below if there are special requirements for the plugin ----- 
+## ----- Modify section below if there are special requirements for the plugin -----
 
 set(CMAKE_VERBOSE_MAKEFILE "Activate verbose mode for make files" ON)
 
@@ -148,7 +148,7 @@ ENDIF(PLUGIN_USE_SVG)
 
 #======== Below from cmakelists.txt  weather_routing_pi
 # ----Remember to Add your project Set(SRCS and set(HDRS  etc..
- 
+
 SET(SRCS
     src/statusbar_pi.cpp
     src/StatusbarUI.cpp
@@ -173,9 +173,9 @@ SET(SRC ${SRCS} ${HDRS} )
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs)
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu/include)
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs)
+# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 
 if(QT_ANDROID)
