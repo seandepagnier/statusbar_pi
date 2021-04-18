@@ -1,8 +1,6 @@
 ##---------------------------------------------------------------------------
 ## Author:      Sean D'Epagnier
-# ---------------------------------------------------------------------------
-# Frontend Author: Jon Gough   Frontend2: v1.0.160.3
-## ***************************************************************************
+## ---------------------------------------------------------------------------
 ## *   Copyright (C) 2013 by Sean D'Epagnier                                 *
 ## *   This program is free software; you can redistribute it and/or modify  *
 ## *   it under the terms of the GNU General Public License as published by  *
@@ -18,8 +16,8 @@
 ## *   along with this program; if not, write to the                         *
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
-## ***************************************************************************
-# Frontend2 Author: Jon Gough   v1.0.161
+## ---------------------------------------------------------------------------
+# Frontend2 Author: Jon Gough   v1.0.160.3  + Change for Android
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -55,9 +53,9 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "7")
+set(VERSION_PATCH "8")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "17/04/2021")  # DD/MM/YYYY format
+set(VERSION_DATE "18/04/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -176,7 +174,6 @@ include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glshim/include/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs)
-# include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 
 if(QT_ANDROID)
