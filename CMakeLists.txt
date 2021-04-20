@@ -1,7 +1,8 @@
 ##---------------------------------------------------------------------------
-## Author:      Sean D'Epagnier
-## ---------------------------------------------------------------------------
-## *   Copyright (C) 2013 by Sean D'Epagnier                                 *
+## Author:      Sean d'Epagnier
+##***************************************************************************
+## *   Copyright (C) 2010 by Sean d'Epagnier                              *
+## *   License:     GPLv3+
 ## *   This program is free software; you can redistribute it and/or modify  *
 ## *   it under the terms of the GNU General Public License as published by  *
 ## *   the Free Software Foundation; either version 3 of the License, or     *
@@ -54,8 +55,8 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
 set(VERSION_PATCH "8")
-set(VERSION_TWEAK "0")
-set(VERSION_DATE "18/04/2021")  # DD/MM/YYYY format
+set(VERSION_TWEAK "1")
+set(VERSION_DATE "20/04/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -69,7 +70,7 @@ set(PARENT "opencpn")
 
 #No longer needed, queried.
 # set(GIT_USER "rgleason")
-# set(GIT_REPOSITORY_NAME "weather_routing_pi")
+# set(GIT_REPOSITORY_NAME "statusbar_pi")
 
 ## Specifies Cloudsmith upload repository suffix for each catalog
 set(PROD "prod")   #Standard Repos
@@ -77,13 +78,11 @@ set(BETA "beta")   #Standard Repos
 set(ALPHA "alpha") #Standard Repos
 
 # Set if  Cloudsmith Base Repository name does not match your Git Repository name.
-#set(CLOUDSMITH_BASE_REPOSITORY "${GIT_REPOSITORY_NAME}")
-#set(CLOUDSMITH_BASE_REPOSITORY "opencpn-plugins")  #Ricks's customization
+# set(CLOUDSMITH_BASE_REPOSITORY "${GIT_REPOSITORY_NAME}")
 set(CLOUDSMITH_BASE_REPOSITORY "statusbar")  #without the _pi
-# Set the following to use OpenCPN cloudsmith repositories instead of own repositories
-set(CLOUDSMITH_USER "opencpn")
-#set(CLOUDSMITH_USER "rick-gleason")
 
+#set(CLOUDSMITH_USER "rick-gleason")
+set(CLOUDSMITH_USER "opencpn")
 
 set(XML_INFO_URL "https://opencpn.org/OpenCPN/plugins/statusbar.html")
 set(XML_SUMMARY ${SHORT_DESCRIPTION})
@@ -95,13 +94,6 @@ set(XML_DESCRIPTION ${LONG_DESCRIPTION})
 option(PLUGIN_USE_SVG "Use SVG graphics" ON)
 
 set(CMAKE_CXX_STANDARD 11)
-
-# Use local version of GLU library
-set(USE_LOCAL_GLU TRUE)
-# Prefer libGL.so to libOpenGL.so, see CMP0072
-set(OpenGL_GL_PREFERENCE "LEGACY")    #not operational???
-# Don't use local version of GLU library
-set(USE_LOCAL_GLU FALSE)      #not operational ????
 
 option(USE_GL "Enable OpenGL support" ON)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
@@ -117,9 +109,9 @@ message(STATUS "${CMLOC}Build type: ${CMAKE_BUILD_TYPE}")
 project(${PACKAGE})
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-# ===========================================================================
+# =======================================================
 include("PluginSetup")
-# ===========================================================================
+# =======================================================
 ## ----- The above is used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
 ## ----- Modify section below if there are special requirements for the plugin -----
 
@@ -129,9 +121,9 @@ option(Plugin_CXX11 "Use c++11" OFF)
 
 ## ----- Modify section above if there are special requirements for the plugin ----- ##
 ## ----- do not change next section - needed to configure build process ----- ##
-# ===========================================================================
+# ========================================================
 include("PluginConfigure")
-# ===========================================================================
+# ========================================================
 ## ----- do not change section above - needed to configure build process ----- ##
 ## ----- Change below to match project requirements for source, headers, etc. ----- ##
 
@@ -168,6 +160,10 @@ add_definitions(-DPLUGIN_USE_SVG)
 # =================================================
 SET(SRC ${SRCS} ${HDRS} )
 # =================================================
+
+##=============================================================
+# Modify/configure 'Include' Directories below for the Plugin
+##=============================================================
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
@@ -215,11 +211,12 @@ target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
 
 
 ## ----- do not change next section - needed to configure build process ----- ##
-# ===========================================================================
+# ========================================================
 include("PluginInstall")
 include("PluginLocalization")
 include("PluginPackage")
-# ===========================================================================
+# ========================================================
+
 ## ----- do not change section above - needed to configure build process ----- ##
 ##
 message(STATUS "${CMLOC}include directories: ")
