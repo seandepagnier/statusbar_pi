@@ -55,7 +55,7 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
 set(VERSION_PATCH "8")
-set(VERSION_TWEAK "1")
+set(VERSION_TWEAK "2")
 set(VERSION_DATE "20/04/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
@@ -155,6 +155,15 @@ SET(HDRS
 	 include/TexFont.h
 )
 
+set(LIBHDRS
+    libs/GL/gl.h
+    libs/GL/gl_private.h
+    libs/GL/glext.h
+    libs/GL/glu.h
+    libs/wx/include/json_defs.h
+    libs/wx/include/jsonreader.h
+    libs/wx/include/jsonval.h
+    libs/wx/include/jsonwriter.h)
 add_definitions(-DPLUGIN_USE_SVG)
 
 # =================================================
@@ -165,11 +174,12 @@ SET(SRC ${SRCS} ${HDRS} )
 # Modify/configure 'Include' Directories below for the Plugin
 ##=============================================================
 
+
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
-include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glshim/include/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs)
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glshim/include/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 
 if(QT_ANDROID)
@@ -180,35 +190,24 @@ endif(QT_ANDROID)
 target_sources(${PACKAGE_NAME} PUBLIC ${SRC})
 ##=================================================
 
+
+if(NOT OCPN_FLATPAK_CONFIG)
+    # Build environment not available when flatpak is being configured so following statements will not work
+    message(STATUS "${CMLOC}Adding target link libraries to ${PACKAGE_NAME}")
+
+#    add_subdirectory(libs/tinyxml)
+#    target_link_libraries(${PACKAGE_NAME} ocpn::tinyxml)
+endif(NOT OCPN_FLATPAK_CONFIG)
+
 add_definitions(-DTIXML_USE_STL)
 
-#if(UNIX AND NOT APPLE AND NOT QT_ANDROID)
-#    if(PI_JSON_SCHEMA_VALIDATOR)
-        # Change OS/ABI to be UNIX - System V to make it run with OCPN
-#        set(lib_name lib${PACKAGE_NAME}.so)
-#        message(STATUS "${CMLOC}lib-name: ${lib_name}")
-#        find_file(elfedit elfedit)
-#        if(NOT (${elfedit} STREQUAL "elfedit-NOTFOUND"))
-#            message(STATUS "${CMLOC}Will ensure OS/ABI is set to 0 to match OCPN")
-#            add_custom_command(
-#                TARGET ${PACKAGE_NAME}
-#                POST_BUILD
-#                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-#                DEPENDS ${PACKAGE_NAME}
-#                COMMENT " Running post build action on ${lib_name}."
-#                COMMAND sh -c 'elfedit --input-osabi=Linux --output-osabi=none ${lib_name} || (echo 0) ')
-#        else(NOT (${elfedit} STREQUAL "elfedit-NOTFOUND"))
-#            message(STATUS "${CMLOC}Cannot correct OS/ABI to match OCPN if it is generated incorrectly. Package binutils needed")
-#        endif(NOT (${elfedit} STREQUAL "elfedit-NOTFOUND"))
-#    endif(PI_JSON_SCHEMA_VALIDATOR)
-#endif(UNIX AND NOT APPLE AND NOT QT_ANDROID)
 
 ## ----- Change above to match project requirements ----- ##
+
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/plugingl/include)
 add_subdirectory(libs/plugingl)
 target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
-
 
 ## ----- do not change next section - needed to configure build process ----- ##
 # ========================================================
