@@ -1838,6 +1838,16 @@ void piDC::DrawText( const wxString &text, wxCoord x, wxCoord y )
 #else
             unsigned int texobj;
 
+            if(m_textbackgroundcolour.Alpha() != 0) {
+                wxPen p = m_pen;
+                wxBrush b = m_brush;
+                SetPen(*wxTRANSPARENT_PEN);
+                SetBrush(wxBrush(m_textbackgroundcolour));
+                DrawRoundedRectangle(x, y, w, h, 3);
+                SetPen(p);
+                SetBrush(b);
+            }
+
             glGenTextures(1, &texobj);
             glBindTexture(GL_TEXTURE_2D, texobj);
 
