@@ -1,7 +1,7 @@
 site:
   title: Statusbar Plugin Manual
   url:  https://nowhere.net
-  start_page: statusbar:ROOT:statusbar.adoc
+  start_page: statusbar:ROOT:index.adoc
 
 content:
   sources:
