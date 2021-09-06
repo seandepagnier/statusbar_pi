@@ -11,16 +11,14 @@ PI Manager Workflow: Testplugin
 * Source: https://github.com/seandepagnier/statusbar_pi +
 * Maintained Source: https://github.com/rgleason/statusbar_pi +
 * Download: https://opencpn.org/OpenCPN/plugins/statusbar.html +
-* Forum: http://www.cruisersforum.com/forums/f134/statusbar-plugin-119047.html[CF
-Statusbar_pi Thread] +
+* Forum: http://www.cruisersforum.com/forums/f134/statusbar-plugin-119047.html[CF Statusbar_pi Thread] +
 * YouTube: https://www.youtube.com/watch?v=sT23hDvFwz8[Statusbar]
 
 == 1. What and Why
 
 === What can StatusBar do?
 
-Shows Dashboard and Nmea Data at the bottom of the screen in various
-formats.
+Shows Dashboard and Nmea Data at the bottom of the screen in various formats.
 
 === Why is StatusBar useful?
 
@@ -33,41 +31,31 @@ used with OpenGL enabled (requires some basic OpenGL extensions).
 
 == 2. Installation
 
-=== A. Where to get this plugin:
+Statusbar is available as a managed plugin. The OpenCPN Manual has general information in xref:opencpn-plugins:misc:plugin-install.adoc[Plugin Download, Install and Enable] 
+for installing this plugin. This is the preferred way.
 
-Available on the Downloads Page:
-https://opencpn.org/OpenCPN/info/downloadplugins.html
+In OpenCPN, go to the _Options → Plugins_ and download, install and enable the sQuiddio plugin (no settings are required).
 
-=== B. How to install the plugin:
+. In OpenCPN  Click *Tools-Options-Plugins*
+. First "Update" the master plugins catalog.
+. Select the Statusbar entry and "Install" the plugin.
+. In the list of installed plugins "Enable" the sQuiddio plugin and "Apply".
+. Use “*Preferences*” to set your preferences (should be self-explanatory). Then “*Apply*.
+. After successful installation, the plugin should be available in the plugins tab of your OpenCPN options dialog box.
+. Then close *Options* and the data should appear at the bottom of the screen.
 
-. Double-click the downloaded file (with “statusbar_pi” in the name and
-“.exe” as extension) and follow the set-up instructions.
-. Open (or restart) OpenCPN.
-. Click *Tools-Options-Plugins*
-. Scroll down until you see the StatusBar-pi.
-. Click “*Enable*” to enable the plugin and then hit “*Apply*”.
-. Use “*Preferences*” to set your preferences (should be
-self-explanatory). Then “*Apply*.
-. Then close *Options* and the data should appear at the bottom of the
-screen.
-
-=== C. How to disable the OpenCPN lower Status bar.
+=== How to disable the OpenCPN lower Status bar.
 
 . Settings > User Interface.
 . Uncheck “Show Status Bar”.
-
-=== D. Where is the Cruiser's Forum Discussion?:
-
-http://www.cruisersforum.com/forums/f134/statusbar-plugin-119047.html#post1474705[CF
-Statusbar_pi thread]
 
 == 3. Standard Actions
 
 image::statusbar-prefs-info.jpg[statusbar-prefs-info]
 
-=== Preferences Menu
+== 4. Preferences Menu
 
-==== Display String
+=== Display String
 
 Display of data is controlled in the Preferences menu in the Display
 String area. Below is the default Display String entered under
@@ -82,27 +70,30 @@ like shown on the screen.
 The formatting and values available to the user are listed below under
 *Info*
 
-==== Fonts, Color and Transparency
+=== Fonts, Color and Transparency
 
 Under preferences the user can select font, font color and size as well
 as transparency.
 
-==== Select Dropdown
+=== Select Dropdown
 
 Used to control the Appearance of the data. There are three *Select*
 string types which can be picked from the dropdown: *Default*,
 *Ownship*, *Multiline*
 
-[source,code]
-----
-wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J
-%02O %2.4P %R   %02S %2.4T %V   %03W  %.1X    Scale %Z");
+*Default* +
+wxString DefaultString = _T("Info Button User Defined Values"); +
+Example:  +
+  "Ship %02A %2.4B %D %02E %2.4F %H  SOG %.2I COG %03J %02O %2.4P %R %02S %2.4T %V %03W %.1X Scale %Z"
 
-wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J");
+*Ownship* +
+wxString OwnshipString = _T("Info Button User Defined Values"); +
+Example: +
+  "Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J"
 
-wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I %03J
-\n%02O %2.2P%R %02S %2.2T%V %03W %.2X %03.a");
-----
+*Multiline* +
+wxString MultilineString = _T("Info Button User Defined Values"); +
+  "%02A %2.2B%D  %02E %2.2F%H  %.1I %03J %02O %2.2P%R %02S %2.2T%V %03W %.2X %03.a"
 
 image::statsbar-prefs-default.jpg[statsbar-prefs-default]
 
@@ -116,23 +107,22 @@ image::statusbar-prefs-ownship.jpg[statusbar-prefs-ownship.jpg]
 
 Select Dropdown - Ownship
 
-==== Info Button
+=== Info Button
 
 The button *Info* displays a popup window with the Code key. The allowed
 Display strings can include the following formats:
 
 For example:
 
-[source,code]
-----
-"%03.0E\"  Gives ship longitude.
+  "%03.0E\"  Gives ship longitude.
+
 The format specifier 03.0 gives how many places to round to, and to use leading 0's etc.
-----
 
 The following are the specifier formats:
 
-[cols=",",]
-|===
+[width=60%, cols=",",]
+|===========
+|Code | Description
 |%A |ship lat degrees
 |%B |ship lat minutes
 |%C |ship lat seconds
@@ -163,7 +153,7 @@ The following are the specifier formats:
 |%t |Time
 |%z |Time Zone
 |%% |print a percent
-|===
+|===========
 
 Sean D'Epagnier website is  http://seandepagnier.users.sourceforge.net/ where you will find a
 “Donate” button.
