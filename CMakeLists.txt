@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.160.3  + Change for Android
+# Frontend2 Author: Jon Gough   v1.0.175.4  + Change for Android
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -54,9 +54,9 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "9")
+set(VERSION_PATCH "10")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "08/05/2021")  # DD/MM/YYYY format
+set(VERSION_DATE "03/10/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -204,6 +204,10 @@ add_definitions(-DTIXML_USE_STL)
 
 ## ----- Change above to match project requirements ----- ##
 
+# Needed for android builds
+if(QT_ANDROID)
+    include_directories(BEFORE ${qt_android_include})
+endif(QT_ANDROID)
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/plugingl/include)
 add_subdirectory(libs/plugingl)
