@@ -139,6 +139,8 @@ int statusbar_pi::Init(void)
 bool statusbar_pi::DeInit(void)
 {
     SaveConfig();
+	delete m_PreferencesDialog;
+    m_PreferencesDialog = NULL;
     return true;
 }
 

@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.175.4  + Change for Android
+# Frontend2 Author: Jon Gough   v1.0.176  07/10/2021
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -54,9 +54,9 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "10")
+set(VERSION_PATCH "11")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "03/10/2021")  # DD/MM/YYYY format
+set(VERSION_DATE "07/10/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -95,6 +95,13 @@ option(PLUGIN_USE_SVG "Use SVG graphics" ON)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# Use local version of GLU library
+#set(USE_LOCAL_GLU TRUE)
+# Prefer libGL.so to libOpenGL.so, see CMP0072
+#set(OpenGL_GL_PREFERENCE "LEGACY")
+# Don't use local version of GLU library
+#set(USE_LOCAL_GLU FALSE)
+
 option(USE_GL "Enable OpenGL support" ON)
 message(STATUS "${CMLOC}USE_GL: ${USE_GL}")
 
@@ -107,12 +114,13 @@ message(STATUS "${CMLOC}Build type: ${CMAKE_BUILD_TYPE}")
 ## ----- The statements below are used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
 
 project(${PACKAGE})
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # =======================================================
 include("PluginSetup")
 # =======================================================
 ## ----- The above is used to setup standard variables that are required by the CMAKE process - do not remove ----- ##
+
 ## ----- Modify section below if there are special requirements for the plugin -----
 
 set(CMAKE_VERBOSE_MAKEFILE "Activate verbose mode for make files" ON)
@@ -125,16 +133,11 @@ option(Plugin_CXX11 "Use c++11" OFF)
 include("PluginConfigure")
 # ========================================================
 ## ----- do not change section above - needed to configure build process ----- ##
+
 ## ----- Change below to match project requirements for source, headers, etc. ----- ##
 
 add_definitions(-DUSE_S57)
 
-IF(PLUGIN_USE_SVG)
-    MESSAGE(STATUS "${CMLOC}SVG support enabled...")
-    IF(NOT QT_ANDROID)
-        ADD_DEFINITIONS(-DPLUGIN_USE_SVG)
-    ENDIF(NOT QT_ANDROID)
-ENDIF(PLUGIN_USE_SVG)
 
 #======== Below from cmakelists.txt  weather_routing_pi
 # ----Remember to Add your project Set(SRCS and set(HDRS  etc..
@@ -166,14 +169,12 @@ set(LIBHDRS
     libs/wx/include/jsonwriter.h)
 add_definitions(-DPLUGIN_USE_SVG)
 
-# =================================================
-SET(SRC ${SRCS} ${HDRS} )
-# =================================================
 
 ##=============================================================
 # Modify/configure 'Include' Directories below for the Plugin
 ##=============================================================
 
+# Not doing JSON Schema Validation
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu/include)
@@ -187,7 +188,9 @@ if(QT_ANDROID)
 endif(QT_ANDROID)
 
 ##=================================================
-target_sources(${PACKAGE_NAME} PUBLIC ${SRC})
+
+target_sources(${PACKAGE_NAME} PUBLIC ${SRCS} ${HDRS})
+
 ##=================================================
 
 
@@ -201,6 +204,7 @@ endif(NOT OCPN_FLATPAK_CONFIG)
 
 add_definitions(-DTIXML_USE_STL)
 
+# Not doing JSON Schema Validation
 
 ## ----- Change above to match project requirements ----- ##
 
