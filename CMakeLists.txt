@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.176  07/10/2021
+# Frontend2 Author: Jon Gough   v1.0.176.1  07/10/2021
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -54,9 +54,9 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "11")
+set(VERSION_PATCH "12")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "07/10/2021")  # DD/MM/YYYY format
+set(VERSION_DATE "08/10/2021")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
