@@ -99,6 +99,8 @@ public:
     wxString GetCommonName();
     wxString GetShortDescription();
     wxString GetLongDescription();
+	// from shipdriver to read listing panel bitmap png
+	  wxBitmap m_panelBitmap; 
 
     wxString StatusString(PlugIn_ViewPort *vp);
 

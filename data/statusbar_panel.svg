@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.4666672mm"
+   height="8.4666672mm"
+   viewBox="0 0 8.4666672 8.4666672"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="statusbar-panel.svg"
+   inkscape:export-filename="C:\Users\fcgle\source\statusbar_pi\data\statusbar-panel.png"
+   inkscape:export-xdpi="97.324699"
+   inkscape:export-ydpi="97.324699"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="7.2466938"
+     inkscape:cx="4.3468099"
+     inkscape:cy="0.13799396"
+     inkscape:window-width="1920"
+     inkscape:window-height="1122"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.594203,-16.626888)">
+    <rect
+       style="fill:#e6e6e6;fill-opacity:0.849398;stroke:#e7e7e7;stroke-width:0"
+       id="rect846"
+       width="8.4666662"
+       height="8.4666662"
+       x="15.594204"
+       y="16.626888"
+       ry="0.00020377079"
+       inkscape:export-filename="C:\Users\fcgle\Downloads\statusbar_panel.png"
+       inkscape:export-xdpi="97.324699"
+       inkscape:export-ydpi="97.324699" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Segoe UI Symbol';-inkscape-font-specification:'Segoe UI Symbol, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="17.237194"
+       y="21.774927"
+       id="text38232"
+       inkscape:transform-center-x="-0.18255452"
+       inkscape:transform-center-y="-0.58417445"
+       inkscape:export-filename="C:\Users\fcgle\Downloads\statusbar_panel.png"
+       inkscape:export-xdpi="97.324699"
+       inkscape:export-ydpi="97.324699"><tspan
+         sodipodi:role="line"
+         id="tspan38230"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Segoe UI Symbol';-inkscape-font-specification:'Segoe UI Symbol, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="17.237194"
+         y="21.774927">SB</tspan></text>
+    <rect
+       style="fill:#999999;stroke:#e7e7e7;stroke-width:0"
+       id="rect868"
+       width="6.9735823"
+       height="0.83975029"
+       x="15.667225"
+       y="23.089317"
+       ry="0.00020377072" />
+  </g>
+</svg>

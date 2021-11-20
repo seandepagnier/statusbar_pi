@@ -109,6 +109,31 @@ statusbar_pi::statusbar_pi(void *ppimgr)
 {
     // Create the PlugIn icons
     initialize_images();
+	
+	// Create the PlugIn icons  -from shipdriver
+    // loads png file for the listing panel icon
+    wxFileName fn;
+    auto path = GetPluginDataDir("statusbar_pi");
+    fn.SetPath(path);
+    fn.AppendDir("data");
+    fn.SetFullName("statusbar_panel.png");
+
+    path = fn.GetFullPath();
+
+    wxInitAllImageHandlers();
+
+    wxLogDebug(wxString("Using icon path: ") + path);
+    if (!wxImage::CanRead(path)) {
+        wxLogDebug("Initiating image handlers.");
+        wxInitAllImageHandlers();
+    }
+    wxImage panelIcon(path);
+    if (panelIcon.IsOk())
+        m_panelBitmap = wxBitmap(panelIcon);
+    else
+        wxLogWarning("Statusbar panel icon has NOT been loaded");
+// End of from Shipdriver
+	
 }
 
 int statusbar_pi::Init(void)
@@ -164,10 +189,16 @@ int statusbar_pi::GetPlugInVersionMinor()
     return PLUGIN_VERSION_MINOR;
 }
 
-wxBitmap *statusbar_pi::GetPlugInBitmap()
-{
-    return _img_statusbar;
-}
+// Converts  icon.cpp file to an image. Original process
+//wxBitmap *statusbar_pi::GetPlugInBitmap()
+//{
+//    return _img_statusbar;
+//}
+
+// Shipdriver uses the climatology_panel.png file to make the bitmap.
+wxBitmap *statusbar_pi::GetPlugInBitmap()  { return &m_panelBitmap; }
+// End of shipdriver process
+
 
 wxString statusbar_pi::GetCommonName()
 {
