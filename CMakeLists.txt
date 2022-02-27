@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.185.0 08/12/2021
+# Frontend2 Author: Jon Gough   v1.0.193.0 02/17/2022
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -29,7 +29,6 @@
 ## ----- Modify section below to include all the details for your plugin ----- ##
 
 set(CMLOC "CMakeLists: ")
-
 
 # define minimum cmake version
 cmake_minimum_required(VERSION 3.5.1)
@@ -57,8 +56,8 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
 set(VERSION_PATCH "15")
-set(VERSION_TWEAK "0")
-set(VERSION_DATE "08/12/2021")  # DD/MM/YYYY format
+set(VERSION_TWEAK "1")
+set(VERSION_DATE "02/27/2022")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -180,7 +179,6 @@ add_definitions(-DPLUGIN_USE_SVG)
 # Not doing JSON Schema Validation
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
-
 #include_directories(BEFORE ${PROJECT_SOURCE_DIR}/ocpninclude)
 #include_directories(BEFORE ${PROJECT_SOURCE_DIR}/ocpnsrc/glu/include)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/${EXTINCLUDE_DIR})
@@ -189,12 +187,7 @@ include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/wxJSON/include)
 
-#original
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glu/include)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include/GL)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/glshim/include/GL)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
+# ----- Change below to match project requirements for android build ----- ##
 
 if(QT_ANDROID)
     include_directories( ${PROJECT_SOURCE_DIR}/extinclude/GLES2)
