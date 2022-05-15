@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
  *
  * Project:  OpenCPN
  * Purpose:  Status Bar Plugin
@@ -38,12 +38,12 @@
 # define NAN std::numeric_limits<double>::quiet_NaN ()
 # endif
 
-#ifdef USE_ANDROID_GLES2    
+#ifdef USE_ANDROID_GLES2
 #include "qdebug.h"
 #endif
 
 #ifdef __OCPN__ANDROID__
-#define MIN_FONT_SIZE 20
+#define MIN_FONT_SIZE 10
 #else
 #define MIN_FONT_SIZE 8
 #endif
@@ -84,7 +84,7 @@ void StatusbarPrefsDialog::SaveConfig()
 
     c.bgcolor = m_colourPickerBG->GetColour();
     c.bgcolor.Set(c.bgcolor.Red(), c.bgcolor.Green(), c.bgcolor.Blue(), 255-m_sTransparencyBG->GetValue());
-    
+
     c.XPosition = m_sXPosition->GetValue();
     c.YPosition = m_sYPosition->GetValue();
 
@@ -109,7 +109,7 @@ statusbar_pi::statusbar_pi(void *ppimgr)
 {
     // Create the PlugIn icons
     initialize_images();
-	
+
 	// Create the PlugIn icons  -from shipdriver
     // loads png file for the listing panel icon
     wxFileName fn;
@@ -133,7 +133,7 @@ statusbar_pi::statusbar_pi(void *ppimgr)
     else
         wxLogWarning("Statusbar panel icon has NOT been loaded");
 // End of from Shipdriver
-	
+
 }
 
 int statusbar_pi::Init(void)
@@ -208,13 +208,13 @@ wxString statusbar_pi::GetCommonName()
 wxString statusbar_pi::GetShortDescription()
 {
    return _(PLUGIN_SHORT_DESCRIPTION);
-   
+
 }
 
 wxString statusbar_pi::GetLongDescription()
 {
     return _(PLUGIN_LONG_DESCRIPTION);
-	
+
 }
 
 wxString DefaultString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J    \
@@ -240,7 +240,7 @@ void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
     wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J");
     wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I %03J\
 \\n%02O %2.2P%R %02S %2.2T%V %03W %.2X %03.a");
-    
+
     switch(event.GetSelection()) {
     case 0: break;
     case 1:  m_tDisplayString->SetValue(DefaultString); break;
@@ -321,7 +321,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 else break;
                 if(++i >= text.length()) break;
             }
-        done:            
+        done:
             wxString fmt = _T("%") + ipart + _T(".") + fpart + _T("f");
 
             bool degree = false;
@@ -450,7 +450,7 @@ bool statusbar_pi::RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp)
     Render(pidc, vp);
     glDisable( GL_BLEND );
     return true;
-} 
+}
 
 void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
 {
@@ -460,7 +460,7 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
     wxWindow *parent_window = GetOCPNCanvasWindow();
 
     StatusbarConfig &c = m_config;
-        
+
     int px = c.XPosition;
     int py = parent_window->GetSize().y - GetYPosition();
 
@@ -489,7 +489,7 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
     } else
 #endif
     dc.SetTextBackground(color);
-		
+
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
 }
@@ -575,7 +575,7 @@ bool statusbar_pi::LoadConfig(void)
     wxString colorstrbg = "rgba(56, 228, 28, 1.000)";
     pConf->Read( _T("ColorBG")+ColorSchemeName(), &colorstrbg, colorstrbg );
     c.bgcolor = wxColour(colorstrbg);
-    
+
     pConf->Read( _T("XPosition"), &c.XPosition, 0 );
     pConf->Read( _T("YPosition"), &c.YPosition, -100 );
 
@@ -623,7 +623,7 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontFaceName"), c.font.GetFaceName() );
 
     pConf->Write( _T("DisplayString"), c.DisplayString );
-    
+
     return true;
 }
 
