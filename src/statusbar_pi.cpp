@@ -521,6 +521,7 @@ void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
     }
 
 #ifdef __OCPN__ANDROID__
+   	m_PreferencesDialog->Centre( wxBOTH );
     m_PreferencesDialog->ShowModal();
     m_PreferencesDialog->SaveConfig();
 #else
