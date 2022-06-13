@@ -1864,7 +1864,7 @@ void piDC::DrawText( const wxString &text, wxCoord x, wxCoord y )
             glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
 #ifndef USE_ANDROID_GLES2
-            glColor3ub(0,0,0);
+            glColor3ub(255,255,255); //0,0,0);
 
             float u = (float)w/TextureWidth, v = (float)h/TextureHeight;
             glBegin(GL_QUADS);

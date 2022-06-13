@@ -2,8 +2,10 @@ src/statusbar_pi.cpp
 src/StatusbarUI.cpp
 src/icons.cpp
 src/TexFont.cpp
+src/OCPNColorPicker.cpp
 include/defs.h
 include/icons.h
 include/statusbar_pi.h
 include/StatusbarUI.h
 include/TexFont.h
+include/OCPNColorPicker.h

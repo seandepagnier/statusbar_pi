@@ -525,7 +525,9 @@ void statusbar_pi::ShowPreferencesDialog( wxWindow* parent )
     m_PreferencesDialog->ShowModal();
     m_PreferencesDialog->SaveConfig();
 #else
-    m_PreferencesDialog->Show();
+    m_PreferencesDialog->ShowModal();
+    m_PreferencesDialog->SaveConfig();
+    GetOCPNCanvasWindow()->Refresh();
 #endif
 }
 

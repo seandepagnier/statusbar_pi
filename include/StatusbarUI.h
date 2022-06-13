@@ -28,6 +28,7 @@
 #include <wx/choice.h>
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
+#include <OCPNColorPicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -60,9 +61,9 @@ class StatusbarPrefsDialogBase : public wxDialog
 	public:
 		wxFlexGridSizer* fgSizer6;
 		wxStaticText* m_staticText15;
-		wxColourPickerCtrl* m_colourPicker;
+		PI_OCPNColourPickerCtrl* m_colourPicker;
 		wxSlider* m_sTransparency;
-		wxColourPickerCtrl* m_colourPickerBG;
+		PI_OCPNColourPickerCtrl* m_colourPickerBG;
 		wxSlider* m_sTransparencyBG;
 		wxStaticText* m_staticText19;
 		wxSpinCtrl* m_sXPosition;
