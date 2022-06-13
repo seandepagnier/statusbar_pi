@@ -7,6 +7,7 @@
 #include "wx/wx.h"
 #include "StatusbarUI.h"
 #include "ocpn_plugin.h"
+#include <OCPNColorPicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -39,7 +40,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText15->Wrap( -1 );
 	fgSizer6->Add( m_staticText15, 0, wxALL, 5 );
 
-	m_colourPicker = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPicker = new PI_OCPNColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	fgSizer6->Add( m_colourPicker, 0, wxALL, 5 );
 
 	m_staticText18 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -55,7 +56,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText7->Wrap( -1 );
 	fgSizer6->Add( m_staticText7, 0, wxALL, 5 );
 
-	m_colourPickerBG = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPickerBG = new PI_OCPNColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	fgSizer6->Add( m_colourPickerBG, 0, wxALL, 5 );
 
 	wxStaticText* m_staticText8;
