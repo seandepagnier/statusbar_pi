@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.204.0 13/05/2022  DD/MM/YYYY format
+# Frontend2 Author: Jon Gough   v1.0.213.0 17/06/2022  DD/MM/YYYY format
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -55,7 +55,7 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "7")
-set(VERSION_PATCH "20")
+set(VERSION_PATCH "23")
 set(VERSION_TWEAK "0")
 set(VERSION_DATE "02/07/2022")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
@@ -69,11 +69,7 @@ set(PARENT "opencpn")
 #Now set in plugin configure, needed to build flatpak, also locally.
 #set(GIT_REPOSITORY_SERVER "github.com")
 
-#No longer needed, queried.
-# set(GIT_USER "rgleason")
-# set(GIT_REPOSITORY_NAME "statusbar_pi")
-
-## Specifies Cloudsmith upload repository suffix for each catalog
+# Specifies Cloudsmith upload repository suffix for each catalog
 set(PROD "prod")   #Standard Repos
 set(BETA "beta")   #Standard Repos
 set(ALPHA "alpha") #Standard Repos
@@ -166,12 +162,13 @@ set(LIBHDRS
     libs/GL/gl_private.h
     libs/GL/glext.h
     libs/GL/glu.h
-    libs/wx/include/json_defs.h
-    libs/wx/include/jsonreader.h
-    libs/wx/include/jsonval.h
-    libs/wx/include/jsonwriter.h)
+    libs/wxJSON/include/json_defs.h
+    libs/wxJSON/include/jsonreader.h
+    libs/wxJSON/include/jsonval.h
+    libs/wxJSON/include/jsonwriter.h)
 add_definitions(-DPLUGIN_USE_SVG)
 
+set(EXTINCLUDE_DIR ${EXTINCLUDE_DIR} extinclude libs/ocpn-api/)
 
 ##=============================================================
 # Modify/configure 'Include' Directories below for the Plugin
@@ -180,20 +177,20 @@ add_definitions(-DPLUGIN_USE_SVG)
 # Not doing JSON Schema Validation
 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/ocpninclude)
-#include_directories(BEFORE ${PROJECT_SOURCE_DIR}/ocpnsrc/glu/include)
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/ocpninclude)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/${EXTINCLUDE_DIR})
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/wxJSON/include)
 
+
+
 # ----- Change below to match project requirements for android build ----- ##
 
 if(QT_ANDROID)
     include_directories( ${PROJECT_SOURCE_DIR}/extinclude/GLES2)
 endif(QT_ANDROID)
-
 
 ##
 ## ----- Change above to match project requirements for android build ----- ##
