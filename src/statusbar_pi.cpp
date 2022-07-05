@@ -150,6 +150,8 @@ int statusbar_pi::Init(void)
                                ( statusbar_pi::OnRefreshTimer ), NULL, this);
 
     m_PreferencesDialog = NULL;
+    m_cursor_lat = m_cursor_lon = 0;
+
 
     return (WANTS_OVERLAY_CALLBACK    |
             WANTS_OPENGL_OVERLAY_CALLBACK    |
@@ -432,7 +434,10 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
         } else
             outputtext += text[i];
 
-    return outputtext;
+    if(outputtext.Length() > 200)       // avoid absurd uninitialized data strings
+        return "";
+    else
+        return outputtext;
 }
 
 bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
