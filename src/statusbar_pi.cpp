@@ -427,7 +427,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                     value = trunc(value);
                 outputtext += wxString::Format(fmt, value);
                 if(degree)
-                    outputtext += _T("°");
+                    outputtext += _T("\u00B0");
                 if(units.size())
                     outputtext += _T(" ") + units;
             }
