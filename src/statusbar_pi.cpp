@@ -359,14 +359,14 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
 #define DistGreatCircle_Plugin DistGreatCircle
 #endif
             case 'W': {
-                if(wxIsNaN(brg))
+                if(isnan(brg))
                     DistanceBearingMercator_Plugin(m_cursor_lat, m_cursor_lon,
                                                    lastfix.Lat, lastfix.Lon, &brg, &dist);
                 value = brg;
                 degree = true;
             } break;
             case 'X': {
-                if(wxIsNaN(dist))
+                if(isnan(dist))
                     DistanceBearingMercator_Plugin(lastfix.Lat, lastfix.Lon,
                                                    m_cursor_lat, m_cursor_lon, &brg, &dist);
                 value = toUsrDistance_Plugin(dist);
@@ -420,7 +420,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             case '%': outputtext += _T("%"); break;
             }
 
-            if(!wxIsNaN(value)) {
+            if(!isnan(value)) {
                 long fparti;
                 fpart.ToLong(&fparti);
                 if(fparti == 0)
