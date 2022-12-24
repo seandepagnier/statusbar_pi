@@ -18,7 +18,7 @@
 ## *   Free Software Foundation, Inc.,                                       *
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ## ---------------------------------------------------------------------------
-# Frontend2 Author: Jon Gough   v1.0.213.0 17/06/2022  DD/MM/YYYY format
+# Frontend2 Author: Jon Gough   v1.0.222.0 24/12/2022  DD/MM/YYYY format
 # ---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -53,11 +53,11 @@ set(PACKAGE "statusbar")
 set(SHORT_DESCRIPTION "StatusBar Plugin is an optional replacement for the builtin statusbar")
 set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface tab) has limited configuration options and can be very difficult to read. The statusbar plugin improves on some of these difficulties. Best used with OpenGL enabled (requires some basic OpenGL extensions).")
 
-set(VERSION_MAJOR "0")
-set(VERSION_MINOR "7")
-set(VERSION_PATCH "24")
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "0")
+set(VERSION_PATCH "0")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "09/07/2022")  # DD/MM/YYYY format
+set(VERSION_DATE "24/12/2022")  # DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
