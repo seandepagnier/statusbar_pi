@@ -1,27 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version May 19 2018)
+// C++ code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
-#include "wx/wx.h"
+
 #include "StatusbarUI.h"
-#include "ocpn_plugin.h"
-#include <OCPNColorPicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
 StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-    wxFont *qFont = GetOCPNScaledFont_PlugIn(_("Dialog"));
-    SetFont( *qFont );
-
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
 	wxFlexGridSizer* fgSizer7;
 	fgSizer7 = new wxFlexGridSizer( 0, 1, 0, 0 );
 	fgSizer7->SetFlexibleDirection( wxBOTH );
-	fgSizer7->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+	fgSizer7->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_ALL );
 
 	wxStaticBoxSizer* sbSizer1;
 	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Current Color Scheme") ), wxVERTICAL );
@@ -36,27 +31,31 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_staticText15 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Color"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText15 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Text"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText15->Wrap( -1 );
 	fgSizer6->Add( m_staticText15, 0, wxALL, 5 );
 
-	m_colourPicker = new PI_OCPNColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPicker = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 50, 0, 103 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPicker->SetMaxSize( wxSize( 40,20 ) );
+
 	fgSizer6->Add( m_colourPicker, 0, wxALL, 5 );
 
 	m_staticText18 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Transparency"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText18->Wrap( -1 );
 	fgSizer6->Add( m_staticText18, 0, wxALL, 5 );
 
-	m_sTransparency = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 64, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	m_sTransparency->SetMinSize( wxSize( 60,-1 ) );
+	m_sTransparency = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 60, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_sTransparency->SetMinSize( wxSize( 40,-1 ) );
 
 	fgSizer6->Add( m_sTransparency, 0, wxALL|wxEXPAND, 5 );
 
-	m_staticText7 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Background Color"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7 = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, _("Background"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText7->Wrap( -1 );
 	fgSizer6->Add( m_staticText7, 0, wxALL, 5 );
 
-	m_colourPickerBG = new PI_OCPNColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPickerBG = new wxColourPickerCtrl( sbSizer1->GetStaticBox(), wxID_ANY, wxColour( 56, 228, 28 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	m_colourPickerBG->SetMaxSize( wxSize( 40,20 ) );
+
 	fgSizer6->Add( m_colourPickerBG, 0, wxALL, 5 );
 
 	wxStaticText* m_staticText8;
@@ -64,7 +63,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText8->Wrap( -1 );
 	fgSizer6->Add( m_staticText8, 0, wxALL, 5 );
 
-	m_sTransparencyBG = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 180, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_sTransparencyBG = new wxSlider( sbSizer1->GetStaticBox(), wxID_ANY, 200, 0, 255, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	fgSizer6->Add( m_sTransparencyBG, 0, wxALL|wxEXPAND, 5 );
 
 
@@ -85,7 +84,7 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 	m_staticText19->Wrap( -1 );
 	fgSizer3->Add( m_staticText19, 0, wxALL, 5 );
 
-	m_sXPosition = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -1000, 10000, 0 );
+	m_sXPosition = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -1000, 10000, 15 );
 	fgSizer3->Add( m_sXPosition, 0, wxALL, 5 );
 
 	m_staticText20 = new wxStaticText( this, wxID_ANY, _("Y Position"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -143,7 +142,6 @@ StatusbarPrefsDialogBase::StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID
 
 	this->SetSizer( fgSizer7 );
 	this->Layout();
-	fgSizer7->Fit( this );
 
 	this->Centre( wxBOTH );
 
