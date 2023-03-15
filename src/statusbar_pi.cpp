@@ -631,6 +631,9 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontFaceName"), c.font.GetFaceName() );
 
     pConf->Write( _T("DisplayString"), c.DisplayString );
+	
+	return true;
+}
 
 void statusbar_pi::OnRefreshTimer( wxTimerEvent & )
 {
