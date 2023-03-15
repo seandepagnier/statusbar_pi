@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
+// C++ code generated with wxFormBuilder (version 3.9.0 Sep 12 2020)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -46,7 +46,8 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
 
-		// Virtual event handlers, override them in your derived class
+
+		// Virtual event handlers, overide them in your derived class
 		virtual void Refresh( wxColourPickerEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxScrollEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxSpinEvent& event ) { event.Skip(); }
@@ -75,7 +76,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxStdDialogButtonSizer* m_sdbSizer2;
 		wxButton* m_sdbSizer2OK;
 
-		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 337,280 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
 
 		~StatusbarPrefsDialogBase();
 

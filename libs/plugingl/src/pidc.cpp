@@ -1839,8 +1839,9 @@ void piDC::DrawText( const wxString &text, wxCoord x, wxCoord y )
             glPixelZoom( 1, 1 );
             glDisable( GL_BLEND );
 #else
-            unsigned int texobj;
 
+            unsigned int texobj;    
+            
             if(m_textbackgroundcolour.Alpha() != 0) {
                 wxPen p = m_pen;
                 wxBrush b = m_brush;
