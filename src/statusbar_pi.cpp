@@ -493,8 +493,8 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
         }
     } else
 #endif
-    dc.SetTextBackground(color);
 
+    dc.SetTextBackground(color);
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
 }
@@ -631,9 +631,6 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontFaceName"), c.font.GetFaceName() );
 
     pConf->Write( _T("DisplayString"), c.DisplayString );
-
-    return true;
-}
 
 void statusbar_pi::OnRefreshTimer( wxTimerEvent & )
 {
