@@ -19,7 +19,7 @@
 ## *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,  USA.         *
 ##---------------------------------------------------------------------------
 # Frontend2 Author: Jon Gough  
-# Frontend2: v1.0.230.0  05/03/2023  # DD/MM/YYYY format
+# Frontend2: v1.0.238.0  09/06/2023  # DD/MM/YYYY format
 #---------------------------------------------------------------------------
 ## ----- When changing this file do NOT change the order in which sections occur        ----- ##
 ## ----- Changes should only be made between the section blocks that identify where     ----- ##
@@ -56,10 +56,10 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "0")
-set(VERSION_PATCH "4")
-set(VERSION_TWEAK "1")
-set(VERSION_DATE "14/03/2023")  # DD/MM/YYYY format
-set(OCPN_MIN_VERSION "ov50")
+set(VERSION_PATCH "5")
+set(VERSION_TWEAK "0")
+set(VERSION_DATE "13/06/2023")  # DD/MM/YYYY format
+set(OCPN_MIN_VERSION "ov58")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
 set(TP_COMMENT "  * Release for O5 using CI")
@@ -184,8 +184,6 @@ include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/GL)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/ocpn-api)
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/libs/wxJSON/include)
-
-
 
 # ----- Change below to match project requirements for android build ----- ##
 
