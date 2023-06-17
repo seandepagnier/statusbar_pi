@@ -421,11 +421,31 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
             }
 
             if(!isnan(value)) {
-                long fparti;
+                long fparti = 0;
                 fpart.ToLong(&fparti);
-                if(fparti == 0)
+                if(fparti == 0){
                     value = trunc(value);
-                outputtext += wxString::Format(fmt, value);
+                    outputtext += wxString::Format(fmt, value);
+                }
+                else {
+                    double ival = trunc(value);
+                    double xtra = fabs(value - ival);
+                    wxString ifmt = "%" + ipart + ".0" + "f";
+
+                    wxString rfmt = "%." + fpart + "f";
+                    wxString rem = wxString::Format(rfmt, xtra);
+                    if (rem.StartsWith("1.")){      // printf rounded up
+                        ival += 1.0;
+                        outputtext += wxString::Format(ifmt, ival);
+
+                        rem = wxString::Format(rfmt, 0.);
+                        outputtext += rem.Mid(1);
+                    }
+                    else {
+                        outputtext += wxString::Format(ifmt, ival);
+                        outputtext += rem.Mid(1);
+                    }
+                }
                 if(degree)
                     outputtext += _T("\u00B0");
                 if(units.size())
@@ -631,7 +651,7 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontFaceName"), c.font.GetFaceName() );
 
     pConf->Write( _T("DisplayString"), c.DisplayString );
-	
+
 	return true;
 }
 
