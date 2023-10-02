@@ -82,7 +82,7 @@ StatusbarPrefsDialog( wxWindow *parent, statusbar_pi &_statusbar_pi )
 //----------------------------------------------------------------------------------------------------------
 
 class piDC;
-class statusbar_pi : public wxEvtHandler, public opencpn_plugin_116
+class statusbar_pi : public wxEvtHandler, public opencpn_plugin_117
 {
 public:
     statusbar_pi( void *ppimgr );
@@ -95,6 +95,8 @@ public:
     int GetAPIVersionMinor();
     int GetPlugInVersionMajor();
     int GetPlugInVersionMinor();
+    int GetPlugInVersionPatch();
+    int GetPlugInVersionPost();
     wxBitmap *GetPlugInBitmap();
     wxString GetCommonName();
     wxString GetShortDescription();

@@ -19,7 +19,7 @@
 ## *   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                       *
 #-----------------------------------------------------------------------------
 # Frontend2 Author: Jon Gough 
-# Testplugn(TP) v1.0.256.0 17/09/2023 DD/MM/YYYY format
+# Testplugin(TP) v1.0.259.0 01/10/2023 DD/MM/YYYY format
 # buildCI:yes useODAPI:no validateJSON:no
 # ---------------------------------------------------------------------------
 ## -- When changing this file do NOT change the order of the sections.    -- ##
@@ -55,13 +55,13 @@ set(LONG_DESCRIPTION "The builtin status bar (disable from the User Interface ta
 
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "1")
-set(VERSION_PATCH "3")
+set(VERSION_PATCH "4")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE  "22/09/2023")#DD/MM/YYYY format
+set(VERSION_DATE  "02/10/2023")#DD/MM/YYYY format
 set(OCPN_MIN_VERSION "ov58")
 
 set(OCPN_API_VERSION_MAJOR "1")
-set(OCPN_API_VERSION_MINOR "16")
+set(OCPN_API_VERSION_MINOR "17")
 set(TP_COMMENT "  * Release using CI")
 
 set(PARENT "opencpn")
@@ -132,9 +132,6 @@ option(Plugin_CXX11 "Use c++11" OFF)
 ## ----- Do not change next section - needed to configure build process ---------##
 ##===========================================================
 
-## --Below needed for build process.
-##===========================================================
-
 include("PluginConfigure")
 
 ##===========================================================
@@ -192,7 +189,7 @@ if(NOT OCPN_FLATPAK_CONFIG)
     add_subdirectory(opencpn-libs/WindowsHeaders)
     target_link_libraries(${PACKAGE_NAME} windows::headers)
 
-    add_subdirectory(opencpn-libs/api-16)
+    add_subdirectory(opencpn-libs/api-17)
     target_link_libraries(${PACKAGE_NAME} ocpn::api)
 
     add_subdirectory(opencpn-libs/wxJSON)
