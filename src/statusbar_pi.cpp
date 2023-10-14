@@ -525,7 +525,7 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
     } else
 #endif
 
-//    dc.SetTextBackground(color);   
+    dc.SetTextBackground(color);   
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
 }
