@@ -105,7 +105,7 @@ void StatusbarPrefsDialog::SaveConfig()
 //-----------------------------------------------------------------------------
 
 statusbar_pi::statusbar_pi(void *ppimgr)
-    :opencpn_plugin_116(ppimgr)
+    :opencpn_plugin_117(ppimgr)
 {
     // Create the PlugIn icons
     initialize_images();
@@ -190,6 +190,17 @@ int statusbar_pi::GetPlugInVersionMinor()
 {
     return PLUGIN_VERSION_MINOR;
 }
+
+int statusbar_pi::GetPlugInVersionPatch()
+{
+    return PLUGIN_VERSION_PATCH;
+}
+
+int statusbar_pi::GetPlugInVersionPost()
+{
+    return PLUGIN_VERSION_TWEAK;
+}
+
 
 // Converts  icon.cpp file to an image. Original process
 //wxBitmap *statusbar_pi::GetPlugInBitmap()
@@ -514,7 +525,7 @@ void statusbar_pi::Render(piDC &dc, PlugIn_ViewPort *vp)
     } else
 #endif
 
-    dc.SetTextBackground(color);
+    dc.SetTextBackground(color);   
     dc.SetTextForeground(c.color);
     dc.DrawText(outputtext, px, py);
 }
