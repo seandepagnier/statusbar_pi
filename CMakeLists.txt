@@ -97,7 +97,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Use local version of GLU library
 # requires libs/glu directory
-set(USE_LOCAL_GLU TRUE)
+set(USE_LOCAL_GLU FALSE)
 # Prefer libGL.so to libOpenGL.so, see CMP0072
 set(OpenGL_GL_PREFERENCE "LEGACY")   #not operational
 
@@ -195,8 +195,8 @@ if(NOT OCPN_FLATPAK_CONFIG)
     add_subdirectory(opencpn-libs/wxJSON)
     target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
 
-    add_subdirectory(opencpn-libs/plugingl)
-    target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
+    add_subdirectory(opencpn-libs/plugin_dc)
+    target_link_libraries(${PACKAGE_NAME} ocpn::dc-utils)
 
 endif(NOT OCPN_FLATPAK_CONFIG)
 
