@@ -90,6 +90,16 @@ rm -f CMakeCache.txt
 #  -DCMAKE_INSTALL_PREFIX=/ \
 #  ..
 
+# Install cloudsmith-cli (for upload) and cryptography (for git-push)
+sudo apt install python3-pip
+python3 -m pip install --user --force-reinstall -q pip setuptools
+sudo apt remove python3-six python3-colorama python3-urllib3
+export LC_ALL=C.UTF-8  LANG=C.UTF-8
+#python3 -m pip install --user -q cloudsmith-cli cryptography
+
+# Building using NDK requires a recent cmake, the packaged is too old
+python3 -m pip install --user -q cmake
+
 last_ndk=$(ls -d /home/circleci/android-sdk/ndk/* | tail -1)
 test -d /opt/android || sudo mkdir -p /opt/android
 sudo ln -sf $last_ndk /opt/android/ndk
