@@ -457,7 +457,7 @@ IF(QT_ANDROID)
     SET(CMAKE_CXX_FLAGS "-pthread -fPIC -H")
 
     ## Compiler flags
-    add_compile_options("-Wno-inconsistent-missing-override"
+    add_compile_options(" -H -Wno-inconsistent-missing-override"
     "-Wno-potentially-evaluated-expression"
     "-Wno-overloaded-virtual"
     "-Wno-unused-command-line-argument"
