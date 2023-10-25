@@ -437,8 +437,8 @@ IF(DEFINED _wx_selected_config)
         MESSAGE (STATUS "${CMLOC}Using GLESv2 for Android")
         ADD_DEFINITIONS(-DUSE_ANDROID_GLES2)
         ADD_DEFINITIONS(-DUSE_GLSL)
-        include_directories( ${PROJECT_SOURCE_DIR}/libs/glshim/include/GLES )
-        set(EXTINCLUDE_DIR ${EXTINCLUDE_DIR} ${PROJECT_SOURCE_DIR}/libs/glshim/include/GLES)
+        #include_directories( ${PROJECT_SOURCE_DIR}/libs/glshim/include/GLES )
+        #set(EXTINCLUDE_DIR ${EXTINCLUDE_DIR} ${PROJECT_SOURCE_DIR}/libs/glshim/include/GLES)
 
     ENDIF(_wx_selected_config MATCHES "androideabi-qt")
 ENDIF(DEFINED _wx_selected_config)
@@ -454,7 +454,7 @@ IF(QT_ANDROID)
     set(CMAKE_SHARED_LINKER_FLAGS "-Wl,-soname,libgorp.so ")
 
     #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    SET(CMAKE_CXX_FLAGS "-pthread -fPIC")
+    SET(CMAKE_CXX_FLAGS "-pthread -fPIC -H")
 
     ## Compiler flags
     add_compile_options("-Wno-inconsistent-missing-override"
