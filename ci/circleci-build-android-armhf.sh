@@ -77,44 +77,37 @@ mkdir -p build
 cd build
 
 rm -f CMakeCache.txt
-COMPDIR=$(find ~/. -regex ".*/ndk/22.[0-9].[0-9]*")
+#COMPDIR=$(find ~/. -regex ".*/ndk/22.[0-9].[0-9]*")
 
-cmake  \
+#cmake  \
+#  -D_wx_selected_config=androideabi-qt-armhf \
+#  -DwxQt_Build=build_android_release_19_static_O3 \
+#  -DQt_Build=build_arm32_19_O3/qtbase \
+#  -DCMAKE_AR=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar \
+#  -DCMAKE_CXX_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang++ \
+#  -DCMAKE_C_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang \
+#  -DOCPN_Android_Common=OCPNAndroidCommon-master \
+#  -DCMAKE_INSTALL_PREFIX=/ \
+#  ..
+
+last_ndk=$(ls -d /home/circleci/android-sdk/ndk/* | tail -1)
+test -d /opt/android || sudo mkdir -p /opt/android
+sudo ln -sf $last_ndk /opt/android/ndk
+
+cmake -DCMAKE_TOOLCHAIN_FILE=cmake/android-armhf-toolchain.cmake \
   -D_wx_selected_config=androideabi-qt-armhf \
   -DwxQt_Build=build_android_release_19_static_O3 \
   -DQt_Build=build_arm32_19_O3/qtbase \
-  -DCMAKE_AR=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar \
-  -DCMAKE_CXX_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang++ \
-  -DCMAKE_C_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang \
   -DOCPN_Android_Common=OCPNAndroidCommon-master \
-  -DCMAKE_INSTALL_PREFIX=/ \
   ..
 
+make VERBOSE=1
+
 # Get number of processors and use this on make to speed up build
-procs=$(awk -F- '{print $2}' /sys/fs/cgroup/cpuset/cpuset.cpus)
-procs=$((procs + 1))
-make_cmd="make -j"$procs
-eval $make_cmd
+#procs=$(awk -F- '{print $2}' /sys/fs/cgroup/cpuset/cpuset.cpus)
+#procs=$((procs + 1))
+#make_cmd="make -j"$procs
+#eval $make_cmd
 
 make package
 
-#  All below for local docker build
-#ls -l
-
-#xml=$(ls *.xml)
-#tarball=$(ls *.tar.gz)
-#tarball_basename=${tarball##*/}
-
-#echo $xml
-#echo $tarball
-#echo $tarball_basename
-#sudo sed -i -e "s|@filename@|$tarball_basename|" $xml
-
-
-#tmpdir=repack.$$
-#sudo rm -rf $tmpdir && sudo mkdir $tmpdir
-#sudo tar -C $tmpdir -xf $tarball_basename
-#sudo cp oesenc-plugin-android-armhf-16.xml metadata.xml
-#sudo cp metadata.xml $tmpdir
-#sudo tar -C $tmpdir -czf $tarball_basename .
-#sudo rm -rf $tmpdir
