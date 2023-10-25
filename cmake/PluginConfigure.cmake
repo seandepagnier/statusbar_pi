@@ -462,7 +462,6 @@ IF(QT_ANDROID)
     "-Wno-overloaded-virtual"
     "-Wno-unused-command-line-argument"
     "-Wno-unknown-pragmas"
-    "-H"
       )
 
     message(STATUS "${CMLOC}Adding libgorp.o shared library")

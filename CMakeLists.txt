@@ -146,7 +146,6 @@ SET(SRCS
     src/statusbar_pi.cpp
     src/StatusbarUI.cpp
     src/icons.cpp
-    src/TexFont.cpp
     src/OCPNColorPicker.cpp
 )
 
