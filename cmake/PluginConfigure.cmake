@@ -454,14 +454,15 @@ IF(QT_ANDROID)
     set(CMAKE_SHARED_LINKER_FLAGS "-Wl,-soname,libgorp.so ")
 
     #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    SET(CMAKE_CXX_FLAGS "-pthread -fPIC -H")
+    SET(CMAKE_CXX_FLAGS "-pthread -fPIC ")
 
     ## Compiler flags
-    add_compile_options(" -H -Wno-inconsistent-missing-override"
+    add_compile_options(" -Wno-inconsistent-missing-override"
     "-Wno-potentially-evaluated-expression"
     "-Wno-overloaded-virtual"
     "-Wno-unused-command-line-argument"
     "-Wno-unknown-pragmas"
+    "-H"
       )
 
     message(STATUS "${CMLOC}Adding libgorp.o shared library")
