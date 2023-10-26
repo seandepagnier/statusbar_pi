@@ -77,8 +77,8 @@ mkdir -p build
 cd build
 
 rm -f CMakeCache.txt
-#COMPDIR=$(find ~/. -regex ".*/ndk/22.[0-9].[0-9]*")
 
+#COMPDIR=$(find ~/. -regex ".*/ndk/22.[0-9].[0-9]*")
 #cmake  \
 #  -D_wx_selected_config=androideabi-qt-armhf \
 #  -DwxQt_Build=build_android_release_19_static_O3 \
@@ -90,14 +90,11 @@ rm -f CMakeCache.txt
 #  -DCMAKE_INSTALL_PREFIX=/ \
 #  ..
 
-# Install cloudsmith-cli (for upload) and cryptography (for git-push)
+# Install python to get a recent version of cmake
 sudo apt install python3-pip
 python3 -m pip install --user --force-reinstall -q pip setuptools
 sudo apt remove python3-six python3-colorama python3-urllib3
 export LC_ALL=C.UTF-8  LANG=C.UTF-8
-#python3 -m pip install --user -q cloudsmith-cli cryptography
-
-# Building using NDK requires a recent cmake, the packaged is too old
 python3 -m pip install --user -q cmake
 
 last_ndk=$(ls -d /home/circleci/android-sdk/ndk/* | tail -1)
@@ -112,12 +109,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=cmake/android-armhf-toolchain.cmake \
   ..
 
 make VERBOSE=1
-
-# Get number of processors and use this on make to speed up build
-#procs=$(awk -F- '{print $2}' /sys/fs/cgroup/cpuset/cpuset.cpus)
-#procs=$((procs + 1))
-#make_cmd="make -j"$procs
-#eval $make_cmd
 
 make package
 
