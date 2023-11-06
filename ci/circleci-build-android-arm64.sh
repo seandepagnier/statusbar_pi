@@ -61,24 +61,12 @@ cd build
 
 rm -f CMakeCache.txt
 
-#COMPDIR=$(find ~/. -regex ".*/ndk/22.[0-9].[0-9]*")
-#cmake  \
-#  -D_wx_selected_config=androideabi-qt-arm64 \
-#  -DwxQt_Build=build_android_release_64_static_O3 \
-#  -DQt_Build=build_arm64/qtbase \
-#  -DCMAKE_AR=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android-ar \
-#  -DCMAKE_CXX_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang++ \
-#  -DCMAKE_C_COMPILER=$COMPDIR/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang \
-#  -DOCPN_Android_Common=OCPNAndroidCommon-master \
-#  -DCMAKE_INSTALL_PREFIX=/ \
-#  ..
-
 # Install python to get a recent version of cmake
 sudo apt install python3-pip
 python3 -m pip install --user --force-reinstall -q pip setuptools
 sudo apt remove python3-six python3-colorama python3-urllib3
 export LC_ALL=C.UTF-8  LANG=C.UTF-8
-python3 -m pip install --user -q cmake
+python3 -m pip install --user -q cmake -vv
 
 last_ndk=$(ls -d /home/circleci/android-sdk/ndk/* | tail -1)
 test -d /opt/android || sudo mkdir -p /opt/android
