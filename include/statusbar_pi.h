@@ -134,8 +134,6 @@ private:
     double m_cursor_lat, m_cursor_lon;
     PlugIn_Position_Fix_Ex lastfix;
 
-    TexFont m_texfont;
-
     PI_ColorScheme m_ColorScheme;
 };
 
