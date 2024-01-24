@@ -46,6 +46,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxChoice* m_cBuiltinString;
 		wxButton* m_bAboutAuthor;
 
+
 		// Virtual event handlers, overide them in your derived class
 		virtual void Refresh( wxColourPickerEvent& event ) { event.Skip(); }
 		virtual void Refresh( wxScrollEvent& event ) { event.Skip(); }
@@ -76,6 +77,7 @@ class StatusbarPrefsDialogBase : public wxDialog
 		wxButton* m_sdbSizer2OK;
 
 		StatusbarPrefsDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Status Bar Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE );
+
 		~StatusbarPrefsDialogBase();
 
 };
